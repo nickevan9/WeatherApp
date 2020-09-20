@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment"
+   >
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.weatherapp.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_walkThroughFragment"
+            app:destination="@id/walkThroughFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/walkThroughFragment"
+        android:name="com.example.weatherapp.ui.walkthrough.WalkThroughFragment"
+        android:label="fragment_walk_through"
+        tools:layout="@layout/fragment_walk_through" >
+        <action
+            android:id="@+id/action_walkThroughFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.weatherapp.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_locationFragment"
+            app:destination="@id/locationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_homeFragment_to_dayDetailFragment"
+            app:destination="@id/dayDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_homeFragment_to_hourDetailFragment"
+            app:destination="@id/hourDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.weatherapp.ui.location.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/dayDetailFragment"
+        android:name="com.example.weatherapp.ui.detail.daydetail.DayDetailFragment"
+        android:label="fragment_day_detail"
+        tools:layout="@layout/fragment_day_detail" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.weatherapp.ui.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/hourDetailFragment"
+        android:name="com.example.weatherapp.ui.detail.hourdetail.HourDetailFragment"
+        android:label="fragment_hour_detail"
+        tools:layout="@layout/fragment_hour_detail" />
+</navigation>
