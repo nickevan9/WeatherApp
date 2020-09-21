@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8sdp"
+    android:background="@color/bg_tranfer_item">
+
+    <com.example.weatherapp.widget.CustomTextviewMedium
+        android:id="@+id/tv_air_quality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/air_quality"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_16ssp" />
+
+    <LinearLayout
+        android:id="@+id/ln_air_quality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_below="@id/tv_air_quality"
+        >
+
+        <at.grabner.circleprogress.CircleProgressView
+            android:id="@+id/circleView"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            CircleProgressView:cpv_barColor="@android:color/holo_red_dark"
+            CircleProgressView:cpv_barColor1="@android:color/holo_red_dark"
+            CircleProgressView:cpv_barColor2="@android:color/holo_orange_light"
+            CircleProgressView:cpv_barColor3="@android:color/holo_blue_bright"
+            CircleProgressView:cpv_barStrokeCap="Butt"
+            CircleProgressView:cpv_barWidth="@dimen/_12sdp"
+            CircleProgressView:cpv_blockCount="50"
+            CircleProgressView:cpv_blockScale="0.5"
+            CircleProgressView:cpv_innerContourSize="0dp"
+            CircleProgressView:cpv_maxValue="300"
+            CircleProgressView:cpv_outerContourSize="0dp"
+            CircleProgressView:cpv_rimColor="@android:color/transparent"
+            CircleProgressView:cpv_rimWidth="10dp"
+            CircleProgressView:cpv_seekMode="true"
+            CircleProgressView:cpv_startAngle="180"
+            CircleProgressView:cpv_text="150"
+            CircleProgressView:cpv_textMode="Text"
+            CircleProgressView:cpv_textSize="16dp"
+            CircleProgressView:cpv_unitColor="@android:color/holo_red_dark"
+            CircleProgressView:cpv_value="250"
+            CircleProgressView:cpv_textColor="@android:color/holo_red_dark"
+
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <com.example.weatherapp.widget.CustomTextviewLight
+                android:id="@+id/tv_air_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unhealthy for Sensitive Groups"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="@dimen/_12ssp"
+                />
+            <com.example.weatherapp.widget.CustomTextviewLight
+                android:id="@+id/tv_air_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Member of sensitive groups may experience health effects"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Powered by weather.io"
+        android:textSize="@dimen/_6ssp"
+        android:layout_below="@id/ln_air_quality"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>

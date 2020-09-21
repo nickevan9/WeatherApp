@@ -5,12 +5,8 @@
             <size
                 android:width="@dimen/_100sdp"
                 android:height="@dimen/_100sdp" />
-            <stroke
-                android:width="@dimen/_1sdp"
-                android:color="@android:color/white" />
-
             <solid
-                android:color="@android:color/transparent" />
+                android:color="@color/tranfer_status" />
         </shape>
     </item>
 

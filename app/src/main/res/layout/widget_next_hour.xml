@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_tranfer_item"
+    android:padding="@dimen/_8sdp">
+
+    <LinearLayout
+        android:id="@+id/ln_hour_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_next_hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/next_24_hours"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_16ssp" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_48_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:="@id/tv_next_hour"
+            android:text="@string/_48_hour"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="@dimen/_16ssp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_hour"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ln_hour_text"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@android:color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_hour"/>
+
+</RelativeLayout>
