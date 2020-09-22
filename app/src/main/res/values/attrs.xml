@@ -17,4 +17,10 @@
         <attr name="font_name" />
     </declare-styleable>
 
+    <declare-styleable name="SunInDayCustom">
+        <attr name="start_time" format="string" />
+        <attr name="end_time" format="string" />
+        <attr name="now_time" format="string" />
+    </declare-styleable>
+
 </resources>

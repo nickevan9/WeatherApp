@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.widget.CustomTextviewMedium
+        <com.example.weatherapp.widget.CustomTextviewBold
             android:id="@+id/tv_next_hour"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -21,9 +21,9 @@
             android:text="@string/next_7_days"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_14ssp" />
 
-        <com.example.weatherapp.widget.CustomTextviewMedium
+        <com.example.weatherapp.widget.CustomTextviewBold
             android:id="@+id/tv_48_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:text="@string/_14_days"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_orange_light"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_14ssp" />
     </LinearLayout>
 
     <View

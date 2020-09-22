@@ -6,4 +6,6 @@
     <string name="_14_days">14 days</string>
     <string name="air_quality">Air Quality</string>
     <string name="wind">wind</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="sun_and_moon">sun and moon</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_tranfer_item"
+    android:padding="@dimen/_8sdp">
+
+    <com.example.weatherapp.widget.CustomTextviewBold
+        android:id="@+id/tv_sun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sun_and_moon"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <View
+        android:id="@+id/view_hour"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_sun"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@android:color/white" />
+</RelativeLayout>
