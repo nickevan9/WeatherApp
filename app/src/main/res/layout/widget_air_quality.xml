@@ -6,7 +6,7 @@
     android:padding="@dimen/_8sdp"
     android:background="@color/bg_tranfer_item">
 
-    <com.example.weatherapp.widget.CustomTextviewMedium
+    <com.example.weatherapp.widget.CustomTextviewBold
         android:id="@+id/tv_air_quality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:text="@string/air_quality"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_16ssp" />
+        android:textSize="@dimen/_14ssp" />
 
     <LinearLayout
         android:id="@+id/ln_air_quality"
