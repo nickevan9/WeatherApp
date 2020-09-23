@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_tranfer_item"
@@ -22,4 +24,50 @@
         android:layout_below="@id/tv_sun"
         android:layout_marginVertical="@dimen/_8sdp"
         android:background="@android:color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@id/view_hour">
+
+        <com.example.weatherapp.widget.customview.SunInDayCustom
+            android:id="@+id/custom_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <com.example.weatherapp.widget.customview.MoonCustomView
+            android:id="@+id/custom_moon"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_moon_status"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.weatherapp.widget.CustomTextviewLight
+            android:id="@+id/tv_moon_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waxubg crescent"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_moon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_moon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </RelativeLayout>

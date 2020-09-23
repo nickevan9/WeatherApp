@@ -23,4 +23,8 @@
         <attr name="now_time" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="MoonCustomView">
+        <attr name="percent_moon" format="string" />
+    </declare-styleable>
+
 </resources>

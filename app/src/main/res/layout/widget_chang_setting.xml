@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_tranfer_item"
+    android:padding="@dimen/_8sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrain_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="@string/notification"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv_widget"
+            app:layout_constraintTop_toTopOf="@+id/tv_widget" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_icon_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="@string/icon_set"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toEndOf="@+id/tv_notification"
+            app:layout_constraintTop_toTopOf="@+id/tv_notification" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/tv_icon_set"
+            app:layout_constraintStart_toStartOf="@+id/tv_widget"
+            app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
+
+        <View
+            android:id="@+id/view_widget"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@android:color/holo_orange_light"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_widget"
+            app:layout_constraintStart_toStartOf="@+id/tv_widget"
+            app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
+
+        <View
+            android:id="@+id/view_notification"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@android:color/holo_orange_light"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_notification"
+            app:layout_constraintStart_toStartOf="@+id/tv_notification"
+            app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
+
+        <View
+            android:id="@+id/view_icon_widget"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@android:color/holo_orange_light"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_icon_set"
+            app:layout_constraintStart_toStartOf="@+id/tv_icon_set"
+            app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_change_setting"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_below="@id/constrain_setting"
+        android:layout_marginTop="@dimen/_8sdp" />
+
+
+</RelativeLayout>

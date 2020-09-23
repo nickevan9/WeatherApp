@@ -8,4 +8,7 @@
     <string name="wind">wind</string>
     <string name="precipitation">Precipitation</string>
     <string name="sun_and_moon">sun and moon</string>
+    <string name="widget">Widget</string>
+    <string name="notification">Notification</string>
+    <string name="icon_set">Icon set</string>
 </resources>
