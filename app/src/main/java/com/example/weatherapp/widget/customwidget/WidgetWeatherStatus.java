@@ -1,11 +1,14 @@
-package com.example.weatherapp.widget.customview;
+package com.example.weatherapp.widget.customwidget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.Utils;
+import com.example.weatherapp.data.model.FchEntity;
 import com.example.weatherapp.widget.CustomTextviewLight;
 
 public class WidgetWeatherStatus extends RelativeLayout {
@@ -50,7 +53,32 @@ public class WidgetWeatherStatus extends RelativeLayout {
         lottieWeather = findViewById(R.id.lottie_status_weather);
     }
 
-    protected void applyData(){
+    protected void applyData(FchEntity fchEntity, String tempMax, String tempMin, String timeZone) {
+        tvTemp.setText(fchEntity.getT());
+        tvWindChill.setText(getContext().getString(R.string.windchill, fchEntity.getTf().toString()));
+        tvTempMax.setText(getContext().getString(R.string.set_temp, tempMax));
+        tvTempMin.setText(getContext().getString(R.string.set_temp, tempMin));
+        tvPressure.setText(getContext().getString(R.string.set_pressure, fchEntity.getP().toString()));
+        setUVIndex(fchEntity.getUv());
+        tvWeatherStatus.setText(fchEntity.getTxt());
+        tvWindSpeed.setText(getContext().getString(R.string.set_wind_speed, fchEntity.getWs().toString()));
 
+        tvHour.setText(Utils.convertTimeStampToLocalTime(fchEntity.getDt(), timeZone));
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setUVIndex(int uvIndex) {
+        if (uvIndex >= 1 && uvIndex < 3) {
+            tvUVIndex.setText(uvIndex + getContext().getString(R.string.low));
+        } else if (uvIndex >= 3 && uvIndex < 6) {
+            tvUVIndex.setText(uvIndex + getContext().getString(R.string.moderate));
+        } else if (uvIndex >= 6 && uvIndex < 8) {
+            tvUVIndex.setText(uvIndex + getContext().getString(R.string.high));
+        } else if (uvIndex >= 8 && uvIndex < 11) {
+            tvUVIndex.setText(uvIndex + getContext().getString(R.string.very_high));
+        } else {
+            tvUVIndex.setText(uvIndex + getContext().getString(R.string.extreme));
+        }
     }
 }

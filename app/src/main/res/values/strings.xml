@@ -11,4 +11,15 @@
     <string name="widget">Widget</string>
     <string name="notification">Notification</string>
     <string name="icon_set">Icon set</string>
+
+    <string name="windchill">Windchill %s ºC</string>
+    <string name="set_temp">%s ºC</string>
+    <string name="set_pressure">%s mmHg</string>
+    <string name="set_wind_speed">Wind speed %s mph</string>
+
+    <string name="low"> (Low)</string>
+    <string name="moderate"> (Moderate)</string>
+    <string name="high"> (High)</string>
+    <string name="very_high"> (Very high)</string>
+    <string name="extreme"> (Extreme)</string>
 </resources>

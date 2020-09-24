@@ -120,7 +120,7 @@
             style="@style/TextMiniStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Windchi 29ºC"
+            android:text="Windchill 29ºC"
             app:layout_constraintEnd_toEndOf="@+id/tv_temp"
             app:layout_constraintStart_toStartOf="@+id/tv_temp"
             app:layout_constraintTop_toBottomOf="@+id/tv_temp" />
@@ -133,6 +133,17 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+        <ImageView
+            android:id="@+id/img_status_weather"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            android:visibility="gone"
+            />
 
         <com.example.weatherapp.widget.CustomTextviewLight
             android:id="@+id/tv_temp_min"
