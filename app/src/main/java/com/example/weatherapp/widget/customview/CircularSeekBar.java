@@ -17,9 +17,10 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseArray;
-
 import android.view.View;
 import androidx.core.content.ContextCompat;
+
+import com.example.weatherapp.R;
 
 
 public class CircularSeekBar extends View {
@@ -31,9 +32,9 @@ public class CircularSeekBar extends View {
 
     protected static final int k0 = Color.argb(135, 74, 138, 255);
 
-    protected int A = 135;
+    protected int mPointerAlpha = 135;
 
-    protected int B = 100;
+    protected int mPointerAlphaOnTouch = 100;
 
     protected float C;
 
@@ -47,9 +48,9 @@ public class CircularSeekBar extends View {
 
     protected Path H;
 
-    protected int I;
+    protected int mMaxProcess;
 
-    protected int J;
+    protected int mCurProcess;
 
     protected boolean K;
 
@@ -57,31 +58,31 @@ public class CircularSeekBar extends View {
 
     protected boolean M;
 
-    protected boolean N = true;
+    protected boolean lockEnabled = true;
 
-    protected boolean O = true;
+//    protected boolean O = true;
+//
+//    protected boolean P = false;
+//
+//    protected boolean Q = false;
+//
+//    protected float R1;
+//
+//    protected float S;
+//
+//    protected float T;
+//
+//    protected float U;
+//
+//    protected float V;
+//
+//    protected float W;
 
-    protected boolean P = false;
+    protected final float density = (getResources().getDisplayMetrics()).density;
 
-    protected boolean Q = false;
+//    protected boolean a0;
 
-    protected float R;
-
-    protected float S;
-
-    protected float T;
-
-    protected float U;
-
-    protected float V;
-
-    protected float W;
-
-    protected final float a = (getResources().getDisplayMetrics()).density;
-
-    protected boolean a0;
-
-    protected Drawable b;
+    protected Drawable mIndicatorIcon;
 
     protected float b0;
 
@@ -99,15 +100,15 @@ public class CircularSeekBar extends View {
 
     protected Paint f;
 
-    protected OnCircularSeekBarChangeListener f0;
+    protected OnCircularSeekBarChangeListener circularSeekBarChangeListener;
 
     protected Paint g;
 
-    protected boolean g0 = false;
+    protected boolean isTouchEnabled = false;
 
     protected Paint h;
 
-    protected Paint i;
+    protected Paint mPointerPaint;
 
     protected Paint j;
 
@@ -125,41 +126,41 @@ public class CircularSeekBar extends View {
 
     public SparseArray<float[]> positionPercent = new SparseArray();
 
-    protected float q;
+    protected float startAngle;
 
-    protected float r;
+    protected float endAngle;
 
     private RectF rectF = new RectF();
 
     protected RectF s = new RectF();
 
-    protected int t = h0;
+    protected int mFinishedColor = h0;
 
-    protected int u = i0;
+    protected int mPointerColor = i0;
 
-    protected int v = j0;
+    protected int MPointerHaloColor = j0;
 
-    protected int w = k0;
+    protected int mPointerHaloColorOnTouch = k0;
 
-    protected int x = -256;
+    protected int mCircleColor = -256;
 
     protected int y = -1;
 
-    protected int z = -16776961;
+    protected int mCircleProgressColor = -16776961;
 
     public CircularSeekBar(Context paramContext) {
         super(paramContext);
-        a(paramContext, null, 0);
+        initAttributes(paramContext, null, 0);
     }
 
     public CircularSeekBar(Context paramContext, AttributeSet paramAttributeSet) {
         super(paramContext, paramAttributeSet);
-        a(paramContext, paramAttributeSet, 0);
+        initAttributes(paramContext, paramAttributeSet, 0);
     }
 
     public CircularSeekBar(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
         super(paramContext, paramAttributeSet, paramInt);
-        a(paramContext, paramAttributeSet, paramInt);
+        initAttributes(paramContext, paramAttributeSet, paramInt);
     }
 
     private void calculateRecF(int paramInt1, int paramInt2) {
@@ -177,56 +178,59 @@ public class CircularSeekBar extends View {
         paramCanvas.rotate(90.0F, (getWidth() / 2), (getHeight() / 2));
     }
 
-    protected void a() {
-        this.d0 = this.J / this.I * this.C + this.q;
+    protected void initAttributes() {
+        this.d0 = this.mCurProcess / this.mMaxProcess * this.C + this.startAngle;
         this.d0 %= 360.0F;
     }
 
-    protected void a(Context paramContext, TypedArray paramTypedArray) {
-        this.l = paramTypedArray.getDimension(4, this.a * 30.0F);
-        this.m = paramTypedArray.getDimension(5, this.a * 30.0F);
-        this.n = paramTypedArray.getDimension(19, this.a * 7.0F);
-        this.o = paramTypedArray.getDimension(18, this.a * 6.0F);
-        this.p = paramTypedArray.getDimension(15, this.a * 1.0F);
-        this.k = paramTypedArray.getDimension(3, this.a * 1.0F);
-        this.t = paramTypedArray.getColor(7, h0);
-        this.u = paramTypedArray.getColor(14, i0);
-        this.v = paramTypedArray.getColor(16, j0);
-        this.w = paramTypedArray.getColor(17, k0);
-        this.x = paramTypedArray.getColor(0, -256);
-        this.z = paramTypedArray.getColor(2, -16776961);
-        this.y = paramTypedArray.getColor(1, -1);
-        this.A = Color.alpha(this.v);
-        this.B = paramTypedArray.getInt(13, 100);
-        int i = this.B;
-        if (i > 255 || i < 0)
-            this.B = 100;
-        this.I = paramTypedArray.getInt(10, 100);
-        this.J = paramTypedArray.getInt(20, 0);
-        this.K = paramTypedArray.getBoolean(22, false);
-        this.L = paramTypedArray.getBoolean(9, true);
-        this.M = paramTypedArray.getBoolean(11, false);
-        this.N = paramTypedArray.getBoolean(8, true);
-        Drawable drawable = paramTypedArray.getDrawable(12);
-        this.b = ContextCompat.getDrawable(paramContext, 2131165744);
+    protected void initAttributes(Context paramContext, TypedArray paramTypedArray) {
+        this.l = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_x_radius, this.density * 30.0F);
+        this.m = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_y_radius, this.density * 30.0F);
+        this.n = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_width, this.density * 7.0F);
+        this.o = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_height, this.density * 6.0F);
+        this.p = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
+        this.k = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
+        this.mFinishedColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_finished_color, h0);
+        this.mPointerColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_color, i0);
+        this.MPointerHaloColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_halo_color, j0);
+        this.mPointerHaloColorOnTouch = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_halo_color_ontouch, k0);
+        this.mCircleColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_color, -256);
+        this.mCircleProgressColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_progress_color, -16776961);
+        this.y = paramTypedArray.getColor(R.styleable.CircularSeekBar_circleColor, -1);
+        this.mPointerAlpha = Color.alpha(this.MPointerHaloColor);
+        this.mPointerAlphaOnTouch = paramTypedArray.getInt(R.styleable.CircularSeekBar_pointer_alpha_ontouch, 100);
+        int icPositionX = this.mPointerAlphaOnTouch;
+        if (icPositionX > 255 || icPositionX < 0)
+            this.mPointerAlphaOnTouch = 100;
+        this.mMaxProcess = paramTypedArray.getInt(R.styleable.CircularSeekBar_circle_max_progress, 100);
+        this.mCurProcess = paramTypedArray.getInt(R.styleable.CircularSeekBar_circle_current_progress, 0);
+//        this.K = paramTypedArray.getBoolean(22, false);
+        this.K = false;
+//        this.L = paramTypedArray.getBoolean(9, true);
+        this.L = true;
+//        this.M = paramTypedArray.getBoolean(11, false);
+        this.M = false;
+        this.lockEnabled = paramTypedArray.getBoolean(R.styleable.CircularSeekBar_lock_enabled, true);
+        Drawable drawable = paramTypedArray.getDrawable(R.styleable.CircularSeekBar_ci_drawable);
+        this.mIndicatorIcon = ContextCompat.getDrawable(paramContext, R.drawable.ic_sun);
         if (drawable != null)
-            this.b = drawable;
-        i = this.b.getIntrinsicWidth() / 4;
-        int j = this.b.getIntrinsicHeight() / 4;
-        this.b.setBounds(-i, -j, i, j);
-        this.q = (paramTypedArray.getFloat(21, 270.0F) % 360.0F + 360.0F) % 360.0F;
-        this.r = (paramTypedArray.getFloat(6, 270.0F) % 360.0F + 360.0F) % 360.0F;
-        float f1 = this.q;
-        float f2 = this.r;
-        if (f1 == f2)
-            this.r = f2 - 0.1F;
+            this.mIndicatorIcon = drawable;
+        icPositionX = this.mIndicatorIcon.getIntrinsicWidth() / 4;
+        int icPositionY = this.mIndicatorIcon.getIntrinsicHeight() / 4;
+        this.mIndicatorIcon.setBounds(-icPositionX, -icPositionY, icPositionX, icPositionY);
+        this.startAngle = (paramTypedArray.getFloat(R.styleable.CircularSeekBar_start_angle, 270.0F) % 360.0F + 360.0F) % 360.0F;
+        this.endAngle = (paramTypedArray.getFloat(R.styleable.CircularSeekBar_end_angle, 270.0F) % 360.0F + 360.0F) % 360.0F;
+        float start = this.startAngle;
+        float end = this.endAngle;
+        if (start == end)
+            this.endAngle = end - 0.1F;
     }
 
-    protected void a(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
+    protected void initAttributes(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
         TypedArray typedArray = getContext().obtainStyledAttributes(paramAttributeSet, R.styleable.CircularSeekBar, paramInt, 0);
-        a(paramContext, typedArray);
+        initAttributes(paramContext, typedArray);
         typedArray.recycle();
-        e();
+        initStyle();
     }
 
     protected void b() {
@@ -236,7 +240,7 @@ public class CircularSeekBar extends View {
     }
 
     protected void c() {
-        this.D = this.d0 - this.q;
+        this.D = this.d0 - this.startAngle;
         float f1 = this.D;
         float f2 = f1;
         if (f1 < 0.0F)
@@ -244,23 +248,23 @@ public class CircularSeekBar extends View {
         this.D = f2;
     }
 
-    protected void d() {
-        this.C = (360.0F - this.q - this.r) % 360.0F;
+    protected void initCircle() {
+        this.C = (360.0F - this.startAngle - this.endAngle) % 360.0F;
         if (this.C <= 0.0F)
             this.C = 360.0F;
     }
 
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        Drawable drawable = this.b;
+        Drawable drawable = this.mIndicatorIcon;
         if (drawable != null && drawable.isStateful()) {
             int[] arrayOfInt = getDrawableState();
-            this.b.setState(arrayOfInt);
+            this.mIndicatorIcon.setState(arrayOfInt);
         }
         invalidate();
     }
 
-    protected void e() {
+    protected void initStyle() {
         this.c = new Paint();
         this.c.setAntiAlias(true);
         this.c.setDither(true);
@@ -273,11 +277,13 @@ public class CircularSeekBar extends View {
         this.c.setStyle(Paint.Style.STROKE);
         this.c.setStrokeJoin(Paint.Join.ROUND);
         this.c.setStrokeCap(Paint.Cap.ROUND);
+
         this.e = new Paint();
         this.e.setAntiAlias(true);
         this.e.setDither(true);
         this.e.setColor(this.y);
         this.e.setStyle(Paint.Style.FILL);
+
         this.f = new Paint();
         this.f.setAntiAlias(true);
         this.f.setDither(true);
@@ -286,43 +292,48 @@ public class CircularSeekBar extends View {
         this.f.setStyle(Paint.Style.STROKE);
         this.f.setStrokeJoin(Paint.Join.ROUND);
         this.f.setStrokeCap(Paint.Cap.ROUND);
+
         this.g = new Paint();
         this.g.set(this.f);
-        this.g.setMaskFilter((MaskFilter)new BlurMaskFilter(this.a * 5.0F, BlurMaskFilter.Blur.NORMAL));
+        this.g.setMaskFilter((MaskFilter)new BlurMaskFilter(this.density * 5.0F, BlurMaskFilter.Blur.NORMAL));
+
         this.d = new Paint();
         this.d.setAntiAlias(true);
         this.d.setDither(true);
-        this.d.setColor(this.t);
+        this.d.setColor(this.mFinishedColor);
         this.d.setStyle(Paint.Style.FILL_AND_STROKE);
+
         this.h = new Paint();
         this.h.setAntiAlias(true);
         this.h.setDither(true);
         this.h.setStyle(Paint.Style.FILL);
-        this.h.setColor(this.u);
+        this.h.setColor(this.mPointerColor);
         this.h.setStrokeWidth(this.n);
-        this.i = new Paint();
-        this.i.set(this.h);
-        this.i.setColor(this.v);
-        this.i.setAlpha(this.A);
-        this.i.setStrokeWidth(this.n + this.o);
+
+        this.mPointerPaint = new Paint();
+        this.mPointerPaint.set(this.h);
+        this.mPointerPaint.setColor(this.MPointerHaloColor);
+        this.mPointerPaint.setAlpha(this.mPointerAlpha);
+        this.mPointerPaint.setStrokeWidth(this.n + this.o);
+
         this.j = new Paint();
         this.j.set(this.h);
         this.j.setStrokeWidth(this.p);
         this.j.setStyle(Paint.Style.STROKE);
     }
 
-    protected void f() {
+    protected void initPath() {
         this.G = new Path();
-        this.G.addArc(this.s, this.q, this.C);
+        this.G.addArc(this.s, this.startAngle, this.C);
         this.F = new Path();
-        this.F.addArc(this.s, this.C, -this.q);
+        this.F.addArc(this.s, this.C, -this.startAngle);
         this.E = new Path();
-        this.E.addArc(this.s, this.q, this.C);
+        this.E.addArc(this.s, this.startAngle, this.C);
         this.H = new Path();
-        this.H.addArc(this.s, this.q, this.D);
+        this.H.addArc(this.s, this.startAngle, this.D);
     }
 
-    protected void g() {
+    protected void initRectF() {
         RectF rectF = this.s;
         float f1 = this.b0;
         float f2 = -f1;
@@ -331,7 +342,7 @@ public class CircularSeekBar extends View {
     }
 
     public int getCircleColor() {
-        return this.x;
+        return this.mCircleColor;
     }
 
     public int getCircleFillColor() {
@@ -339,69 +350,48 @@ public class CircularSeekBar extends View {
     }
 
     public int getCircleProgressColor() {
-        return this.z;
+        return this.mCircleProgressColor;
     }
 
     public int getFinishedColor() {
-        return this.t;
+        return this.mFinishedColor;
     }
 
     public boolean getIsTouchEnabled() {
-        return this.g0;
-    }
-
-    public int getMax() {
-        // Byte code:
-        //   0: aload_0
-        //   1: monitorenter
-        //   2: aload_0
-        //   3: getfield I : I
-        //   6: istore_1
-        //   7: aload_0
-        //   8: monitorexit
-        //   9: iload_1
-        //   10: ireturn
-        //   11: astore_2
-        //   12: aload_0
-        //   13: monitorexit
-        //   14: aload_2
-        //   15: athrow
-        // Exception table:
-        //   from	to	target	type
-        //   2	7	11	finally
+        return this.isTouchEnabled;
     }
 
     public int getPointerAlpha() {
-        return this.A;
+        return this.mPointerAlpha;
     }
 
     public int getPointerAlphaOnTouch() {
-        return this.B;
+        return this.mPointerAlphaOnTouch;
     }
 
     public int getPointerColor() {
-        return this.u;
+        return this.mPointerColor;
     }
 
     public int getPointerHaloColor() {
-        return this.v;
+        return this.MPointerHaloColor;
     }
 
     public int getProgress() {
-        return Math.round(this.I * this.D / this.C);
+        return Math.round(this.mMaxProcess * this.D / this.C);
     }
 
     protected void h() {
-        d();
-        a();
+        initCircle();
+        initAttributes();
         c();
-        g();
-        f();
+        initRectF();
+        initPath();
         b();
     }
 
     public boolean isLockEnabled() {
-        return this.N;
+        return this.lockEnabled;
     }
 
     protected void onDraw(Canvas paramCanvas) {
@@ -415,8 +405,8 @@ public class CircularSeekBar extends View {
         paramCanvas.drawLine(0.0F, (paramCanvas.getHeight() / 2), paramCanvas.getWidth(), (paramCanvas.getHeight() / 2), this.c);
         float[] arrayOfFloat = this.e0;
         paramCanvas.translate(arrayOfFloat[0], arrayOfFloat[1]);
-        this.b.draw(paramCanvas);
-        this.positionPercent.put(this.J, this.e0);
+        this.mIndicatorIcon.draw(paramCanvas);
+        this.positionPercent.put(this.mCurProcess, this.e0);
     }
 
     protected void onMeasure(int paramInt1, int paramInt2) {
@@ -457,19 +447,19 @@ public class CircularSeekBar extends View {
     protected void onRestoreInstanceState(Parcelable paramParcelable) {
         Bundle bundle = (Bundle)paramParcelable;
         super.onRestoreInstanceState(bundle.getParcelable("PARENT"));
-        this.I = bundle.getInt("MAX");
-        this.J = bundle.getInt("PROGRESS");
-        this.x = bundle.getInt("mCircleColor");
-        this.z = bundle.getInt("mCircleProgressColor");
-        this.t = bundle.getInt("mFinishedColor");
-        this.u = bundle.getInt("mPointerColor");
-        this.v = bundle.getInt("mPointerHaloColor");
-        this.w = bundle.getInt("mPointerHaloColorOnTouch");
-        this.A = bundle.getInt("mPointerAlpha");
-        this.B = bundle.getInt("mPointerAlphaOnTouch");
-        this.N = bundle.getBoolean("lockEnabled");
-        this.g0 = bundle.getBoolean("isTouchEnabled");
-        e();
+        this.mMaxProcess = bundle.getInt("MAX");
+        this.mCurProcess = bundle.getInt("PROGRESS");
+        this.mCircleColor = bundle.getInt("mCircleColor");
+        this.mCircleProgressColor = bundle.getInt("mCircleProgressColor");
+        this.mFinishedColor = bundle.getInt("mFinishedColor");
+        this.mPointerColor = bundle.getInt("mPointerColor");
+        this.MPointerHaloColor = bundle.getInt("mPointerHaloColor");
+        this.mPointerHaloColorOnTouch = bundle.getInt("mPointerHaloColorOnTouch");
+        this.mPointerAlpha = bundle.getInt("mPointerAlpha");
+        this.mPointerAlphaOnTouch = bundle.getInt("mPointerAlphaOnTouch");
+        this.lockEnabled = bundle.getBoolean("lockEnabled");
+        this.isTouchEnabled = bundle.getBoolean("isTouchEnabled");
+        initStyle();
         h();
     }
 
@@ -477,24 +467,24 @@ public class CircularSeekBar extends View {
         Parcelable parcelable = super.onSaveInstanceState();
         Bundle bundle = new Bundle();
         bundle.putParcelable("PARENT", parcelable);
-        bundle.putInt("MAX", this.I);
-        bundle.putInt("PROGRESS", this.J);
-        bundle.putInt("mCircleColor", this.x);
-        bundle.putInt("mCircleProgressColor", this.z);
-        bundle.putInt("mFinishedColor", this.t);
-        bundle.putInt("mPointerColor", this.u);
-        bundle.putInt("mPointerHaloColor", this.v);
-        bundle.putInt("mPointerHaloColorOnTouch", this.w);
-        bundle.putInt("mPointerAlpha", this.A);
-        bundle.putInt("mPointerAlphaOnTouch", this.B);
-        bundle.putBoolean("lockEnabled", this.N);
-        bundle.putBoolean("isTouchEnabled", this.g0);
+        bundle.putInt("MAX", this.mMaxProcess);
+        bundle.putInt("PROGRESS", this.mCurProcess);
+        bundle.putInt("mCircleColor", this.mCircleColor);
+        bundle.putInt("mCircleProgressColor", this.mCircleProgressColor);
+        bundle.putInt("mFinishedColor", this.mFinishedColor);
+        bundle.putInt("mPointerColor", this.mPointerColor);
+        bundle.putInt("mPointerHaloColor", this.MPointerHaloColor);
+        bundle.putInt("mPointerHaloColorOnTouch", this.mPointerHaloColorOnTouch);
+        bundle.putInt("mPointerAlpha", this.mPointerAlpha);
+        bundle.putInt("mPointerAlphaOnTouch", this.mPointerAlphaOnTouch);
+        bundle.putBoolean("lockEnabled", this.lockEnabled);
+        bundle.putBoolean("isTouchEnabled", this.isTouchEnabled);
         return (Parcelable)bundle;
     }
 
     public void setCircleColor(int paramInt) {
-        this.x = paramInt;
-        this.c.setColor(this.x);
+        this.mCircleColor = paramInt;
+        this.c.setColor(this.mCircleColor);
         invalidate();
     }
 
@@ -505,75 +495,75 @@ public class CircularSeekBar extends View {
     }
 
     public void setCircleProgressColor(int paramInt) {
-        this.z = paramInt;
-        this.f.setColor(this.z);
+        this.mCircleProgressColor = paramInt;
+        this.f.setColor(this.mCircleProgressColor);
         invalidate();
     }
 
     public void setFinishedColor(int paramInt) {
-        this.t = paramInt;
+        this.mFinishedColor = paramInt;
         invalidate();
     }
 
     public void setIsTouchEnabled(boolean paramBoolean) {
-        this.g0 = paramBoolean;
+        this.isTouchEnabled = paramBoolean;
     }
 
     public void setLockEnabled(boolean paramBoolean) {
-        this.N = paramBoolean;
+        this.lockEnabled = paramBoolean;
     }
 
     public void setMax(int paramInt) {
         if (paramInt > 0) {
-            if (paramInt <= this.J) {
-                this.J = 0;
-                OnCircularSeekBarChangeListener onCircularSeekBarChangeListener = this.f0;
+            if (paramInt <= this.mCurProcess) {
+                this.mCurProcess = 0;
+                OnCircularSeekBarChangeListener onCircularSeekBarChangeListener = this.circularSeekBarChangeListener;
                 if (onCircularSeekBarChangeListener != null)
-                    onCircularSeekBarChangeListener.onProgressChanged(this, this.J, false);
+                    onCircularSeekBarChangeListener.onProgressChanged(this, this.mCurProcess, false);
             }
-            this.I = paramInt;
+            this.mMaxProcess = paramInt;
             h();
             invalidate();
         }
     }
 
     public void setOnSeekBarChangeListener(OnCircularSeekBarChangeListener paramOnCircularSeekBarChangeListener) {
-        this.f0 = paramOnCircularSeekBarChangeListener;
+        this.circularSeekBarChangeListener = paramOnCircularSeekBarChangeListener;
     }
 
     public void setPointerAlpha(int paramInt) {
         if (paramInt >= 0 && paramInt <= 255) {
-            this.A = paramInt;
-            this.i.setAlpha(this.A);
+            this.mPointerAlpha = paramInt;
+            this.mPointerPaint.setAlpha(this.mPointerAlpha);
             invalidate();
         }
     }
 
     public void setPointerAlphaOnTouch(int paramInt) {
         if (paramInt >= 0 && paramInt <= 255)
-            this.B = paramInt;
+            this.mPointerAlphaOnTouch = paramInt;
     }
 
     public void setPointerColor(int paramInt) {
-        this.u = paramInt;
-        this.h.setColor(this.u);
+        this.mPointerColor = paramInt;
+        this.h.setColor(this.mPointerColor);
         invalidate();
     }
 
     public void setPointerHaloColor(int paramInt) {
-        this.v = paramInt;
-        this.i.setColor(this.v);
+        this.MPointerHaloColor = paramInt;
+        this.mPointerPaint.setColor(this.MPointerHaloColor);
         invalidate();
     }
 
     public void setPointerIcon(Drawable paramDrawable) {
-        this.b = paramDrawable;
+        this.mIndicatorIcon = paramDrawable;
     }
 
     public void setProgress(int paramInt) {
-        if (this.J != paramInt) {
-            this.J = paramInt;
-            OnCircularSeekBarChangeListener onCircularSeekBarChangeListener = this.f0;
+        if (this.mCurProcess != paramInt) {
+            this.mCurProcess = paramInt;
+            OnCircularSeekBarChangeListener onCircularSeekBarChangeListener = this.circularSeekBarChangeListener;
             if (onCircularSeekBarChangeListener != null)
                 onCircularSeekBarChangeListener.onProgressChanged(this, paramInt, false);
             h();
@@ -584,7 +574,7 @@ public class CircularSeekBar extends View {
     protected void setProgressBasedOnAngle(float paramFloat) {
         this.d0 = paramFloat;
         c();
-        this.J = Math.round(this.I * this.D / this.C);
+        this.mCurProcess = Math.round(this.mMaxProcess * this.D / this.C);
     }
 
     public static interface OnCircularSeekBarChangeListener {
