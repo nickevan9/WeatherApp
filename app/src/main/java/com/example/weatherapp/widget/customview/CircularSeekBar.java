@@ -381,7 +381,7 @@ public class CircularSeekBar extends View {
         return Math.round(this.mMaxProcess * this.D / this.C);
     }
 
-    protected void h() {
+    protected void init() {
         initCircle();
         initAttributes();
         c();
@@ -441,7 +441,7 @@ public class CircularSeekBar extends View {
             this.c0 = f2;
             this.b0 = f2;
         }
-        h();
+        init();
     }
 
     protected void onRestoreInstanceState(Parcelable paramParcelable) {
@@ -460,7 +460,7 @@ public class CircularSeekBar extends View {
         this.lockEnabled = bundle.getBoolean("lockEnabled");
         this.isTouchEnabled = bundle.getBoolean("isTouchEnabled");
         initStyle();
-        h();
+        init();
     }
 
     protected Parcelable onSaveInstanceState() {
@@ -522,7 +522,7 @@ public class CircularSeekBar extends View {
                     onCircularSeekBarChangeListener.onProgressChanged(this, this.mCurProcess, false);
             }
             this.mMaxProcess = paramInt;
-            h();
+            init();
             invalidate();
         }
     }
@@ -566,7 +566,7 @@ public class CircularSeekBar extends View {
             OnCircularSeekBarChangeListener onCircularSeekBarChangeListener = this.circularSeekBarChangeListener;
             if (onCircularSeekBarChangeListener != null)
                 onCircularSeekBarChangeListener.onProgressChanged(this, paramInt, false);
-            h();
+            init();
             invalidate();
         }
     }
