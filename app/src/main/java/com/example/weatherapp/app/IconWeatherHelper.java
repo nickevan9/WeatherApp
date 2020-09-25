@@ -13,6 +13,6 @@ public class IconWeatherHelper {
     }
 
     public static int getLottieWeather(String code,Context context){
-
+        return  0;
     }
 }

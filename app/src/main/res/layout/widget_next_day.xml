@@ -27,7 +27,6 @@
             android:id="@+id/tv_48_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:="@id/tv_next_hour"
             android:text="@string/_14_days"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_orange_light"

@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Singleton
+//@Singleton
 @Module(includes = ViewModelModule.class)
 public class ApplicationModule {
 
@@ -20,31 +20,31 @@ public class ApplicationModule {
 
     @Singleton
     @Provides
-    static Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+    static Retrofit provideRetrofit() {
         return new Retrofit.Builder().baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
+//                .client(okHttpClient)
                 .build();
     }
 
-
-    @Singleton
-    @Provides
-    OkHttpClient getOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
-        return new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor)
-                .build();
-    }
-
-
-    @Singleton
-    @Provides
-    HttpLoggingInterceptor getHttpLoggingInterceptor() {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        return httpLoggingInterceptor;
-    }
+//
+//    @Singleton
+//    @Provides
+//    OkHttpClient getOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
+//        return new OkHttpClient.Builder()
+//                .addInterceptor(httpLoggingInterceptor)
+//                .build();
+//    }
+//
+//
+//    @Singleton
+//    @Provides
+//    HttpLoggingInterceptor getHttpLoggingInterceptor() {
+//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+//        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        return httpLoggingInterceptor;
+//    }
 
     @Singleton
     @Provides

@@ -16,13 +16,19 @@ import javax.inject.Singleton;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.android.DaggerApplication;
 
 @Singleton
-@Component(modules = {ContextModule.class, ApplicationModule.class, AndroidSupportInjectionModule.class
-        , ActivityModule.class, AdapterModule.class, DbModule.class
-        , FragmentModule.class, ViewModelModule.class})
+@Component(modules = {
+        ContextModule.class,
+        ApplicationModule.class,
+//        DbModule.class,
+        AndroidSupportInjectionModule.class,
+        ActivityModule.class,
+//        AdapterModule.class,
+        FragmentModule.class,
+        ViewModelModule.class})
 public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
     void inject(WeatherApplication application);

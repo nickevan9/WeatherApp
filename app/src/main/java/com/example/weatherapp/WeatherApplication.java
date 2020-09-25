@@ -3,16 +3,25 @@ package com.example.weatherapp;
 import android.app.Application;
 
 import net.danlew.android.joda.JodaTimeAndroid;
+import com.example.weatherapp.di.component.AppComponent;
+import com.example.weatherapp.di.component.DaggerAppComponent;
 
-public class WeatherApplication extends Application {
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+
+
+public class WeatherApplication extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
         JodaTimeAndroid.init(this);
 
-        DaggerAppComponent.builder()
-                .application(this)
-                .build()
-                .inject(this);
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        AppComponent component = DaggerAppComponent.builder().application(this).build();
+        component.inject(this);
+        return component;
     }
 }

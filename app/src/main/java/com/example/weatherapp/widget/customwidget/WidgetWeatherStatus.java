@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
-import com.example.weatherapp.app.Utils;
+import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.FchEntity;
 import com.example.weatherapp.widget.CustomTextviewLight;
 
@@ -63,7 +63,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
         tvWeatherStatus.setText(fchEntity.getTxt());
         tvWindSpeed.setText(getContext().getString(R.string.set_wind_speed, fchEntity.getWs().toString()));
 
-        tvHour.setText(Utils.convertTimeStampToLocalTime(fchEntity.getDt(), timeZone));
+        tvHour.setText(TimeUtilsExt.convertTimeStampToLocalTime(fchEntity.getDt(), timeZone));
 
     }
 

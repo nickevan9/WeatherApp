@@ -203,7 +203,7 @@ public class CircularSeekBar extends View {
         if (icPositionX > 255 || icPositionX < 0)
             this.mPointerAlphaOnTouch = 100;
         this.mMaxProcess = paramTypedArray.getInt(R.styleable.CircularSeekBar_circle_max_progress, 100);
-        this.mCurProcess = paramTypedArray.getInt(R.styleable.CircularSeekBar_circle_current_progress, 0);
+        this.mCurProcess = paramTypedArray.getInt(R.styleable.CircularSeekBar_progress, 0);
 //        this.K = paramTypedArray.getBoolean(22, false);
         this.K = false;
 //        this.L = paramTypedArray.getBoolean(9, true);
@@ -211,7 +211,7 @@ public class CircularSeekBar extends View {
 //        this.M = paramTypedArray.getBoolean(11, false);
         this.M = false;
         this.lockEnabled = paramTypedArray.getBoolean(R.styleable.CircularSeekBar_lock_enabled, true);
-        Drawable drawable = paramTypedArray.getDrawable(R.styleable.CircularSeekBar_ci_drawable);
+        Drawable drawable = paramTypedArray.getDrawable(R.styleable.CircularSeekBar_pointer_icon);
         this.mIndicatorIcon = ContextCompat.getDrawable(paramContext, R.drawable.ic_sun);
         if (drawable != null)
             this.mIndicatorIcon = drawable;

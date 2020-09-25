@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_tranfer_item"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp">
+
+    <com.example.weatherapp.widget.CustomTextviewBold
+        android:id="@+id/tv_sun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sun_and_moon"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <View
+        android:id="@+id/view_hour"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_sun"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp">
+
+            <com.example.weatherapp.widget.customview.CircularSeekBar
+                android:id="@+id/circularSeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="20.0dip"
+                android:layerType="software"
+                android:translationY="50.0dip"
+                android:visibility="visible"
+                app:end_angle="360.0"
+                app:finished_color="@android:color/holo_orange_light"
+                app:pointer_icon="@drawable/ic_sun"
+                app:progress="100"
+                app:start_angle="180.0" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <com.example.weatherapp.widget.customview.MoonCustomView
+                android:id="@+id/iv_moon_new"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                app:percent_moon="0.8" />
+
+            <com.example.weatherapp.widget.CustomTextviewMedium
+                android:id="@+id/tv_moon_title_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:maxLines="2"
+                android:textColor="@android:color/white"
+                android:textSize="14.0sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginStart="16.0dip"
+        android:layout_marginEnd="16.0dip"
+        android:background="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="250.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.0dip"
+        android:layout_marginBottom="16.0dip"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_sunrise_address"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16.0dip"
+            android:layout_weight="1.0"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="@dimen/_10ssp" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_sunset_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16.0sp"
+
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="@dimen/_10ssp" />
+    </LinearLayout>
+</LinearLayout>

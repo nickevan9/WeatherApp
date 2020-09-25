@@ -1,13 +1,10 @@
 package com.example.weatherapp.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.ui.base.BaseActivity;
@@ -43,9 +40,10 @@ public class MainActivity extends BaseActivity {
         setupNavController();
     }
 
-    private void setupNavController(){
+    private void setupNavController() {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_container);
         navController = navHostFragment.getNavController();
+
     }
 
     @Override
