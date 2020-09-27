@@ -9,8 +9,7 @@ import androidx.annotation.Nullable;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseActivity  extends DaggerAppCompatActivity {
-    @LayoutRes
-    protected abstract int layoutRes();
+
 
     protected abstract void initView();
 
@@ -19,7 +18,7 @@ public abstract class BaseActivity  extends DaggerAppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(layoutRes());
+   ;
 
         initView();
     }

@@ -7,7 +7,9 @@ import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
+import com.example.weatherapp.data.model.FcdEntity;
 import com.example.weatherapp.data.model.FchEntity;
 import com.example.weatherapp.widget.CustomTextviewLight;
 
@@ -53,11 +55,11 @@ public class WidgetWeatherStatus extends RelativeLayout {
         lottieWeather = findViewById(R.id.lottie_status_weather);
     }
 
-    protected void applyData(FchEntity fchEntity, String tempMax, String tempMin, String timeZone) {
+    public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
         tvTemp.setText(fchEntity.getT());
         tvWindChill.setText(getContext().getString(R.string.windchill, fchEntity.getTf().toString()));
-        tvTempMax.setText(getContext().getString(R.string.set_temp, tempMax));
-        tvTempMin.setText(getContext().getString(R.string.set_temp, tempMin));
+        tvTempMax.setText(getContext().getString(R.string.set_temp, fcdEntity.getTx().toString()));
+        tvTempMin.setText(getContext().getString(R.string.set_temp, fcdEntity.getTn().toString()));
         tvPressure.setText(getContext().getString(R.string.set_pressure, fchEntity.getP().toString()));
         setUVIndex(fchEntity.getUv());
         tvWeatherStatus.setText(fchEntity.getTxt());
@@ -65,6 +67,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
 
         tvHour.setText(TimeUtilsExt.convertTimeStampToLocalTime(fchEntity.getDt(), timeZone));
 
+        lottieWeather.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
     }
 
     @SuppressLint("SetTextI18n")

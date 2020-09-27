@@ -1,9 +1,15 @@
 package com.example.weatherapp.data.model;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+@Entity(
+        tableName = "weather"
+)
 
 public class WeatherEntity {
     @SerializedName("status")

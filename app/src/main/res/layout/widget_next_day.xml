@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_next_day"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_tranfer_item"
@@ -14,7 +15,6 @@
         android:orientation="horizontal">
 
         <com.example.weatherapp.widget.CustomTextviewBold
-            android:id="@+id/tv_next_hour"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,7 +24,7 @@
             android:textSize="@dimen/_14ssp" />
 
         <com.example.weatherapp.widget.CustomTextviewBold
-            android:id="@+id/tv_48_hour"
+            android:id="@+id/tv_next_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_14_days"
@@ -42,7 +42,7 @@
         android:background="@android:color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_day"
+        android:id="@+id/rv_next_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view_hour"/>

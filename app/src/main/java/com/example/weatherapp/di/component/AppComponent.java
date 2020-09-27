@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.example.weatherapp.WeatherApplication;
 import com.example.weatherapp.di.modules.ActivityModule;
-import com.example.weatherapp.di.modules.AdapterModule;
 import com.example.weatherapp.di.modules.ApplicationModule;
 import com.example.weatherapp.di.modules.ContextModule;
 import com.example.weatherapp.di.modules.DbModule;
@@ -23,7 +22,7 @@ import dagger.android.DaggerApplication;
 @Component(modules = {
         ContextModule.class,
         ApplicationModule.class,
-//        DbModule.class,
+        DbModule.class,
         AndroidSupportInjectionModule.class,
         ActivityModule.class,
 //        AdapterModule.class,

@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.home;
 
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.weatherapp.R;
@@ -27,12 +28,18 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void dataCreate() {
-        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
+        mViewModel = new ViewModelProvider(this, viewModelFactory).get(HomeViewModel.class);
     }
 
     @Override
     protected void initView() {
 
     }
+
+    @Override
+    protected void fragmentBackPressed() {
+        requireActivity().finish();
+    }
+
 
 }

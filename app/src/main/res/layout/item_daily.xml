@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/linearDaily"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tvMaxTempDaily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imgPbDaily"
+            android:layout_width="5dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="@dimen/_6sdp"
+            android:background="@drawable/line_custom" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tvMinTempDaily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/la_daily"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
+        />
+
+    <com.example.weatherapp.widget.CustomTextviewMedium
+        android:id="@+id/tv_day_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@drawable/rounded_white"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_3sdp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <ImageView
+        android:id="@+id/img_rain"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        />
+
+
+    <com.example.weatherapp.widget.CustomTextviewLight
+        android:id="@+id/tv_rain_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:textColor="@android:color/holo_blue_light" />
+
+
+
+</LinearLayout>

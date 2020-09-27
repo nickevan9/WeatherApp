@@ -17,6 +17,27 @@ public class TimeUtilsExt {
         return timeAfter;
     }
 
+    public static String convertTimeStampToTimeAdapter(String timeStamp, String timeZone) {
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'hh:mm:ss");
+        DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("hh:mm");
+        String timeAfter = fmt.print(dateTime);
+        return timeAfter;
+    }
+
+    public static String convertTimeToDayOfWeek(String timeStamp, String timeZone){
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd");
+
+        DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("eee");
+        String timeAfter = fmt.print(dateTime);
+        return timeAfter;
+    }
+
     public static int endTimeProgress(long timeNow, long timeSunset, long timeSunRise) {
         if (timeNow >= timeSunset)
             return 100;

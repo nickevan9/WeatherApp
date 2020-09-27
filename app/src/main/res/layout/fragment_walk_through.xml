@@ -1,13 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.walkthrough.WalkThroughFragment">
+    android:layout_height="wrap_content">
 
-    <TextView
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vPWalkThrough"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</FrameLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/get_started"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/vPWalkThrough"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.weatherapp.widget.customview;
+package com.example.weatherapp.widget.customwidget;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,9 @@ import androidx.annotation.NonNull;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.FcdEntity;
+import com.example.weatherapp.widget.customview.CircularSeekBar;
 
-public class CustomSunView extends RelativeLayout implements Handler.Callback {
+public class WidgetSunView extends RelativeLayout implements Handler.Callback {
     private static final int REPEAT_ANIMATION_MSG = 2;
 
     private static final int TIME_DELAY_ANIMATION = 15;
@@ -37,17 +38,17 @@ public class CustomSunView extends RelativeLayout implements Handler.Callback {
 
     TextView tvTitleSunMoon;
 
-    public CustomSunView(Context context) {
+    public WidgetSunView(Context context) {
         super(context, null, android.R.attr.borderlessButtonStyle);
         initView();
     }
 
-    public CustomSunView(Context context, AttributeSet attrs) {
+    public WidgetSunView(Context context, AttributeSet attrs) {
         super(context, attrs, android.R.attr.borderlessButtonStyle);
         initView();
     }
 
-    public CustomSunView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WidgetSunView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, android.R.attr.borderlessButtonStyle);
         initView();
     }

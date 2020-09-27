@@ -2,7 +2,7 @@ package com.example.weatherapp.ui.home;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.weatherapp.data.response.WeatherRepository;
+import com.example.weatherapp.data.repository.WeatherRepository;
 
 import javax.inject.Inject;
 

@@ -15,6 +15,7 @@
     <string name="windchill">Windchill %s ºC</string>
     <string name="set_temp">%s ºC</string>
     <string name="set_pressure">%s mmHg</string>
+    <string name="set_speed">%s mph</string>
     <string name="set_wind_speed">Wind speed %s mph</string>
 
     <string name="low"> (Low)</string>
@@ -22,4 +23,11 @@
     <string name="high"> (High)</string>
     <string name="very_high"> (Very high)</string>
     <string name="extreme"> (Extreme)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="description_third">Welcome to our weather channel. We hope that you will learn the weather of today to prepare for a comfortable working day.Let get started now.</string>
+    <string name="description_second">Welcome to our weather channel. We hope that you will learn the weather of today to prepare for a comfortable working day.Let get started now.</string>
+    <string name="welcome_weather">welcome to weather now</string>
+    <string name="get_started">Get started</string>
 </resources>

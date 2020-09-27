@@ -13,26 +13,40 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.DataProccessor;
+import com.example.weatherapp.app.FragmentUtils;
+import com.example.weatherapp.ui.base.BaseFragment;
 
-public class SplashFragment extends Fragment {
+public class SplashFragment extends BaseFragment {
 
-    private SplashViewModel mViewModel;
 
     public static SplashFragment newInstance() {
         return new SplashFragment();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_splash, container, false);
+    protected int layoutRes() {
+        return R.layout.fragment_splash;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        // TODO: Use the ViewModel
+    protected void dataCreate() {
+        if (DataProccessor.getFirstTimeLaunch()){
+            FragmentUtils.findNavController(this).navigate(R.id.action_splashFragment_to_walkThroughFragment);
+        }else {
+            FragmentUtils.findNavController(this).navigate(R.id.action_splashFragment_to_homeFragment);
+        }
     }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void fragmentBackPressed() {
+        requireActivity().finish();
+    }
+
 
 }

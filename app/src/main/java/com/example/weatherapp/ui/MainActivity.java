@@ -13,16 +13,12 @@ public class MainActivity extends BaseActivity {
 
     private NavController navController;
 
-    @Override
-    protected int layoutRes() {
-        return R.layout.activity_main;
-    }
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             setupNavController();
         }
@@ -43,7 +39,7 @@ public class MainActivity extends BaseActivity {
     private void setupNavController() {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_container);
         navController = navHostFragment.getNavController();
-
+        navController.setGraph(R.navigation.nav_graph);
     }
 
     @Override
