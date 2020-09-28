@@ -2,6 +2,7 @@ package com.example.weatherapp.data.repository;
 
 import android.annotation.SuppressLint;
 
+import com.example.weatherapp.data.WeatherDb;
 import com.example.weatherapp.data.model.WeatherEntity;
 import com.example.weatherapp.data.response.WeatherDao;
 import com.example.weatherapp.data.response.WeatherService;
@@ -31,15 +32,15 @@ public class WeatherRepository {
         return weatherService.getWeatherData(lat, lon);
     }
 
-    public Single<Integer> addWeather(WeatherEntity weatherEntity) {
-        return Single.fromCallable((Callable) () -> weatherDao.insertWeather(weatherEntity));
+    public Single<Integer> addWeather(WeatherDb weatherDb) {
+        return Single.fromCallable((Callable) () -> weatherDao.insertWeather(weatherDb));
     }
 
-    public Single<List<WeatherEntity>> getAllWeatherFromDb(){
+    public Single<List<WeatherDb>> getAllWeatherFromDb(){
         return Single.fromCallable((Callable) () -> weatherDao.getAllWeather());
     }
 
-    public Completable removeWeather(WeatherEntity weatherEntity){
-        return Completable.fromAction((Action) () -> weatherDao.deleteWeather(weatherEntity));
+    public Completable removeWeather(WeatherDb weatherDb){
+        return Completable.fromAction((Action) () -> weatherDao.deleteWeather(weatherDb));
     }
 }

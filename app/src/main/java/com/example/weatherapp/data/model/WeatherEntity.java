@@ -1,35 +1,42 @@
 package com.example.weatherapp.data.model;
 
-import androidx.room.Entity;
 
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.TypeConverters;
+
+import com.example.weatherapp.data.typeconvert.FcdTypeConvert;
+import com.example.weatherapp.data.typeconvert.FchTypeConvert;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@Entity(
-        tableName = "weather"
-)
-
+@Entity
 public class WeatherEntity {
     @SerializedName("status")
     @Expose
     private String status;
     @SerializedName("d_id")
     @Expose
-    private Integer dId;
+    private Double dId;
+    @Embedded
     @SerializedName("warning")
     @Expose
     private WarningEntity warning;
+    @Embedded
     @SerializedName("cc")
     @Expose
     private CcEntity cc;
+    @TypeConverters(FchTypeConvert.class)
     @SerializedName("fch")
     @Expose
     private List<FchEntity> fch = null;
+    @TypeConverters(FcdTypeConvert.class)
     @SerializedName("fcd")
     @Expose
     private List<FcdEntity> fcd = null;
+    @Embedded
     @SerializedName("loc")
     @Expose
     private LocEntity loc;
@@ -39,6 +46,7 @@ public class WeatherEntity {
     @SerializedName("update")
     @Expose
     private Double update;
+    @Embedded
     @SerializedName("extra")
     @Expose
     private ExtraEntity extra;
@@ -51,11 +59,11 @@ public class WeatherEntity {
         this.status = status;
     }
 
-    public Integer getDId() {
+    public Double getDId() {
         return dId;
     }
 
-    public void setDId(Integer dId) {
+    public void setDId(Double dId) {
         this.dId = dId;
     }
 

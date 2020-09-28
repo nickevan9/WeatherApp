@@ -1,8 +1,11 @@
 package com.example.weatherapp.data.model;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class WarningEntity {
     @SerializedName("f0")
     @Expose
@@ -12,7 +15,7 @@ public class WarningEntity {
     private String fs0;
     @SerializedName("f1")
     @Expose
-    private Integer f1;
+    private Double f1;
     @SerializedName("dtfrom")
     @Expose
     private String dtfrom;
@@ -51,11 +54,11 @@ public class WarningEntity {
         this.fs0 = fs0;
     }
 
-    public Integer getF1() {
+    public Double getF1() {
         return f1;
     }
 
-    public void setF1(Integer f1) {
+    public void setF1(Double f1) {
         this.f1 = f1;
     }
 

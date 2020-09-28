@@ -9,19 +9,19 @@ public class CcEntity {
     private Double pr;
     @SerializedName("prestend")
     @Expose
-    private Integer prestend;
+    private Double prestend;
     @SerializedName("c")
     @Expose
-    private Integer c;
+    private Double c;
     @SerializedName("dist")
     @Expose
-    private Integer dist;
+    private Double dist;
     @SerializedName("wn")
     @Expose
     private String wn;
     @SerializedName("p")
     @Expose
-    private Integer p;
+    private Double p;
     @SerializedName("s")
     @Expose
     private String s;
@@ -33,34 +33,34 @@ public class CcEntity {
     private Double ws;
     @SerializedName("t")
     @Expose
-    private Integer t;
+    private Double t;
     @SerializedName("time_tag")
     @Expose
-    private Integer timeTag;
+    private Double timeTag;
     @SerializedName("v")
     @Expose
-    private Integer v;
+    private Double v;
     @SerializedName("tf")
     @Expose
-    private Integer tf;
+    private Double tf;
     @SerializedName("dt")
     @Expose
     private String dt;
     @SerializedName("rh")
     @Expose
-    private Integer rh;
+    private Double rh;
     @SerializedName("td")
     @Expose
-    private Integer td;
+    private Double td;
     @SerializedName("uv")
     @Expose
-    private Integer uv;
+    private Double uv;
     @SerializedName("txt")
     @Expose
     private String txt;
     @SerializedName("dts")
     @Expose
-    private Integer dts;
+    private Double dts;
 
     public Double getPr() {
         return pr;
@@ -70,27 +70,27 @@ public class CcEntity {
         this.pr = pr;
     }
 
-    public Integer getPrestend() {
+    public Double getPrestend() {
         return prestend;
     }
 
-    public void setPrestend(Integer prestend) {
+    public void setPrestend(Double prestend) {
         this.prestend = prestend;
     }
 
-    public Integer getC() {
+    public Double getC() {
         return c;
     }
 
-    public void setC(Integer c) {
+    public void setC(Double c) {
         this.c = c;
     }
 
-    public Integer getDist() {
+    public Double getDist() {
         return dist;
     }
 
-    public void setDist(Integer dist) {
+    public void setDist(Double dist) {
         this.dist = dist;
     }
 
@@ -102,11 +102,11 @@ public class CcEntity {
         this.wn = wn;
     }
 
-    public Integer getP() {
+    public Double getP() {
         return p;
     }
 
-    public void setP(Integer p) {
+    public void setP(Double p) {
         this.p = p;
     }
 
@@ -134,35 +134,35 @@ public class CcEntity {
         this.ws = ws;
     }
 
-    public Integer getT() {
+    public Double getT() {
         return t;
     }
 
-    public void setT(Integer t) {
+    public void setT(Double t) {
         this.t = t;
     }
 
-    public Integer getTimeTag() {
+    public Double getTimeTag() {
         return timeTag;
     }
 
-    public void setTimeTag(Integer timeTag) {
+    public void setTimeTag(Double timeTag) {
         this.timeTag = timeTag;
     }
 
-    public Integer getV() {
+    public Double getV() {
         return v;
     }
 
-    public void setV(Integer v) {
+    public void setV(Double v) {
         this.v = v;
     }
 
-    public Integer getTf() {
+    public Double getTf() {
         return tf;
     }
 
-    public void setTf(Integer tf) {
+    public void setTf(Double tf) {
         this.tf = tf;
     }
 
@@ -174,27 +174,27 @@ public class CcEntity {
         this.dt = dt;
     }
 
-    public Integer getRh() {
+    public Double getRh() {
         return rh;
     }
 
-    public void setRh(Integer rh) {
+    public void setRh(Double rh) {
         this.rh = rh;
     }
 
-    public Integer getTd() {
+    public Double getTd() {
         return td;
     }
 
-    public void setTd(Integer td) {
+    public void setTd(Double td) {
         this.td = td;
     }
 
-    public Integer getUv() {
+    public Double getUv() {
         return uv;
     }
 
-    public void setUv(Integer uv) {
+    public void setUv(Double uv) {
         this.uv = uv;
     }
 
@@ -206,11 +206,11 @@ public class CcEntity {
         this.txt = txt;
     }
 
-    public Integer getDts() {
+    public Double getDts() {
         return dts;
     }
 
-    public void setDts(Integer dts) {
+    public void setDts(Double dts) {
         this.dts = dts;
     }
 }

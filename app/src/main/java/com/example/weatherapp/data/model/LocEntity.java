@@ -1,12 +1,15 @@
 package com.example.weatherapp.data.model;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class LocEntity {
     @SerializedName("lid")
     @Expose
-    private Integer lid;
+    private Long lid;
     @SerializedName("name")
     @Expose
     private String name;
@@ -27,7 +30,7 @@ public class LocEntity {
     private String tz;
     @SerializedName("tzoffset")
     @Expose
-    private Integer tzoffset;
+    private Double tzoffset;
     @SerializedName("lat")
     @Expose
     private Double lat;
@@ -35,11 +38,11 @@ public class LocEntity {
     @Expose
     private Double lon;
 
-    public Integer getLid() {
+    public Long getLid() {
         return lid;
     }
 
-    public void setLid(Integer lid) {
+    public void setLid(Long lid) {
         this.lid = lid;
     }
 
@@ -91,11 +94,11 @@ public class LocEntity {
         this.tz = tz;
     }
 
-    public Integer getTzoffset() {
+    public Double getTzoffset() {
         return tzoffset;
     }
 
-    public void setTzoffset(Integer tzoffset) {
+    public void setTzoffset(Double tzoffset) {
         this.tzoffset = tzoffset;
     }
 

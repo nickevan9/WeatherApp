@@ -81,8 +81,8 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
 
         @SuppressLint("SetTextI18n")
         public void bindItem(FcdEntity fcdEntity) {
-            tvTempMax.setText(fcdEntity.getTx());
-            tvTempMin.setText(fcdEntity.getTn());
+            tvTempMax.setText(fcdEntity.getTx().toString());
+            tvTempMin.setText(fcdEntity.getTn().toString());
 
             float factor = itemView.getContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams paramImg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

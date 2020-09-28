@@ -10,9 +10,11 @@ import com.example.weatherapp.data.room.WeatherDatabase;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
 
-public abstract class DbModule {
+@Module
+public class DbModule {
 
     @Singleton
     @Provides

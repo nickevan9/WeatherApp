@@ -3,6 +3,7 @@ package com.example.weatherapp.di.modules;
 import com.example.weatherapp.ui.detail.daydetail.DayDetailFragment;
 import com.example.weatherapp.ui.detail.hourdetail.HourDetailFragment;
 import com.example.weatherapp.ui.home.HomeFragment;
+import com.example.weatherapp.ui.loadingdata.LoadingDataFragment;
 import com.example.weatherapp.ui.location.LocationFragment;
 import com.example.weatherapp.ui.setting.SettingFragment;
 import com.example.weatherapp.ui.splash.SplashFragment;
@@ -33,4 +34,7 @@ public abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract WalkThroughFragment contributesWalkThroughFragment();
+
+    @ContributesAndroidInjector
+    abstract LoadingDataFragment contributesLoadingDataFragment();
 }

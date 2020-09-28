@@ -29,12 +29,14 @@ public abstract  class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel.class)
-    abstract ViewModel bindListViewModel(HomeViewModel homeViewModel);
+    abstract ViewModel bindHomeViewModel(HomeViewModel homeViewModel);
 
     @Binds
     @IntoMap
     @ViewModelKey(LoadingDataViewModel.class)
     abstract ViewModel bindLoadingDataViewModel(LoadingDataViewModel loadingDataViewModel);
+
+
 
 //    @Binds
 //    @IntoMap

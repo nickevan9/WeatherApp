@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.data.WeatherDb;
 import com.example.weatherapp.data.model.WeatherEntity;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
@@ -20,14 +21,12 @@ import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
-    private List<WeatherEntity> weatherEntityList;
+    private List<WeatherDb> weatherDbs;
     private LayoutInflater mInflater;
-    private String timeZone;
     private Context context;
 
-    public HomeAdapter(Context context, List<WeatherEntity> weatherEntityList, String timeZone) {
-        this.weatherEntityList = weatherEntityList;
-        this.timeZone = timeZone;
+    public HomeAdapter(Context context, List<WeatherDb> weatherDbs) {
+        this.weatherDbs = weatherDbs;
         this.context = context;
         this.mInflater = LayoutInflater.from(context);
 
@@ -43,13 +42,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WeatherEntity weatherEntity = weatherEntityList.get(position);
-        holder.applyData(weatherEntity);
+        WeatherDb weatherDb = weatherDbs.get(position);
+        holder.applyData(weatherDb);
+    }
+
+    public void applyData(List<WeatherDb> weatherDbList){
+        weatherDbs = weatherDbList;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return weatherDbs.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -70,13 +74,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgSun = itemView.findViewById(R.id.wg_sun);
         }
 
-        public void applyData(WeatherEntity weatherEntity){
-            String timeZone = weatherEntity.getLoc().getTzname();
-            wgWeatherStatus.applyData(weatherEntity.getFch().get(0), weatherEntity.getFcd().get(0),timeZone);
-            wgNextHour.applyData(weatherEntity.getFch(),timeZone);
-            wgNextDay.applyData(weatherEntity.getFcd(),timeZone);
-            wgWind.applyData(weatherEntity.getFch().get(0));
-            wgSun.applyData(weatherEntity.getFcd().get(0),timeZone);
+        public void applyData(WeatherDb weatherDb){
+            String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
+            wgWeatherStatus.applyData(weatherDb.getWeatherEntity().getFch().get(0), weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
+            wgNextHour.applyData(weatherDb.getWeatherEntity().getFch(),timeZone);
+            wgNextDay.applyData(weatherDb.getWeatherEntity().getFcd(),timeZone);
+            wgWind.applyData(weatherDb.getWeatherEntity().getFch().get(0));
+            wgSun.applyData(weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
         }
 
     }

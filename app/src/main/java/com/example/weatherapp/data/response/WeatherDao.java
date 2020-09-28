@@ -1,5 +1,7 @@
 package com.example.weatherapp.data.response;
 
+import android.util.Log;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -7,19 +9,19 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.example.weatherapp.data.model.WeatherEntity;
+import com.example.weatherapp.data.WeatherDb;
 
 import java.util.List;
 
 @Dao
 public interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Integer insertWeather(WeatherEntity weatherEntity);
+    Long insertWeather(WeatherDb weatherDb);
 
     @Transaction
     @Query("SELECT * FROM weather")
-    List<WeatherEntity> getAllWeather();
+    List<WeatherDb> getAllWeather();
 
     @Delete
-    Long deleteWeather(WeatherEntity weatherEntity);
+    void deleteWeather(WeatherDb weatherDb);
 }

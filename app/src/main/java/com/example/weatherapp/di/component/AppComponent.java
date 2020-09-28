@@ -22,10 +22,9 @@ import dagger.android.DaggerApplication;
 @Component(modules = {
         ContextModule.class,
         ApplicationModule.class,
-        DbModule.class,
         AndroidSupportInjectionModule.class,
         ActivityModule.class,
-//        AdapterModule.class,
+        DbModule.class,
         FragmentModule.class,
         ViewModelModule.class})
 public interface AppComponent extends AndroidInjector<DaggerApplication> {

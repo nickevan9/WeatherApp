@@ -34,7 +34,7 @@ public class SplashFragment extends BaseFragment {
         if (DataProccessor.getFirstTimeLaunch()){
             FragmentUtils.findNavController(this).navigate(R.id.action_splashFragment_to_walkThroughFragment);
         }else {
-            FragmentUtils.findNavController(this).navigate(R.id.action_splashFragment_to_homeFragment);
+            FragmentUtils.findNavController(this).navigate(R.id.action_splashFragment_to_loadingDataFragment);
         }
     }
 

@@ -56,7 +56,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     }
 
     public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
-        tvTemp.setText(fchEntity.getT());
+        tvTemp.setText(fchEntity.getT().toString());
         tvWindChill.setText(getContext().getString(R.string.windchill, fchEntity.getTf().toString()));
         tvTempMax.setText(getContext().getString(R.string.set_temp, fcdEntity.getTx().toString()));
         tvTempMin.setText(getContext().getString(R.string.set_temp, fcdEntity.getTn().toString()));
@@ -71,7 +71,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     }
 
     @SuppressLint("SetTextI18n")
-    private void setUVIndex(int uvIndex) {
+    private void setUVIndex(double uvIndex) {
         if (uvIndex >= 1 && uvIndex < 3) {
             tvUVIndex.setText(uvIndex + getContext().getString(R.string.low));
         } else if (uvIndex >= 3 && uvIndex < 6) {

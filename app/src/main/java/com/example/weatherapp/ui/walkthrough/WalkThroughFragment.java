@@ -58,7 +58,7 @@ public class WalkThroughFragment extends BaseFragment {
         mAdapter = new WalkThroughPagerAdapter(getChildFragmentManager(),mTabLayout.getTabCount());
         mViewPager.setAdapter(mAdapter);
 
-        mViewPager.addOnPageChangeListener((ViewPager.OnPageChangeListener)(new TabLayout.TabLayoutOnPageChangeListener(this.mTabLayout)));
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(this.mTabLayout));
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -78,11 +78,15 @@ public class WalkThroughFragment extends BaseFragment {
         });
 
         mBtnGetStarted.setOnClickListener(view -> {
-            FragmentUtils.findNavController(this).navigate(R.id.action_walkThroughFragment_to_homeFragment);
+            FragmentUtils.findNavController(this).navigate(R.id.action_walkThroughFragment_to_loadingDataFragment);
             DataProccessor.setFirstTimeLaunch(false);
         });
     }
 
+    @Override
+    protected void fragmentBackPressed() {
+        getActivity().finish();
+    }
 
 
 }

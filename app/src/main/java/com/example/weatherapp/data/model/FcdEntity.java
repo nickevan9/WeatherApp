@@ -1,42 +1,45 @@
 package com.example.weatherapp.data.model;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class FcdEntity {
     @SerializedName("pr")
     @Expose
-    private Integer pr;
+    private Double pr;
     @SerializedName("pp")
     @Expose
-    private Integer pp;
+    private Double pp;
     @SerializedName("set")
     @Expose
     private String set;
     @SerializedName("tx")
     @Expose
-    private Integer tx;
+    private Double tx;
     @SerializedName("wn")
     @Expose
     private String wn;
     @SerializedName("ca")
     @Expose
-    private Integer ca;
+    private Double ca;
     @SerializedName("rise")
     @Expose
     private String rise;
     @SerializedName("dl")
     @Expose
-    private Integer dl;
+    private Double dl;
     @SerializedName("tp")
     @Expose
-    private Integer tp;
+    private Double tp;
     @SerializedName("tn")
     @Expose
-    private Integer tn;
+    private Double tn;
     @SerializedName("p")
     @Expose
-    private Integer p;
+    private Double p;
     @SerializedName("s")
     @Expose
     private String s;
@@ -45,10 +48,10 @@ public class FcdEntity {
     private String mrise;
     @SerializedName("rh_avg")
     @Expose
-    private Integer rhAvg;
+    private Double rhAvg;
     @SerializedName("time_tag")
     @Expose
-    private Integer timeTag;
+    private Double timeTag;
     @SerializedName("wsx")
     @Expose
     private Double wsx;
@@ -66,27 +69,27 @@ public class FcdEntity {
     private String uv;
     @SerializedName("mp")
     @Expose
-    private Integer mp;
+    private Double mp;
     @SerializedName("txt")
     @Expose
     private String txt;
     @SerializedName("dts")
     @Expose
-    private Integer dts;
+    private Double dts;
 
-    public Integer getPr() {
+    public Double getPr() {
         return pr;
     }
 
-    public void setPr(Integer pr) {
+    public void setPr(Double pr) {
         this.pr = pr;
     }
 
-    public Integer getPp() {
+    public Double getPp() {
         return pp;
     }
 
-    public void setPp(Integer pp) {
+    public void setPp(Double pp) {
         this.pp = pp;
     }
 
@@ -98,11 +101,11 @@ public class FcdEntity {
         this.set = set;
     }
 
-    public Integer getTx() {
+    public Double getTx() {
         return tx;
     }
 
-    public void setTx(Integer tx) {
+    public void setTx(Double tx) {
         this.tx = tx;
     }
 
@@ -114,11 +117,11 @@ public class FcdEntity {
         this.wn = wn;
     }
 
-    public Integer getCa() {
+    public Double getCa() {
         return ca;
     }
 
-    public void setCa(Integer ca) {
+    public void setCa(Double ca) {
         this.ca = ca;
     }
 
@@ -130,35 +133,35 @@ public class FcdEntity {
         this.rise = rise;
     }
 
-    public Integer getDl() {
+    public Double getDl() {
         return dl;
     }
 
-    public void setDl(Integer dl) {
+    public void setDl(Double dl) {
         this.dl = dl;
     }
 
-    public Integer getTp() {
+    public Double getTp() {
         return tp;
     }
 
-    public void setTp(Integer tp) {
+    public void setTp(Double tp) {
         this.tp = tp;
     }
 
-    public Integer getTn() {
+    public Double getTn() {
         return tn;
     }
 
-    public void setTn(Integer tn) {
+    public void setTn(Double tn) {
         this.tn = tn;
     }
 
-    public Integer getP() {
+    public Double getP() {
         return p;
     }
 
-    public void setP(Integer p) {
+    public void setP(Double p) {
         this.p = p;
     }
 
@@ -178,19 +181,19 @@ public class FcdEntity {
         this.mrise = mrise;
     }
 
-    public Integer getRhAvg() {
+    public Double getRhAvg() {
         return rhAvg;
     }
 
-    public void setRhAvg(Integer rhAvg) {
+    public void setRhAvg(Double rhAvg) {
         this.rhAvg = rhAvg;
     }
 
-    public Integer getTimeTag() {
+    public Double getTimeTag() {
         return timeTag;
     }
 
-    public void setTimeTag(Integer timeTag) {
+    public void setTimeTag(Double timeTag) {
         this.timeTag = timeTag;
     }
 
@@ -234,11 +237,11 @@ public class FcdEntity {
         this.uv = uv;
     }
 
-    public Integer getMp() {
+    public Double getMp() {
         return mp;
     }
 
-    public void setMp(Integer mp) {
+    public void setMp(Double mp) {
         this.mp = mp;
     }
 
@@ -250,11 +253,11 @@ public class FcdEntity {
         this.txt = txt;
     }
 
-    public Integer getDts() {
+    public Double getDts() {
         return dts;
     }
 
-    public void setDts(Integer dts) {
+    public void setDts(Double dts) {
         this.dts = dts;
     }
 }
