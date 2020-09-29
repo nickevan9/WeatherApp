@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.data.model.FchEntity;
+import com.example.weatherapp.data.model.weather.FchEntity;
 
 public class WidgetWind extends RelativeLayout {
     private TextView tvWindSpeed;

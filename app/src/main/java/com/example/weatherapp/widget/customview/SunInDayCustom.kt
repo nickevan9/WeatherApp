@@ -14,9 +14,6 @@ class SunInDayCustom(context: Context, attrs: AttributeSet) : View(context, attr
 
     val dashPath = DashPathEffect(floatArrayOf(10f, 10f), 1.0.toFloat())
 
-    private var framesPerSecond = 60
-    private var animationDuration: Long = 10000 //
-
 
     private val mArcPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 

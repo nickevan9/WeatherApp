@@ -16,7 +16,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
-import com.example.weatherapp.data.model.FcdEntity;
+import com.example.weatherapp.data.model.weather.FcdEntity;
 
 import java.util.List;
 

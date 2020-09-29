@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
-import com.example.weatherapp.data.model.FcdEntity;
+import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
 import com.example.weatherapp.widget.customwidget.adapter.NextDayAdapter;
 

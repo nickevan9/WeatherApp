@@ -4,7 +4,8 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.weatherapp.data.model.WeatherEntity;
+import com.example.weatherapp.data.model.air.AirEntity;
+import com.example.weatherapp.data.model.weather.WeatherEntity;
 
 @Entity(
         tableName = "weather"
@@ -22,12 +23,16 @@ public class WeatherDb {
     @Embedded
     private WeatherEntity weatherEntity;
 
-    public WeatherDb(long locationId, String cityName, Double latLocation, Double lonLocation, WeatherEntity weatherEntity) {
+    @Embedded
+    private  AirEntity airEntity;
+
+    public WeatherDb(long locationId, String cityName, Double latLocation, Double lonLocation, WeatherEntity weatherEntity,AirEntity airEntity) {
         this.locationId = locationId;
         this.cityName = cityName;
         this.latLocation = latLocation;
         this.lonLocation = lonLocation;
         this.weatherEntity = weatherEntity;
+        this.airEntity = airEntity;
     }
 
     public WeatherDb() {
@@ -72,5 +77,13 @@ public class WeatherDb {
 
     public void setWeatherEntity(WeatherEntity weatherEntity) {
         this.weatherEntity = weatherEntity;
+    }
+
+    public AirEntity getAirEntity() {
+        return airEntity;
+    }
+
+    public void setAirEntity(AirEntity airEntity) {
+        this.airEntity = airEntity;
     }
 }

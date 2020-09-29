@@ -1,6 +1,6 @@
 package com.example.weatherapp.data.response;
 
-import com.example.weatherapp.data.model.WeatherEntity;
+import com.example.weatherapp.data.model.weather.WeatherEntity;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

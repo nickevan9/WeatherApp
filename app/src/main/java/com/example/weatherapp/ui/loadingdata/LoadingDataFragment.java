@@ -6,14 +6,12 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.app.FragmentUtils;
 import com.example.weatherapp.data.WeatherDb;
-import com.example.weatherapp.data.model.WeatherEntity;
+import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.factory.ViewModelFactory;
 import com.example.weatherapp.ui.base.BaseFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;

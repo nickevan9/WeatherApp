@@ -30,4 +30,5 @@
     <string name="description_second">Welcome to our weather channel. We hope that you will learn the weather of today to prepare for a comfortable working day.Let get started now.</string>
     <string name="welcome_weather">welcome to weather now</string>
     <string name="get_started">Get started</string>
+    <string name="sun">Sun</string>
 </resources>

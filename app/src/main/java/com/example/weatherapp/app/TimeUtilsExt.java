@@ -25,8 +25,7 @@ public class TimeUtilsExt {
         DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
 
         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
-        String timeAfter = fmt.print(dateTime);
-        return timeAfter;
+        return fmt.print(dateTime);
     }
 
     public static String convertTimeToDayOfWeek(String timeStamp, String timeZone){
@@ -72,4 +71,12 @@ public class TimeUtilsExt {
         DateTime dateTime = DateTime.now();
         return dateTime.getMillis();
     }
+
+    public static String formatTimeNowHour(String timeZone){
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("HH:mm");
+        DateTime dateTime = DateTime.now();
+        return dateFormat.print(dateTime);
+    }
 }
+

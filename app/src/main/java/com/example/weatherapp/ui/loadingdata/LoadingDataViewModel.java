@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.weatherapp.data.WeatherDb;
-import com.example.weatherapp.data.model.WeatherEntity;
+import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
 
 import java.util.List;

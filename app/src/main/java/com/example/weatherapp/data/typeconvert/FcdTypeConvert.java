@@ -2,7 +2,7 @@ package com.example.weatherapp.data.typeconvert;
 
 import androidx.room.TypeConverter;
 
-import com.example.weatherapp.data.model.FcdEntity;
+import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

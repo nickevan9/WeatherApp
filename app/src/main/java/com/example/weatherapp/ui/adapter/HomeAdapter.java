@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.WeatherDb;
-import com.example.weatherapp.data.model.WeatherEntity;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
+import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
@@ -85,9 +85,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgNextDay.applyData(weatherDb.getWeatherEntity().getFcd(),timeZone);
             wgWind.applyData(weatherDb.getWeatherEntity().getFch().get(0));
             wgSun.applyData(weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
-            if (wgSun.isHadRunAnimation()){
-                wgSun.runProgress(0);
-            }
+//            if (wgSun.isHadRunAnimation()){
+//                wgSun.runProgress(0);
+//            }
 
         }
 

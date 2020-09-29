@@ -2,8 +2,6 @@ package com.example.weatherapp.widget.customwidget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -11,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.data.model.FchEntity;
+import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
 import com.example.weatherapp.widget.customwidget.adapter.NextHourAdapter;
 
