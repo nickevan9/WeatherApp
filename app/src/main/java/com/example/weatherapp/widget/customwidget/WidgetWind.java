@@ -16,14 +16,17 @@ public class WidgetWind extends RelativeLayout {
 
     public WidgetWind(Context context) {
         super(context);
+        initView();
     }
 
     public WidgetWind(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initView();
     }
 
     public WidgetWind(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initView();
     }
 
     private void initView(){

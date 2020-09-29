@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.model.FchEntity;
+import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
 import com.example.weatherapp.widget.customwidget.adapter.NextHourAdapter;
 
 import java.util.ArrayList;
@@ -55,9 +56,8 @@ public class WidgetNextHour extends RelativeLayout {
         tvNextHour = findViewById(R.id.tv_next_hour);
         rlHour = findViewById(R.id.rv_hour);
 
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rlHour.setLayoutManager(layoutManager);
+        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false,7);
+        rlHour.setLayoutManager(layoutPagerManager);
         rlHour.setHasFixedSize(true);
         rlHour.setAdapter(nextHourAdapter);
     }

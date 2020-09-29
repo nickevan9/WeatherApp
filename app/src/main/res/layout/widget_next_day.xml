@@ -21,7 +21,7 @@
             android:text="@string/next_7_days"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/_13ssp" />
 
         <com.example.weatherapp.widget.CustomTextviewBold
             android:id="@+id/tv_next_day"
@@ -30,7 +30,7 @@
             android:text="@string/_14_days"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_orange_light"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/_13ssp" />
     </LinearLayout>
 
     <View

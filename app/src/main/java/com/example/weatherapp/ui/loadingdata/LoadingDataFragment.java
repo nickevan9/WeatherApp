@@ -1,14 +1,16 @@
 package com.example.weatherapp.ui.loadingdata;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-
 import android.os.Handler;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.app.FragmentUtils;
 import com.example.weatherapp.data.WeatherDb;
 import com.example.weatherapp.data.model.WeatherEntity;
@@ -51,15 +53,26 @@ public class LoadingDataFragment extends BaseFragment {
     @Override
     protected void dataCreate() {
 
+
         mFusedLocationClient = new FusedLocationProviderClient(requireContext());
-
-        requestPermission();
-
         mViewModel = new ViewModelProvider(this, viewModelFactory).get(LoadingDataViewModel.class);
+
+        if (DataProccessor.getFirstTimeLaunch()) {
+            requestPermission();
+        } else {
+            mViewModel.getAllWeather();
+        }
 
         mViewModel.getWeather().observe(getViewLifecycleOwner(), weatherEntity -> {
             mViewModel.insertToDb(createWeather(weatherEntity));
-            FragmentUtils.findNavController(this).navigate(R.id.action_loadingDataFragment_to_homeFragment);
+
+        });
+
+        mViewModel.getInsertDb().observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean) {
+                DataProccessor.setFirstTimeLaunch(false);
+                FragmentUtils.findNavController(this).navigate(R.id.action_loadingDataFragment_to_homeFragment);
+            }
         });
 
         mViewModel.getError().observe(getViewLifecycleOwner(), aBoolean -> {

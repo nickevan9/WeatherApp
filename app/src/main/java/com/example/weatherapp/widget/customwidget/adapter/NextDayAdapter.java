@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.FcdEntity;
-import com.example.weatherapp.data.model.FchEntity;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return fcdEntityList.size();
+        return 7;
     }
 
     public void applyData(List<FcdEntity> fcdEntityList, String timeZone){
@@ -81,8 +82,8 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
 
         @SuppressLint("SetTextI18n")
         public void bindItem(FcdEntity fcdEntity) {
-            tvTempMax.setText(fcdEntity.getTx().toString());
-            tvTempMin.setText(fcdEntity.getTn().toString());
+            tvTempMax.setText(fcdEntity.getTx().intValue() + "°");
+            tvTempMin.setText(fcdEntity.getTn().intValue() + "°");
 
             float factor = itemView.getContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams paramImg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -91,11 +92,11 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             imgPbDaily.setLayoutParams(paramImg);
 
             laDaily.setAnimation(IconWeatherHelper.getLottieWeather(fcdEntity.getS()));
-            tvDaily.setText(TimeUtilsExt.convertTimeToDayOfWeek(fcdEntity.getDt(),timeZone));
-            imgRain.setImageResource(IconWeatherHelper.getIconPrecipitation(fcdEntity.getPr()));
-            tvRainPercent.setText(fcdEntity.getPr().toString() + "%");
+            tvDaily.setText(TimeUtilsExt.convertTimeToDayOfWeek(fcdEntity.getDt(), timeZone));
+            int source = IconWeatherHelper.getIconPrecipitation(fcdEntity.getPr());
+            imgRain.setImageResource(source);
+            tvRainPercent.setText(fcdEntity.getPr().intValue() + "%");
         }
-
 
     }
 }

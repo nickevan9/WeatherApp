@@ -10,27 +10,35 @@
     <LinearLayout
         android:id="@+id/linearDaily"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_120sdp"
         android:gravity="center"
         android:orientation="vertical">
 
         <com.example.weatherapp.widget.CustomTextviewMedium
-            android:id="@+id/tvMaxTempDaily"
+            android:id="@+id/tv_temp_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/_10ssp"
             android:textColor="@android:color/white" />
 
-        <ImageView
-            android:id="@+id/imgPbDaily"
-            android:layout_width="5dp"
-            android:layout_height="100dp"
-            android:layout_marginVertical="@dimen/_6sdp"
-            android:background="@drawable/line_custom" />
-
-        <com.example.weatherapp.widget.CustomTextviewMedium
-            android:id="@+id/tvMinTempDaily"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_12sdp"
+            >
+
+            <ImageView
+                android:id="@+id/imgPbDaily"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/line_custom" />
+        </LinearLayout>
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_temp_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10ssp"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
@@ -39,7 +47,6 @@
         android:id="@+id/la_daily"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_4sdp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_enableMergePathsForKitKatAndAbove="true"
@@ -47,20 +54,21 @@
 
     <com.example.weatherapp.widget.CustomTextviewMedium
         android:id="@+id/tv_day_daily"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_38sdp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:background="@drawable/rounded_white"
-        android:paddingVertical="@dimen/_4sdp"
-        android:paddingHorizontal="@dimen/_3sdp"
+      android:gravity="center"
+        android:paddingVertical="@dimen/_6sdp"
+        android:paddingHorizontal="@dimen/_4sdp"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_14ssp" />
+        android:textSize="@dimen/_12ssp" />
 
     <ImageView
         android:id="@+id/img_rain"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         />
 
 
@@ -68,7 +76,7 @@
         android:id="@+id/tv_rain_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:textColor="@android:color/holo_blue_light" />
 
 

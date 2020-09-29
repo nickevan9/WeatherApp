@@ -29,6 +29,7 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel(WeatherRepository repoRepository) {
         this.repoRepository = repoRepository;
         disposable = new CompositeDisposable();
+        getAllWeather();
     }
 
     LiveData<List<WeatherDb>> getListWeather() {

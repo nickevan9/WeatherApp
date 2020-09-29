@@ -72,7 +72,7 @@ public class NextHourAdapter extends RecyclerView.Adapter<NextHourAdapter.ViewHo
 
         public void bindItem(FchEntity fchEntity) {
             tvTimeHourly.setText(TimeUtilsExt.convertTimeStampToTimeAdapter(fchEntity.getDt(), timeZone));
-            tvTempHourly.setText(context.getString(R.string.set_temp, fchEntity.getT().toString()));
+            tvTempHourly.setText(context.getString(R.string.set_temp, String.valueOf(fchEntity.getT().intValue())));
             laHourly.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
         }
     }

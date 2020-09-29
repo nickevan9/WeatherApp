@@ -32,7 +32,7 @@ public class WeatherRepository {
         return weatherService.getWeatherData(lat, lon);
     }
 
-    public Single<Integer> addWeather(WeatherDb weatherDb) {
+    public Single<Long> addWeather(WeatherDb weatherDb) {
         return Single.fromCallable((Callable) () -> weatherDao.insertWeather(weatherDb));
     }
 

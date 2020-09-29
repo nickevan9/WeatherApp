@@ -14,16 +14,15 @@
         android:id="@+id/tv_temp_hourly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="26"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_11ssp" />
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/la_hourly"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true" />
 
@@ -33,6 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_14ssp" />
+        android:textSize="@dimen/_11ssp" />
 
 </LinearLayout>

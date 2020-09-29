@@ -27,6 +27,8 @@ public class LoadingDataViewModel extends ViewModel {
     private final MutableLiveData<Boolean> loadingDb = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingApi = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingAllData = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> insertDB = new MutableLiveData<>();
+
 
     @Inject
     public LoadingDataViewModel(WeatherRepository repoRepository) {
@@ -54,9 +56,14 @@ public class LoadingDataViewModel extends ViewModel {
         return weatherList;
     }
 
-    LiveData<Boolean> getLoadingAllData(){
+    LiveData<Boolean> getLoadingAllData() {
         return loadingAllData;
     }
+
+    LiveData<Boolean> getInsertDb() {
+        return insertDB;
+    }
+
 
 
     public void fetchSingleWeather(double lat, double lon) {
@@ -90,7 +97,7 @@ public class LoadingDataViewModel extends ViewModel {
                         @Override
                         public void onSuccess(WeatherEntity weatherEntity) {
                             loadError.setValue(false);
-                            loadingApi.setValue(false);
+                            loadingAllData.setValue(false);
                         }
 
                         @Override
@@ -103,14 +110,16 @@ public class LoadingDataViewModel extends ViewModel {
     }
 
     public void insertToDb(WeatherDb weatherDb) {
+        insertDB.setValue(false);
         disposable.add(repoRepository.addWeather(weatherDb)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Integer>() {
+                .subscribeWith(new DisposableSingleObserver<Long>() {
 
                     @Override
-                    public void onSuccess(Integer integer) {
+                    public void onSuccess(Long aLong) {
                         loadError.setValue(false);
+                        insertDB.setValue(true);
                     }
 
                     @Override

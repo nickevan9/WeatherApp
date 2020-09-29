@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +15,7 @@ import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.FcdEntity;
 import com.example.weatherapp.widget.customview.CircularSeekBar;
 
-public class WidgetSunView extends RelativeLayout implements Handler.Callback {
+public class WidgetSunView extends LinearLayout implements Handler.Callback {
     private static final int REPEAT_ANIMATION_MSG = 2;
 
     private static final int TIME_DELAY_ANIMATION = 15;
@@ -54,7 +54,7 @@ public class WidgetSunView extends RelativeLayout implements Handler.Callback {
     }
 
     private void initView(){
-        inflate(getContext(), R.layout.widget_weather_status,this);
+        inflate(getContext(), R.layout.widget_sun_view,this);
         circularSeekBar = findViewById(R.id.circularSeekBar);
         tvMoonTitleNew = findViewById(R.id.tv_moon_title_new);
         tvSunrise = findViewById(R.id.tv_sunrise_address);
@@ -62,12 +62,14 @@ public class WidgetSunView extends RelativeLayout implements Handler.Callback {
     }
 
     public void applyData(FcdEntity fcdEntity, String timeZone){
+        circularSeekBar.setMax(100);
         tvSunrise.setText(fcdEntity.getRise());
         tvSunset.setText(fcdEntity.getSet());
         long timeNow = TimeUtilsExt.formatTimeNow(timeZone);
         long timeStart = TimeUtilsExt.formatStringToTime(fcdEntity.getRise(),timeZone);
         long timeEnd = TimeUtilsExt.formatStringToTime(fcdEntity.getSet(),timeZone);
         endProgress = TimeUtilsExt.endTimeProgress(timeNow,timeStart,timeEnd);
+
         
     }
 

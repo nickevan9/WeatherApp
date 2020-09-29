@@ -14,6 +14,7 @@ import com.example.weatherapp.data.model.WeatherEntity;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
+import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
 import com.example.weatherapp.widget.customwidget.WidgetWind;
 
@@ -57,7 +58,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
+        WidgetToolbar wgToolbar;
         WidgetWeatherStatus wgWeatherStatus;
         WidgetNextHour wgNextHour;
         WidgetNextDay wgNextDay;
@@ -65,8 +66,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetSunView wgSun;
 
 
+
         ViewHolder(View itemView){
             super(itemView);
+            wgToolbar = itemView.findViewById(R.id.wg_toolbar);
             wgWeatherStatus = itemView.findViewById(R.id.wg_weather_status);
             wgNextHour = itemView.findViewById(R.id.wg_next_hour);
             wgNextDay = itemView.findViewById(R.id.wg_next_day);
@@ -76,11 +79,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         public void applyData(WeatherDb weatherDb){
             String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
+            wgToolbar.applyData(weatherDb.getCityName());
             wgWeatherStatus.applyData(weatherDb.getWeatherEntity().getFch().get(0), weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
             wgNextHour.applyData(weatherDb.getWeatherEntity().getFch(),timeZone);
             wgNextDay.applyData(weatherDb.getWeatherEntity().getFcd(),timeZone);
             wgWind.applyData(weatherDb.getWeatherEntity().getFch().get(0));
             wgSun.applyData(weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
+            if (wgSun.isHadRunAnimation()){
+                wgSun.runProgress(0);
+            }
+
         }
 
     }

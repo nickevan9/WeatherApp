@@ -5,11 +5,13 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.Locale;
+
 public class TimeUtilsExt {
 
     public static String convertTimeStampToLocalTime(String timeStamp, String timeZone) {
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
-        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'hh:mm:ss");
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
         DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
 
         DateTimeFormatter fmt = DateTimeFormat.forPattern("hh:mm aa EEE");
@@ -19,10 +21,10 @@ public class TimeUtilsExt {
 
     public static String convertTimeStampToTimeAdapter(String timeStamp, String timeZone) {
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
-        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'hh:mm:ss");
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
         DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
 
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("hh:mm");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
         String timeAfter = fmt.print(dateTime);
         return timeAfter;
     }
@@ -33,12 +35,12 @@ public class TimeUtilsExt {
 
         DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
 
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("eee");
-        String timeAfter = fmt.print(dateTime);
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("EEE");
+        String timeAfter = fmt.withLocale(Locale.ENGLISH).print(dateTime);
         return timeAfter;
     }
 
-    public static int endTimeProgress(long timeNow, long timeSunset, long timeSunRise) {
+    public static int endTimeProgress(long timeNow,  long timeSunRise,long timeSunset) {
         if (timeNow >= timeSunset)
             return 100;
         double d1 = (timeNow - timeSunRise);
@@ -49,17 +51,24 @@ public class TimeUtilsExt {
         return (int)Math.round(d1 / d2);
     }
 
-    public static long formatStringToTime(String time ,String timeZone){
+    public static long formatStringToTime(String time ,String timeZone) {
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
-        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("hh:mm");
-        DateTime dateTime = new DateTime(dateFormat.parseDateTime(time));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("HH:mm");
+        DateTime dateTimeNow = DateTime.now();
+
+
+        DateTime dateTime = new DateTime(dateFormat.parseDateTime(time))
+                .withYear(dateTimeNow.getYear())
+                .withMonthOfYear(dateTimeNow.getMonthOfYear())
+                .withDayOfMonth(dateTimeNow.getDayOfMonth());
+
 
         return dateTime.getMillis();
     }
 
     public static long formatTimeNow(String timeZone){
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
-        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("hh:mm");
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("HH:mm");
         DateTime dateTime = DateTime.now();
         return dateTime.getMillis();
     }

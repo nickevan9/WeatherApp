@@ -39,14 +39,14 @@ class MoonCustomView(context: Context, attrs: AttributeSet) : View(context, attr
 
         mWidth = when (mWidthMode) {
             MeasureSpec.EXACTLY -> mWidthSize
-            MeasureSpec.AT_MOST -> 110
-            else -> 110
+            MeasureSpec.AT_MOST -> 100
+            else -> 100
         }
 
         mHeight = when (mHeightMode) {
             MeasureSpec.EXACTLY -> mHeightSize
-            MeasureSpec.AT_MOST -> 110
-            else -> 110
+            MeasureSpec.AT_MOST -> 100
+            else -> 100
         }
         setMeasuredDimension(mWidth, mHeight)
     }
@@ -78,19 +78,19 @@ class MoonCustomView(context: Context, attrs: AttributeSet) : View(context, attr
             0.0 -> {
                 mPercent = (mPercentMoon * 100).toFloat()
 
-                val mCircleRectF = RectF(2F, 2F, 102f, 102f)
+                val mCircleRectF = RectF(2F, 2F, 100f, 100f)
                 canvas!!.drawOval(mCircleRectF, mCirclePaint)
             }
             in 0.5..1.0 -> {
                 mPercent = (mPercentMoon * 100).toFloat()
 
-                val mCircleRectF = RectF(2F, 2F, 102f, 102f)
+                val mCircleRectF = RectF(2F, 2F, 100f, 100f)
                 canvas!!.drawOval(mCircleRectF, mCirclePaint)
 
-                val mOvalRecF = RectF(102 - mPercent, 2F, mPercent, 102F)
+                val mOvalRecF = RectF(100f - mPercent, 2F, mPercent, 100f)
                 canvas.drawOval(mOvalRecF, mOvalPaint)
 
-                val mArcRecF = RectF(2F, 2F, 102F, 102F)
+                val mArcRecF = RectF(2F, 2F, 100f, 100f)
                 canvas.drawArc(mArcRecF, 91F, 180F, false, mOvalPaint)
             }
             else -> {

@@ -142,11 +142,11 @@ public class CircularSeekBar extends View {
 
     protected int mPointerHaloColorOnTouch = k0;
 
-    protected int mCircleColor = -256;
+    protected int mCircleColor = Color.YELLOW;
 
-    protected int y = -1;
+    protected int y = Color.TRANSPARENT;
 
-    protected int mCircleProgressColor = -16776961;
+    protected int mCircleProgressColor = Color.BLUE;
 
     public CircularSeekBar(Context paramContext) {
         super(paramContext);
@@ -194,9 +194,9 @@ public class CircularSeekBar extends View {
         this.mPointerColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_color, i0);
         this.MPointerHaloColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_halo_color, j0);
         this.mPointerHaloColorOnTouch = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_halo_color_ontouch, k0);
-        this.mCircleColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_color, -256);
-        this.mCircleProgressColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_progress_color, -16776961);
-        this.y = paramTypedArray.getColor(R.styleable.CircularSeekBar_circleColor, -1);
+        this.mCircleColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_color, Color.YELLOW);
+        this.mCircleProgressColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_circle_progress_color, Color.BLUE);
+        this.y = paramTypedArray.getColor(R.styleable.CircularSeekBar_circleColor, Color.TRANSPARENT);
         this.mPointerAlpha = Color.alpha(this.MPointerHaloColor);
         this.mPointerAlphaOnTouch = paramTypedArray.getInt(R.styleable.CircularSeekBar_pointer_alpha_ontouch, 100);
         int icPositionX = this.mPointerAlphaOnTouch;

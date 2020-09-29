@@ -79,7 +79,7 @@ public class WalkThroughFragment extends BaseFragment {
 
         mBtnGetStarted.setOnClickListener(view -> {
             FragmentUtils.findNavController(this).navigate(R.id.action_walkThroughFragment_to_loadingDataFragment);
-            DataProccessor.setFirstTimeLaunch(false);
+
         });
     }
 
