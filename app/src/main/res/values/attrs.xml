@@ -59,6 +59,9 @@
         <attr name="progress" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="AirIndicatorCustomView">
+        <attr name="progress_position" format="integer" />
+    </declare-styleable>
 
 
     <declare-styleable name="CustomTextView">

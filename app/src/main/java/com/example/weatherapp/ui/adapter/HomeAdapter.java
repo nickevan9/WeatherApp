@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
 import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
@@ -64,6 +65,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetNextDay wgNextDay;
         WidgetWind wgWind;
         WidgetSunView wgSun;
+        WidgetAirQuality wgAir;
 
 
 
@@ -74,6 +76,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgNextHour = itemView.findViewById(R.id.wg_next_hour);
             wgNextDay = itemView.findViewById(R.id.wg_next_day);
             wgWind = itemView.findViewById(R.id.wg_wind);
+            wgAir = itemView.findViewById(R.id.wg_air);
             wgSun = itemView.findViewById(R.id.wg_sun);
         }
 
@@ -84,6 +87,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgNextHour.applyData(weatherDb.getWeatherEntity().getFch(),timeZone);
             wgNextDay.applyData(weatherDb.getWeatherEntity().getFcd(),timeZone);
             wgWind.applyData(weatherDb.getWeatherEntity().getFch().get(0));
+            wgAir.applyData(weatherDb.getAirEntity());
             wgSun.applyData(weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
 //            if (wgSun.isHadRunAnimation()){
 //                wgSun.runProgress(0);

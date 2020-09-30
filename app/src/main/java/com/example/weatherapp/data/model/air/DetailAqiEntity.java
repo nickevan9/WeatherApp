@@ -1,75 +1,77 @@
 package com.example.weatherapp.data.model.air;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class DetailAqiEntity {
 
     @SerializedName("pm25")
     @Expose
-    private String pm25;
+    private String particulateBigAqi;
     @SerializedName("pm10")
     @Expose
-    private String pm10;
+    private String particulateSmallAqi;
     @SerializedName("co")
     @Expose
-    private String co;
+    private String coAqi;
     @SerializedName("so2")
     @Expose
-    private String so2;
+    private String sulfurDioxideAqi;
     @SerializedName("o3")
     @Expose
-    private String o3;
+    private String ozoneAqi;
     @SerializedName("no2")
     @Expose
-    private String no2;
+    private String nitrogenDioxideAqi;
 
-    public String getPm25() {
-        return pm25;
+    public String getParticulateBigAqi() {
+        return particulateBigAqi;
     }
 
-    public void setPm25(String pm25) {
-        this.pm25 = pm25;
+    public void setParticulateBigAqi(String particulateBigAqi) {
+        this.particulateBigAqi = particulateBigAqi;
     }
 
-    public String getPm10() {
-        return pm10;
+    public String getParticulateSmallAqi() {
+        return particulateSmallAqi;
     }
 
-    public void setPm10(String pm10) {
-        this.pm10 = pm10;
+    public void setParticulateSmallAqi(String particulateSmallAqi) {
+        this.particulateSmallAqi = particulateSmallAqi;
     }
 
-    public String getCo() {
-        return co;
+    public String getCoAqi() {
+        return coAqi;
     }
 
-    public void setCo(String co) {
-        this.co = co;
+    public void setCoAqi(String coAqi) {
+        this.coAqi = coAqi;
     }
 
-    public String getSo2() {
-        return so2;
+    public String getSulfurDioxideAqi() {
+        return sulfurDioxideAqi;
     }
 
-    public void setSo2(String so2) {
-        this.so2 = so2;
+    public void setSulfurDioxideAqi(String sulfurDioxideAqi) {
+        this.sulfurDioxideAqi = sulfurDioxideAqi;
     }
 
-    public String getO3() {
-        return o3;
+    public String getOzoneAqi() {
+        return ozoneAqi;
     }
 
-    public void setO3(String o3) {
-        this.o3 = o3;
+    public void setOzoneAqi(String ozoneAqi) {
+        this.ozoneAqi = ozoneAqi;
     }
 
-    public String getNo2() {
-        return no2;
+    public String getNitrogenDioxideAqi() {
+        return nitrogenDioxideAqi;
     }
 
-    public void setNo2(String no2) {
-        this.no2 = no2;
+    public void setNitrogenDioxideAqi(String nitrogenDioxideAqi) {
+        this.nitrogenDioxideAqi = nitrogenDioxideAqi;
     }
-
 }

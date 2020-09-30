@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.app.FragmentUtils;
+import com.example.weatherapp.data.WeatherAir;
 import com.example.weatherapp.data.WeatherDb;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.factory.ViewModelFactory;
@@ -48,9 +49,9 @@ public class LoadingDataFragment extends BaseFragment {
         return R.layout.fragment_loading_data;
     }
 
+    @SuppressLint("VisibleForTests")
     @Override
     protected void dataCreate() {
-
 
         mFusedLocationClient = new FusedLocationProviderClient(requireContext());
         mViewModel = new ViewModelProvider(this, viewModelFactory).get(LoadingDataViewModel.class);
@@ -61,15 +62,15 @@ public class LoadingDataFragment extends BaseFragment {
             mViewModel.getAllWeather();
         }
 
-        mViewModel.getWeather().observe(getViewLifecycleOwner(), weatherEntity -> {
-            mViewModel.insertToDb(createWeather(weatherEntity));
-
+        mViewModel.getWeatherAirData().observe(getViewLifecycleOwner(), weatherAir -> {
+            mViewModel.insertToDb(createWeather(weatherAir));
         });
 
         mViewModel.getInsertDb().observe(getViewLifecycleOwner(), aBoolean -> {
             if (aBoolean) {
                 DataProccessor.setFirstTimeLaunch(false);
-                FragmentUtils.findNavController(this).navigate(R.id.action_loadingDataFragment_to_homeFragment);
+                requireActivity().runOnUiThread(() -> FragmentUtils.findNavController(requireParentFragment()).navigate(R.id.action_loadingDataFragment_to_homeFragment));
+
             }
         });
 
@@ -95,7 +96,7 @@ public class LoadingDataFragment extends BaseFragment {
 
         mViewModel.getLoadingAllData().observe(getViewLifecycleOwner(), aBoolean -> {
             if (!aBoolean) {
-                FragmentUtils.findNavController(this).navigate(R.id.action_loadingDataFragment_to_homeFragment);
+                requireActivity().runOnUiThread(() -> FragmentUtils.findNavController(requireParentFragment()).navigate(R.id.action_loadingDataFragment_to_homeFragment));
             }
         });
     }
@@ -146,12 +147,13 @@ public class LoadingDataFragment extends BaseFragment {
         });
     }
 
-    private WeatherDb createWeather(WeatherEntity weatherEntity) {
+    private WeatherDb createWeather(WeatherAir weatherAir) {
         WeatherDb weatherDb = new WeatherDb();
-        weatherDb.setCityName(weatherEntity.getLoc().getAdm1());
-        weatherDb.setLatLocation(weatherEntity.getLoc().getLat());
-        weatherDb.setLonLocation(weatherEntity.getLoc().getLon());
-        weatherDb.setWeatherEntity(weatherEntity);
+        weatherDb.setCityName(weatherAir.weatherEntity.getLoc().getAdm1());
+        weatherDb.setLatLocation(weatherAir.weatherEntity.getLoc().getLat());
+        weatherDb.setLonLocation(weatherAir.weatherEntity.getLoc().getLon());
+        weatherDb.setWeatherEntity(weatherAir.weatherEntity);
+        weatherDb.setAirEntity(weatherAir.airEntity);
         return weatherDb;
 
     }

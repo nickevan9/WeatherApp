@@ -30,6 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+        <com.example.weatherapp.widget.customwidget.WidgetAirQuality
+            android:id="@+id/wg_air"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 <!--        <com.example.weatherapp.widget.customwidget.WidgetSunMoon-->
 <!--            android:id="@+id/wg_sun"-->
 <!--            android:layout_width="match_parent"-->

@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.weatherapp.data.WeatherAir;
 import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
 
@@ -12,8 +14,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -21,7 +27,7 @@ public class LoadingDataViewModel extends ViewModel {
     private final WeatherRepository repoRepository;
     private CompositeDisposable disposable;
 
-    private final MutableLiveData<WeatherEntity> weather = new MutableLiveData<>();
+    private final MutableLiveData<WeatherAir> weatherAirData = new MutableLiveData<>();
     private final MutableLiveData<List<WeatherDb>> weatherList = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadError = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingDb = new MutableLiveData<>();
@@ -36,8 +42,8 @@ public class LoadingDataViewModel extends ViewModel {
         disposable = new CompositeDisposable();
     }
 
-    LiveData<WeatherEntity> getWeather() {
-        return weather;
+    LiveData<WeatherAir> getWeatherAirData() {
+        return weatherAirData;
     }
 
     LiveData<Boolean> getError() {
@@ -68,23 +74,46 @@ public class LoadingDataViewModel extends ViewModel {
 
     public void fetchSingleWeather(double lat, double lon) {
         loadingApi.setValue(true);
-        disposable.add(repoRepository.getWeatherData(lat, lon)
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<WeatherEntity>() {
-                    @Override
-                    public void onSuccess(WeatherEntity weatherEntity) {
-                        loadError.setValue(false);
-                        weather.setValue(weatherEntity);
-                        loadingApi.setValue(false);
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        loadError.setValue(true);
-                        loadingApi.setValue(false);
-                    }
-                }));
+        Single<WeatherEntity> weatherEntitySingle = repoRepository.getWeatherData(lat, lon).
+                subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        Single<AirEntity> airEntitySingle = repoRepository.getAirData(lat, lon).
+                subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        Single<WeatherAir> combined = Single.zip(weatherEntitySingle, airEntitySingle, new BiFunction<WeatherEntity, AirEntity, WeatherAir>() {
+
+            @Override
+            public WeatherAir apply(WeatherEntity weatherEntity, AirEntity airEntity) {
+                return new WeatherAir(weatherEntity, airEntity);
+            }
+        });
+
+        combined.subscribe(new SingleObserver<WeatherAir>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposable.add(d);
+            }
+
+            @Override
+            public void onSuccess(WeatherAir weatherAir) {
+                loadError.setValue(false);
+                weatherAirData.setValue(weatherAir);
+                loadingApi.setValue(false);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                loadError.setValue(true);
+                loadingApi.setValue(false);
+            }
+        });
+
+
     }
+
 
     public void fetchAllWeather(List<WeatherDb> weatherDbList){
         for (WeatherDb weatherDb : weatherDbList){

@@ -16,17 +16,25 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/_14ssp" />
 
+    <View
+        android:id="@+id/view_air"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_air_quality"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@android:color/white" />
+
     <LinearLayout
         android:id="@+id/ln_air_quality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_12sdp"
-        android:layout_below="@id/tv_air_quality"
+        android:layout_below="@id/view_air"
         >
 
         <at.grabner.circleprogress.CircleProgressView
-            android:id="@+id/circleView"
+            android:id="@+id/circle_air"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             CircleProgressView:cpv_barColor="@android:color/holo_red_dark"

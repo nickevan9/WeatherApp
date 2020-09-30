@@ -1,8 +1,11 @@
 package com.example.weatherapp.data.model.weather;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class CcEntity {
     @SerializedName("pr")
     @Expose

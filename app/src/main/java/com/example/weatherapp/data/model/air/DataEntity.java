@@ -1,21 +1,23 @@
 package com.example.weatherapp.data.model.air;
 
 import androidx.room.Embedded;
+import androidx.room.Entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class DataEntity {
 
     @SerializedName("name")
     @Expose
-    private String name;
+    private String nameData;
     @SerializedName("lat")
     @Expose
-    private String lat;
+    private String latAir;
     @SerializedName("lng")
     @Expose
-    private String lng;
+    private String lngAir;
     @SerializedName("aqi")
     @Expose
     private Integer aqi;
@@ -31,28 +33,28 @@ public class DataEntity {
     @Expose
     private String updateTime;
 
-    public String getName() {
-        return name;
+    public String getNameData() {
+        return nameData;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameData(String nameData) {
+        this.nameData = nameData;
     }
 
-    public String getLat() {
-        return lat;
+    public String getLatAir() {
+        return latAir;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setLatAir(String latAir) {
+        this.latAir = latAir;
     }
 
-    public String getLng() {
-        return lng;
+    public String getLngAir() {
+        return lngAir;
     }
 
-    public void setLng(String lng) {
-        this.lng = lng;
+    public void setLngAir(String lngAir) {
+        this.lngAir = lngAir;
     }
 
     public Integer getAqi() {
@@ -86,5 +88,4 @@ public class DataEntity {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
-
 }
