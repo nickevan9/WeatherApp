@@ -41,6 +41,7 @@ public class WidgetAirQuality extends RelativeLayout {
     public void applyData(AirEntity airEntity) {
         int airQuality = airEntity.getDataEntity().getAqi();
         circleAir.setValue(airQuality);
+        circleAir.setText(String.valueOf(airQuality));
 
         if (airQuality >= 300){
             tvAirStatus.setText(getContext().getString(R.string.heavy_pollution_title));

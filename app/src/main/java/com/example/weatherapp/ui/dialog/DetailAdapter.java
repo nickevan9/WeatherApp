@@ -18,12 +18,11 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
 
     private List<WeatherDetailEntity> weatherDetailEntities;
     private LayoutInflater mInflater;
-    private String timeZone;
     private Context context;
 
-    public DetailAdapter(Context context, List<WeatherDetailEntity> weatherDetailEntities, String timeZone) {
+    public DetailAdapter(Context context, List<WeatherDetailEntity> weatherDetailEntities) {
         this.weatherDetailEntities = weatherDetailEntities;
-        this.timeZone = timeZone;
+
         this.context = context;
         this.mInflater = LayoutInflater.from(context);
 
@@ -32,7 +31,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_daily, parent, false);
+        View view = mInflater.inflate(R.layout.item_detail, parent, false);
         return new DetailAdapter.ViewHolder(view);
     }
 

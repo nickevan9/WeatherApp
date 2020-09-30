@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
@@ -26,10 +27,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private List<WeatherDb> weatherDbs;
     private LayoutInflater mInflater;
     private Context context;
+    private ItemClickListener itemClickListener;
 
-    public HomeAdapter(Context context, List<WeatherDb> weatherDbs) {
+
+    public HomeAdapter(Context context, List<WeatherDb> weatherDbs,ItemClickListener itemClickListener) {
         this.weatherDbs = weatherDbs;
         this.context = context;
+        this.itemClickListener = itemClickListener;
         this.mInflater = LayoutInflater.from(context);
 
     }
@@ -45,7 +49,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WeatherDb weatherDb = weatherDbs.get(position);
-        holder.applyData(weatherDb);
+        holder.applyData(weatherDb,position);
     }
 
     public void applyData(List<WeatherDb> weatherDbList){
@@ -68,7 +72,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetAirQuality wgAir;
 
 
-
         ViewHolder(View itemView){
             super(itemView);
             wgToolbar = itemView.findViewById(R.id.wg_toolbar);
@@ -78,9 +81,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgWind = itemView.findViewById(R.id.wg_wind);
             wgAir = itemView.findViewById(R.id.wg_air);
             wgSun = itemView.findViewById(R.id.wg_sun);
+
+
         }
 
-        public void applyData(WeatherDb weatherDb){
+        public void applyData(WeatherDb weatherDb,int position){
             String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
             wgToolbar.applyData(weatherDb.getCityName());
             wgWeatherStatus.applyData(weatherDb.getWeatherEntity().getFch().get(0), weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
@@ -92,6 +97,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 //            if (wgSun.isHadRunAnimation()){
 //                wgSun.runProgress(0);
 //            }
+
+            wgWeatherStatus.setOnClickListener(view -> itemClickListener.onClickWeatherStatus(view,position));
+            wgNextHour.setOnClickListener(view -> itemClickListener.onClickWeatherHour(view,position));
+            wgNextDay.setOnClickListener(view -> itemClickListener.onClickWeatherDay(view,position));
 
         }
 
