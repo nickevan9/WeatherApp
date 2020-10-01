@@ -132,7 +132,9 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            android:visibility="gone"
+            />
 
         <ImageView
             android:id="@+id/img_status_weather"
@@ -142,7 +144,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline"
-            android:visibility="gone"
+
             />
 
         <com.example.weatherapp.widget.CustomTextviewLight

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_2" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_3" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_4" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_5" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_6" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_7" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_8" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_9" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_10" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_11" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_12" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_13" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_14" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_15" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_16" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_17" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_18" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_19" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_20" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_21" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_22" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_23" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_24" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_25" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_26" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_27" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_28" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_29" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_30" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_31" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_32" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_33" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_34" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_35" />
+    <item android:duration="60" android:drawable="@drawable/ic_partly_cloudy_day_36" />
+</animation-list>

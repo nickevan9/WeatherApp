@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_00" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_01" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_02" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_03" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_04" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_05" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_06" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_07" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_08" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_09" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_10" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_11" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_12" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_13" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_14" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_15" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_16" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_17" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_18" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_19" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_20" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_30" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_31" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_32" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_33" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_34" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_35" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_36" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_37" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_38" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_clear_night_39" />
+</animation-list>

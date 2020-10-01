@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_00" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_01" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_02" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_03" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_04" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_05" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_06" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_07" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_08" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_09" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_10" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_11" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_12" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_13" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_14" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_15" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_16" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_17" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_18" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_19" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_20" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_30" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_31" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_32" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_33" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_34" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_35" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_36" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_37" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_38" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_wind_39" />
+</animation-list>

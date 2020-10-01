@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_2" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_3" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_4" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_5" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_6" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_7" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_8" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_9" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_10" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_11" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_12" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_13" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_14" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_15" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_16" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_17" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_18" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_19" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_20" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_21" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_22" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_23" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_24" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_25" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_26" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_27" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_28" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_29" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_30" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_31" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_32" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_33" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_34" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_35" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_raincloud_36" />
+</animation-list>

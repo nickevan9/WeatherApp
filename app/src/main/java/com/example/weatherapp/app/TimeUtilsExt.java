@@ -1,10 +1,15 @@
 package com.example.weatherapp.app;
 
+import com.example.weatherapp.data.model.weather.FcdEntity;
+import com.example.weatherapp.data.model.weather.FchEntity;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class TimeUtilsExt {
@@ -77,6 +82,36 @@ public class TimeUtilsExt {
         DateTimeFormatter dateFormat = DateTimeFormat.forPattern("HH:mm");
         DateTime dateTime = DateTime.now();
         return dateFormat.print(dateTime);
+    }
+
+    public static List<FchEntity> mapTimeToNow(List<FchEntity> fchEntityList,String timeZone){
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        List<FchEntity> listRemove = new ArrayList<>();
+        DateTime dateTimeNow = DateTime.now();
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
+        for (FchEntity fchEntity : fchEntityList){
+            DateTime dateTime = new DateTime(dateFormat.parseDateTime(fchEntity.getDt()));
+            if (dateTimeNow.getMillis() > dateTime.getMillis()){
+                listRemove.add(fchEntity);
+            }
+        }
+        fchEntityList.removeAll(listRemove);
+        return fchEntityList;
+    }
+
+    public static List<FcdEntity> mapDateToNow(List<FcdEntity> fcdEntityList, String timeZone){
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTime dateTimeNow = DateTime.now();
+        List<FcdEntity> listRemove = new ArrayList<>();
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd");
+        for (FcdEntity fcdEntity : fcdEntityList){
+            DateTime dateTime = new DateTime(dateFormat.parseDateTime(fcdEntity.getDt()));
+            if (dateTimeNow.getDayOfYear() > dateTime.getDayOfYear()){
+                listRemove.add(fcdEntity);
+            }
+        }
+        fcdEntityList.removeAll(listRemove);
+        return fcdEntityList;
     }
 }
 

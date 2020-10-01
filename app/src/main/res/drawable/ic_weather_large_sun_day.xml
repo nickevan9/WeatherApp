@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_2" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_3" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_4" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_5" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_6" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_7" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_8" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_9" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_10" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_11" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_12" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_13" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_14" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_15" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_16" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_17" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_18" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_19" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_20" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_21" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_22" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_23" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_24" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_25" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_26" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_27" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_28" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_29" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_30" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_31" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_32" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_33" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_34" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_35" />
+    <item android:duration="60" android:drawable="@drawable/ic_sun_day_36" />
+</animation-list>

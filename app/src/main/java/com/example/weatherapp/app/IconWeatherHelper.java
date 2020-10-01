@@ -138,6 +138,578 @@ public class IconWeatherHelper {
         return lotiieDirection;
     }
 
+    public static int getDrawableAnimation(String code){
+        int drawable = 0;
+        switch (code){
+            case "d000":
+                drawable = R.drawable.ic_weather_clear_day;
+                break;
+            case "d100":
+                drawable = R.drawable.ic_weather_partly_cloudy_day;
+                break;
+            case "d200":
+                drawable = R.drawable.ic_weather_partly_cloudy_day;
+                break;
+            case "d210":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d211":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d212":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d220":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d221":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d222":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d240":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d300":
+                drawable = R.drawable.ic_weather_partly_cloudy_day;
+                break;
+            case "d310":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d311":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d312":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d320":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d321":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d322":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d340":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d400":
+                drawable = R.drawable.ic_weather_cloudy;
+                break;
+            case "d411":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d412":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d420":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d421":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d422":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d430":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d431":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "d432":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "d440":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "d500":
+                drawable = R.drawable.ic_weather_partly_cloudy_day;
+                break;
+            case "d600":
+                drawable = R.drawable.ic_weather_fog;
+                break;
+            case "n000":
+                drawable = R.drawable.ic_weather_clear_night;
+                break;
+            case "n100":
+                drawable = R.drawable.ic_weather_partly_cloudy_night;
+                break;
+            case "n200":
+                drawable = R.drawable.ic_weather_partly_cloudy_night;
+                break;
+            case "n210":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n211":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n212":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n220":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n221":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n222":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n240":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n300":
+                drawable = R.drawable.ic_weather_partly_cloudy_night;
+                break;
+            case "n310":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n311":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n312":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n320":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n321":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n322":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n340":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n400":
+                drawable = R.drawable.ic_weather_cloudy;
+                break;
+            case "n411":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n412":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n420":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n421":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n422":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n430":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n431":
+                drawable = R.drawable.ic_weather_sleet;
+                break;
+            case "n432":
+                drawable = R.drawable.ic_weather_snow;
+                break;
+            case "n440":
+                drawable = R.drawable.ic_weather_rain;
+                break;
+            case "n500":
+                drawable = R.drawable.ic_weather_partly_cloudy_night;
+                break;
+            case "n600":
+                drawable = R.drawable.ic_weather_fog;
+                break;
+            default:
+                drawable = R.drawable.ic_weather_clear_day;
+                break;
+        }
+        return drawable;
+    }
+
+    public static int getDrawableAnimationLarge(String code){
+        int drawable = 0;
+        switch (code){
+            case "d000":
+                drawable = R.drawable.ic_weather_large_sun_day;
+                break;
+            case "d100":
+                drawable = R.drawable.ic_weather_large_partly_cloudy;
+                break;
+            case "d200":
+                drawable = R.drawable.ic_weather_large_partly_cloudy;
+                break;
+            case "d210":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d211":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d212":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d220":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d221":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d222":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d240":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d300":
+                drawable = R.drawable.ic_weather_large_partly_cloudy;
+                break;
+            case "d310":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d311":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d312":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d320":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d321":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d322":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d340":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d400":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "d411":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d412":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d420":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d421":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d422":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d430":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d431":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "d432":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "d440":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "d500":
+                drawable = R.drawable.ic_weather_large_partly_cloudy;
+                break;
+            case "d600":
+                drawable = R.drawable.ic_weather_large_fog;
+                break;
+            case "n000":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n100":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n200":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n210":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n211":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n212":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n220":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n221":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n222":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n240":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n300":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n310":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n311":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n312":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n320":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n321":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n322":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n340":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n400":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n411":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n412":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n420":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n421":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n422":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n430":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n431":
+                drawable = R.drawable.ic_weather_large_sleet;
+                break;
+            case "n432":
+                drawable = R.drawable.ic_weather_large_snow;
+                break;
+            case "n440":
+                drawable = R.drawable.ic_weather_large_rain;
+                break;
+            case "n500":
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+            case "n600":
+                drawable = R.drawable.ic_weather_large_fog;
+                break;
+            default:
+                drawable = R.drawable.ic_weather_large_cloudy;
+                break;
+        }
+        return drawable;
+    }
+
+
+    public static int getBackgroundWeather(String code){
+        int drawable = 0;
+        switch (code){
+            case "d000":
+                drawable = R.drawable.bg_sunny;
+                break;
+            case "d100":
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+            case "d200":
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+            case "d210":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d211":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d212":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d220":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d221":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d222":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d240":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d300":
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+            case "d310":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d311":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d312":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d320":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d321":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d322":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d340":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d400":
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+            case "d411":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d412":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d420":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d421":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d422":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d430":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d431":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "d432":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "d440":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "d500":
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+            case "d600":
+                drawable = R.drawable.bg_fog;
+                break;
+            case "n000":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n100":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n200":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n210":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n211":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n212":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n220":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n221":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n222":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n240":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n300":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n310":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n311":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n312":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n320":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n321":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n322":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n340":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n400":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n411":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n412":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n420":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n421":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n422":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n430":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n431":
+                drawable = R.drawable.bg_sleet;
+                break;
+            case "n432":
+                drawable = R.drawable.bg_snow;
+                break;
+            case "n440":
+                drawable = R.drawable.bg_rain;
+                break;
+            case "n500":
+                drawable = R.drawable.bg_cloudy_night;
+                break;
+            case "n600":
+                drawable = R.drawable.bg_fog;
+                break;
+            default:
+                drawable = R.drawable.bg_cloudy_day;
+                break;
+        }
+        return drawable;
+    }
+
+
     public static int getIconPrecipitation(double paramDouble) {
         int drawable;
         if (0.0D <= paramDouble && paramDouble <= 10.0D) {

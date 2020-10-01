@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_00" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_01" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_02" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_03" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_04" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_05" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_06" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_07" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_08" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_09" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_10" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_11" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_12" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_13" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_14" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_15" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_16" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_17" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_18" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_19" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_20" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_30" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_31" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_32" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_33" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_34" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_35" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_36" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_37" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_38" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_sleet_39" />
+</animation-list>

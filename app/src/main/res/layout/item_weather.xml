@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
+    android:id="@+id/scroll_weather"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_clear"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,26 +18,35 @@
         <com.example.weatherapp.widget.customwidget.WidgetWeatherStatus
             android:id="@+id/wg_weather_status"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
 
         <com.example.weatherapp.widget.customwidget.WidgetNextHour
             android:id="@+id/wg_next_hour"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
         <com.example.weatherapp.widget.customwidget.WidgetNextDay
             android:id="@+id/wg_next_day"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
         <com.example.weatherapp.widget.customwidget.WidgetWind
             android:id="@+id/wg_wind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
             />
 
         <com.example.weatherapp.widget.customwidget.WidgetAirQuality
             android:id="@+id/wg_air"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
 <!--        <com.example.weatherapp.widget.customwidget.WidgetSunMoon-->
 <!--            android:id="@+id/wg_sun"-->
 <!--            android:layout_width="match_parent"-->
@@ -42,7 +54,9 @@
         <com.example.weatherapp.widget.customwidget.WidgetSunView
             android:id="@+id/wg_sun"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
 
     </LinearLayout>
 

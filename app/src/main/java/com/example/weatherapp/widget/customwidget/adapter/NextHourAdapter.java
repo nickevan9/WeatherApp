@@ -1,9 +1,11 @@
 package com.example.weatherapp.widget.customwidget.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,20 +62,25 @@ public class NextHourAdapter extends RecyclerView.Adapter<NextHourAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTempHourly;
         TextView tvTimeHourly;
-        LottieAnimationView laHourly;
+//        LottieAnimationView laHourly;
+        ImageView imgHourly;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvTempHourly = itemView.findViewById(R.id.tv_temp_hourly);
             tvTimeHourly = itemView.findViewById(R.id.tv_time_hourly);
-            laHourly = itemView.findViewById(R.id.la_hourly);
+//            laHourly = itemView.findViewById(R.id.la_hourly);
 
+            imgHourly = itemView.findViewById(R.id.img_hourly);
         }
 
         public void bindItem(FchEntity fchEntity) {
             tvTimeHourly.setText(TimeUtilsExt.convertTimeStampToTimeAdapter(fchEntity.getDt(), timeZone));
             tvTempHourly.setText(context.getString(R.string.set_temp, String.valueOf(fchEntity.getT().intValue())));
-            laHourly.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
+//            laHourly.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
+            imgHourly.setBackgroundResource(IconWeatherHelper.getDrawableAnimation(fchEntity.getS()));
+            AnimationDrawable anim = (AnimationDrawable) imgHourly.getBackground();
+            anim.start();
         }
     }
 }

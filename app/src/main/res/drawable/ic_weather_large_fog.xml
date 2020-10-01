@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_3" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_4" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_5" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_6" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_7" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_8" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_9" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_10" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_11" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_12" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_13" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_14" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_15" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_16" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_17" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_18" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_19" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_20" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_21" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_22" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_23" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_24" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_25" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_26" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_27" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_28" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_29" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_30" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_31" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_32" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_33" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_34" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_35" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_fog_36" />
+</animation-list>

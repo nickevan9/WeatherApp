@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_3" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_4" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_5" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_6" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_7" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_8" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_9" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_10" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_11" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_12" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_13" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_14" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_15" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_16" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_17" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_18" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_19" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_20" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_21" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_22" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_23" />
+    <item android:duration="60" android:drawable="@drawable/ic_weather_sleet_24" />
+</animation-list>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_00" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_01" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_02" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_03" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_04" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_05" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_06" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_07" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_08" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_09" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_10" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_11" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_12" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_13" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_14" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_15" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_16" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_17" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_18" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_19" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_20" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_30" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_31" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_32" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_33" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_34" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_35" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_36" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_37" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_38" />
+    <item android:duration="25" android:drawable="@drawable/pack_3_hail_39" />
+</animation-list>

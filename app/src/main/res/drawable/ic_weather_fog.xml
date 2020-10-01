@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_00" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_01" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_02" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_03" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_04" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_05" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_06" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_07" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_08" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_09" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_10" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_11" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_12" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_13" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_14" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_15" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_16" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_17" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_18" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_19" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_20" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_21" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_22" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_23" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_24" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_25" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_26" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_27" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_28" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_29" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_30" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_31" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_32" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_33" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_34" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_35" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_36" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_37" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_38" />
+    <item android:duration="25" android:drawable="@drawable/pack_2_fog_39" />
+</animation-list>

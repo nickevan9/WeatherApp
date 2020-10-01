@@ -6,15 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.IconWeatherHelper;
+import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.weather.FcdEntity;
+import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
-import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
@@ -30,12 +34,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private ItemClickListener itemClickListener;
 
 
-    public HomeAdapter(Context context, List<WeatherDb> weatherDbs,ItemClickListener itemClickListener) {
+    public HomeAdapter(Context context, List<WeatherDb> weatherDbs, ItemClickListener itemClickListener) {
         this.weatherDbs = weatherDbs;
         this.context = context;
         this.itemClickListener = itemClickListener;
         this.mInflater = LayoutInflater.from(context);
-
     }
 
 
@@ -70,6 +73,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetWind wgWind;
         WidgetSunView wgSun;
         WidgetAirQuality wgAir;
+        NestedScrollView scrollWeather;
 
 
         ViewHolder(View itemView){
@@ -81,28 +85,36 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgWind = itemView.findViewById(R.id.wg_wind);
             wgAir = itemView.findViewById(R.id.wg_air);
             wgSun = itemView.findViewById(R.id.wg_sun);
-
+            scrollWeather = itemView.findViewById(R.id.scroll_weather);
 
         }
 
-        public void applyData(WeatherDb weatherDb,int position){
+        public void applyData(WeatherDb weatherDb, int position) {
+
             String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
+
+            List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(),timeZone);
+            List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(),timeZone);
+
+            scrollWeather.setBackgroundResource(IconWeatherHelper.getBackgroundWeather(fchEntityList.get(0).getS()));
             wgToolbar.applyData(weatherDb.getCityName());
-            wgWeatherStatus.applyData(weatherDb.getWeatherEntity().getFch().get(0), weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
-            wgNextHour.applyData(weatherDb.getWeatherEntity().getFch(),timeZone);
-            wgNextDay.applyData(weatherDb.getWeatherEntity().getFcd(),timeZone);
-            wgWind.applyData(weatherDb.getWeatherEntity().getFch().get(0));
+            wgWeatherStatus.applyData(fchEntityList.get(0), fcdEntityList.get(0), timeZone);
+            wgNextHour.applyData(fchEntityList, timeZone);
+            wgNextDay.applyData(fcdEntityList, timeZone);
+            wgWind.applyData(fchEntityList.get(0));
             wgAir.applyData(weatherDb.getAirEntity());
-            wgSun.applyData(weatherDb.getWeatherEntity().getFcd().get(0),timeZone);
+            wgSun.applyData(fcdEntityList.get(0), timeZone);
 //            if (wgSun.isHadRunAnimation()){
 //                wgSun.runProgress(0);
 //            }
 
-            wgWeatherStatus.setOnClickListener(view -> itemClickListener.onClickWeatherStatus(view,position));
-            wgNextHour.setOnClickListener(view -> itemClickListener.onClickWeatherHour(view,position));
-            wgNextDay.setOnClickListener(view -> itemClickListener.onClickWeatherDay(view,position));
+            wgWeatherStatus.setOnClickListener(view -> itemClickListener.onClickWeatherStatus(view, position));
+            wgNextHour.setOnClickListener(view -> itemClickListener.onClickWeatherHour(view, position));
+            wgNextDay.setOnClickListener(view -> itemClickListener.onClickWeatherDay(view, position));
 
         }
 
     }
+
+
 }

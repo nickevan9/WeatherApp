@@ -2,7 +2,9 @@ package com.example.weatherapp.widget.customwidget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -25,6 +27,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     private CustomTextviewLight tvWindSpeed;
     private CustomTextviewLight tvHour;
     private LottieAnimationView lottieWeather;
+    private ImageView imgStatusWeather;
 
     public WidgetWeatherStatus(Context context) {
         super(context, null, android.R.attr.borderlessButtonStyle);
@@ -53,6 +56,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
         tvWindSpeed = findViewById(R.id.tv_wind_speed);
         tvHour = findViewById(R.id.tv_hour);
         lottieWeather = findViewById(R.id.lottie_status_weather);
+        imgStatusWeather = findViewById(R.id.img_status_weather);
     }
 
     public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
@@ -67,7 +71,11 @@ public class WidgetWeatherStatus extends RelativeLayout {
 
         tvHour.setText(TimeUtilsExt.convertTimeStampToLocalTime(fchEntity.getDt(), timeZone));
 
-        lottieWeather.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
+//        lottieWeather.setAnimation(IconWeatherHelper.getLottieWeather(fchEntity.getS()));
+
+        imgStatusWeather.setBackgroundResource(IconWeatherHelper.getDrawableAnimationLarge(fchEntity.getS()));
+        AnimationDrawable anim = (AnimationDrawable) imgStatusWeather.getBackground();
+        anim.start();
     }
 
     @SuppressLint("SetTextI18n")

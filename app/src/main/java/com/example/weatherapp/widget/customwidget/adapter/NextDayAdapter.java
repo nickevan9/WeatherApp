@@ -2,6 +2,7 @@ package com.example.weatherapp.widget.customwidget.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,8 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
         TextView tvTempMax;
         TextView tvTempMin;
         ImageView imgPbDaily;
-        LottieAnimationView laDaily;
+//        LottieAnimationView laDaily;
+        ImageView imgDaily;
         TextView tvDaily;
         ImageView imgRain;
         TextView tvRainPercent;
@@ -74,7 +76,8 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             tvTempMax = itemView.findViewById(R.id.tv_temp_max);
             tvTempMin = itemView.findViewById(R.id.tv_temp_min);
             imgPbDaily = itemView.findViewById(R.id.imgPbDaily);
-            laDaily = itemView.findViewById(R.id.la_daily);
+//            laDaily = itemView.findViewById(R.id.la_daily);
+            imgDaily = itemView.findViewById(R.id.img_daily);
             tvDaily = itemView.findViewById(R.id.tv_day_daily);
             imgRain = itemView.findViewById(R.id.img_rain);
             tvRainPercent = itemView.findViewById(R.id.tv_rain_percent);
@@ -91,11 +94,14 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             paramImg.width = (int) (5 * factor);
             imgPbDaily.setLayoutParams(paramImg);
 
-            laDaily.setAnimation(IconWeatherHelper.getLottieWeather(fcdEntity.getS()));
+//            laDaily.setAnimation(IconWeatherHelper.getLottieWeather(fcdEntity.getS()));
+            imgDaily.setBackgroundResource(IconWeatherHelper.getDrawableAnimation(fcdEntity.getS()));
+            AnimationDrawable anim = (AnimationDrawable) imgDaily.getBackground();
+            anim.start();
             tvDaily.setText(TimeUtilsExt.convertTimeToDayOfWeek(fcdEntity.getDt(), timeZone));
-            int source = IconWeatherHelper.getIconPrecipitation(fcdEntity.getPr());
+            int source = IconWeatherHelper.getIconPrecipitation(fcdEntity.getRhAvg());
             imgRain.setImageResource(source);
-            tvRainPercent.setText(fcdEntity.getPr().intValue() + "%");
+            tvRainPercent.setText(fcdEntity.getRhAvg().intValue() + "%");
         }
 
     }
