@@ -5,7 +5,7 @@
     android:padding="@dimen/_8sdp"
     android:background="@color/bg_tranfer_item">
 
-    <com.example.weatherapp.widget.CustomTextviewBold
+    <com.example.weatherapp.widget.CustomTextviewMedium
         android:id="@+id/tv_precipitation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

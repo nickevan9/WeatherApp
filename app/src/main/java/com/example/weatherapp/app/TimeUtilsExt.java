@@ -33,6 +33,15 @@ public class TimeUtilsExt {
         return fmt.print(dateTime);
     }
 
+    public static String convertTimeStampToTime12Hour(String timeStamp, String timeZone) {
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
+        DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("hh:mm aa");
+        return fmt.print(dateTime);
+    }
+
     public static String convertTimeToDayOfWeek(String timeStamp, String timeZone){
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
         DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd");

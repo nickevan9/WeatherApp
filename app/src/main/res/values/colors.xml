@@ -14,4 +14,6 @@
     <color name="colorSixth">#EC1313</color>
 
     <color name="text_description">#E9E0E0</color>
+
+<!--    <color name="text_description">#99000000</color>-->
 </resources>

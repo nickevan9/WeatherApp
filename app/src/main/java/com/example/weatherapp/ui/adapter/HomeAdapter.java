@@ -19,6 +19,7 @@ import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
+import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
@@ -73,6 +74,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetWind wgWind;
         WidgetSunView wgSun;
         WidgetAirQuality wgAir;
+        WidgetRainPercent wgRain;
         NestedScrollView scrollWeather;
 
 
@@ -85,6 +87,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgWind = itemView.findViewById(R.id.wg_wind);
             wgAir = itemView.findViewById(R.id.wg_air);
             wgSun = itemView.findViewById(R.id.wg_sun);
+            wgRain = itemView.findViewById(R.id.wg_rain_percent);
             scrollWeather = itemView.findViewById(R.id.scroll_weather);
 
         }
@@ -104,6 +107,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgWind.applyData(fchEntityList.get(0));
             wgAir.applyData(weatherDb.getAirEntity());
             wgSun.applyData(fcdEntityList.get(0), timeZone);
+            wgRain.applyData(fchEntityList);
 //            if (wgSun.isHadRunAnimation()){
 //                wgSun.runProgress(0);
 //            }

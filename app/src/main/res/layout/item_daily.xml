@@ -5,6 +5,7 @@
     android:gravity="center"
     android:background="@android:color/transparent"
     android:orientation="vertical"
+    android:paddingBottom="@dimen/_4sdp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout

@@ -6,7 +6,7 @@
     android:padding="@dimen/_8sdp"
     android:background="@color/bg_tranfer_item">
 
-    <com.example.weatherapp.widget.CustomTextviewBold
+    <com.example.weatherapp.widget.CustomTextviewMedium
         android:id="@+id/tv_air_quality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,14 +31,15 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_below="@id/view_air"
+        android:paddingHorizontal="@dimen/_4sdp"
         >
 
         <at.grabner.circleprogress.CircleProgressView
             android:id="@+id/circle_air"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            CircleProgressView:cpv_barColor="@android:color/holo_red_dark"
-            CircleProgressView:cpv_barColor1="@android:color/holo_red_dark"
+            CircleProgressView:cpv_barColor="@android:color/holo_red_light"
+            CircleProgressView:cpv_barColor1="@android:color/holo_red_light"
             CircleProgressView:cpv_barColor2="@android:color/holo_orange_light"
             CircleProgressView:cpv_barColor3="@android:color/holo_blue_bright"
             CircleProgressView:cpv_barStrokeCap="Butt"
@@ -68,12 +69,12 @@
             android:gravity="center"
             android:orientation="vertical"
             android:layout_height="match_parent">
-            <com.example.weatherapp.widget.CustomTextviewLight
+            <com.example.weatherapp.widget.CustomTextviewMedium
                 android:id="@+id/tv_air_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Unhealthy for Sensitive Groups"
-                android:textColor="@android:color/holo_red_dark"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_12ssp"
                 />
             <com.example.weatherapp.widget.CustomTextviewLight

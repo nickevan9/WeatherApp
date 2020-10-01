@@ -47,6 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             />
+
+        <com.example.weatherapp.widget.customwidget.WidgetRainPercent
+            android:id="@+id/wg_rain_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"/>
 <!--        <com.example.weatherapp.widget.customwidget.WidgetSunMoon-->
 <!--            android:id="@+id/wg_sun"-->
 <!--            android:layout_width="match_parent"-->

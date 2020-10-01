@@ -54,7 +54,7 @@ public class WidgetNextHour extends RelativeLayout {
         tvNextHour = findViewById(R.id.tv_next_hour);
         rlHour = findViewById(R.id.rv_hour);
 
-        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false,7);
+        LinearLayoutManager layoutPagerManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlHour.setLayoutManager(layoutPagerManager);
         rlHour.setHasFixedSize(true);
         rlHour.setAdapter(nextHourAdapter);

@@ -71,25 +71,10 @@ public class LoadingDataViewModel extends ViewModel {
     }
 
 
-
     public void fetchSingleWeather(double lat, double lon) {
         loadingApi.setValue(true);
 
-        Single<WeatherEntity> weatherEntitySingle = repoRepository.getWeatherData(lat, lon).
-                subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
-
-        Single<AirEntity> airEntitySingle = repoRepository.getAirData(lat, lon).
-                subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
-
-        Single<WeatherAir> combined = Single.zip(weatherEntitySingle, airEntitySingle, new BiFunction<WeatherEntity, AirEntity, WeatherAir>() {
-
-            @Override
-            public WeatherAir apply(WeatherEntity weatherEntity, AirEntity airEntity) {
-                return new WeatherAir(weatherEntity, airEntity);
-            }
-        });
+        Single<WeatherAir> combined = Single.zip(getWeatherEntity(lat, lon), getAirEntity(lat, lon), WeatherAir::new);
 
         combined.subscribe(new SingleObserver<WeatherAir>() {
             @Override
@@ -115,27 +100,48 @@ public class LoadingDataViewModel extends ViewModel {
     }
 
 
-    public void fetchAllWeather(List<WeatherDb> weatherDbList){
-        for (WeatherDb weatherDb : weatherDbList){
+    public void fetchAllWeather(List<WeatherDb> weatherDbList) {
+        loadingAllData.setValue(true);
+        for (WeatherDb weatherDb : weatherDbList) {
             Double lat = weatherDb.getLatLocation();
             Double lon = weatherDb.getLonLocation();
 
-            disposable.add(repoRepository.getWeatherData(lat, lon)
-                    .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new DisposableSingleObserver<WeatherEntity>() {
-                        @Override
-                        public void onSuccess(WeatherEntity weatherEntity) {
-                            loadError.setValue(false);
-                            loadingAllData.setValue(false);
-                        }
+            Single<WeatherAir> combined = Single.zip(getWeatherEntity(lat, lon), getAirEntity(lat, lon), WeatherAir::new);
 
-                        @Override
-                        public void onError(Throwable e) {
-                            loadError.setValue(true);
-                            loadingApi.setValue(false);
-                        }
-                    }));
+            combined.subscribe(new SingleObserver<WeatherAir>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+                    disposable.add(d);
+                }
+
+                @Override
+                public void onSuccess(WeatherAir weatherAir) {
+                    loadError.setValue(false);
+                    if (weatherDbList.indexOf(weatherDb) == (weatherDbList.size() - 1)) {
+                        loadingAllData.setValue(false);
+                    }
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    loadError.setValue(true);
+                    loadingAllData.setValue(false);
+                }
+            });
+
         }
+    }
+
+    private Single<WeatherEntity> getWeatherEntity(Double lat, Double lon) {
+        return repoRepository.getWeatherData(lat, lon).
+                subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    private Single<AirEntity> getAirEntity(Double lat, Double lon) {
+        return repoRepository.getAirData(lat, lon).
+                subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public void insertToDb(WeatherDb weatherDb) {

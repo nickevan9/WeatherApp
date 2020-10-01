@@ -5,21 +5,44 @@
     android:padding="@dimen/_8sdp"
     android:background="@color/bg_tranfer_item">
 
-    <com.example.weatherapp.widget.CustomTextviewBold
-        android:id="@+id/tv_rain_percent"
+    <LinearLayout
+        android:id="@+id/ln_rain_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/rain_percent"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/_13ssp" />
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rain_percent"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_13ssp" />
+
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_next_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_12_hour"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="@dimen/_13ssp" />
+    </LinearLayout>
 
     <View
         android:id="@+id/view_precipitation"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/tv_rain_percent"
+        android:layout_below="@id/ln_rain_text"
         android:layout_marginVertical="@dimen/_8sdp"
         android:background="@android:color/white" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart_rain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@id/view_precipitation"
+        android:layout_marginBottom="@dimen/_8sdp"
+        />
 </RelativeLayout>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
    >
 
-    <com.example.weatherapp.widget.CustomTextviewBold
+    <com.example.weatherapp.widget.CustomTextviewMedium
         android:id="@+id/tv_sun"
         android:layout_width="match_parent"
         android:layout_height="0dp"
