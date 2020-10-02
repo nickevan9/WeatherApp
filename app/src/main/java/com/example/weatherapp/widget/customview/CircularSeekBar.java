@@ -112,17 +112,17 @@ public class CircularSeekBar extends View {
 
     protected Paint j;
 
-    protected float k;
+    protected float cirStrokeWidth;
 
-    protected float l;
+    protected float positionX;
 
-    protected float m;
+    protected float positionY;
 
-    protected float n;
+    protected float cirWidth;
 
-    protected float o;
+    protected float cirHeight;
 
-    protected float p;
+    protected float strokeWidth;
 
     public SparseArray<float[]> positionPercent = new SparseArray();
 
@@ -165,7 +165,7 @@ public class CircularSeekBar extends View {
 
     private void calculateRecF(int paramInt1, int paramInt2) {
         paramInt1 = Math.min(paramInt1, paramInt2);
-        float f1 = this.k - this.n - this.p * 1.5F - 4.0F;
+        float f1 = this.cirStrokeWidth - this.cirWidth - this.strokeWidth * 1.5F - 4.0F;
         RectF rectF = this.rectF;
         float f2 = 0.0F - f1;
         rectF.set(f2, f2, View.MeasureSpec.getSize(paramInt1) + f1, View.MeasureSpec.getSize(paramInt1) + f1);
@@ -184,12 +184,12 @@ public class CircularSeekBar extends View {
     }
 
     protected void initAttributes(Context paramContext, TypedArray paramTypedArray) {
-        this.l = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_x_radius, this.density * 30.0F);
-        this.m = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_y_radius, this.density * 30.0F);
-        this.n = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_width, this.density * 7.0F);
-        this.o = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_height, this.density * 6.0F);
-        this.p = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
-        this.k = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
+        this.positionX = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_x_radius, this.density * 30.0F);
+        this.positionY = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_y_radius, this.density * 30.0F);
+        this.cirWidth = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_width, this.density * 7.0F);
+        this.cirHeight = paramTypedArray.getDimension(R.styleable.CircularSeekBar_ci_height, this.density * 6.0F);
+        this.strokeWidth = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
+        this.cirStrokeWidth = paramTypedArray.getDimension(R.styleable.CircularSeekBar_circle_stroke_width, this.density * 1.0F);
         this.mFinishedColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_finished_color, h0);
         this.mPointerColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_color, i0);
         this.MPointerHaloColor = paramTypedArray.getColor(R.styleable.CircularSeekBar_pointer_halo_color, j0);
@@ -270,9 +270,8 @@ public class CircularSeekBar extends View {
         this.c.setDither(true);
         this.c.setColor(-1);
         this.c.setLinearText(true);
-        this.c.setDither(true);
         this.c.setStyle(Paint.Style.STROKE);
-        this.c.setStrokeWidth(this.k);
+        this.c.setStrokeWidth(this.cirStrokeWidth);
         this.c.setPathEffect((PathEffect)new DashPathEffect(new float[] { 10.0F, 10.0F, 10.0F, 10.0F }, 0.0F));
         this.c.setStyle(Paint.Style.STROKE);
         this.c.setStrokeJoin(Paint.Join.ROUND);
@@ -288,7 +287,7 @@ public class CircularSeekBar extends View {
         this.f.setAntiAlias(true);
         this.f.setDither(true);
         this.f.setColor(0);
-        this.f.setStrokeWidth(this.k);
+        this.f.setStrokeWidth(this.cirStrokeWidth);
         this.f.setStyle(Paint.Style.STROKE);
         this.f.setStrokeJoin(Paint.Join.ROUND);
         this.f.setStrokeCap(Paint.Cap.ROUND);
@@ -308,17 +307,17 @@ public class CircularSeekBar extends View {
         this.h.setDither(true);
         this.h.setStyle(Paint.Style.FILL);
         this.h.setColor(this.mPointerColor);
-        this.h.setStrokeWidth(this.n);
+        this.h.setStrokeWidth(this.cirWidth);
 
         this.mPointerPaint = new Paint();
         this.mPointerPaint.set(this.h);
         this.mPointerPaint.setColor(this.MPointerHaloColor);
         this.mPointerPaint.setAlpha(this.mPointerAlpha);
-        this.mPointerPaint.setStrokeWidth(this.n + this.o);
+        this.mPointerPaint.setStrokeWidth(this.cirWidth + this.cirHeight);
 
         this.j = new Paint();
         this.j.set(this.h);
-        this.j.setStrokeWidth(this.p);
+        this.j.setStrokeWidth(this.strokeWidth);
         this.j.setStyle(Paint.Style.STROKE);
     }
 
@@ -420,19 +419,19 @@ public class CircularSeekBar extends View {
             setMeasuredDimension(paramInt1, paramInt2);
         }
         float f1 = paramInt2 / 2.0F;
-        float f2 = this.k;
-        float f3 = this.n;
-        float f4 = this.p;
+        float f2 = this.cirStrokeWidth;
+        float f3 = this.cirWidth;
+        float f4 = this.strokeWidth;
         this.c0 = f1 - f2 - f3 - f4 * 1.5F;
         this.b0 = paramInt1 / 2.0F - f2 - f3 - f4 * 1.5F;
         if (this.K) {
-            f1 = this.m;
+            f1 = this.positionY;
             if (f1 - f2 - f3 - f4 < this.c0)
                 this.c0 = f1 - f2 - f3 - f4 * 1.5F;
-            f4 = this.l;
-            f2 = this.k;
-            f3 = this.n;
-            f1 = this.p;
+            f4 = this.positionX;
+            f2 = this.cirStrokeWidth;
+            f3 = this.cirWidth;
+            f1 = this.strokeWidth;
             if (f4 - f2 - f3 - f1 < this.b0)
                 this.b0 = f4 - f2 - f3 - f1 * 1.5F;
         }

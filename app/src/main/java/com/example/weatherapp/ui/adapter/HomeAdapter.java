@@ -20,6 +20,7 @@ import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
 import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
+import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
@@ -73,6 +74,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetNextDay wgNextDay;
         WidgetWind wgWind;
         WidgetSunView wgSun;
+        WidgetSunMoon wgSunMoon;
         WidgetAirQuality wgAir;
         WidgetRainPercent wgRain;
         NestedScrollView scrollWeather;
@@ -88,6 +90,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgAir = itemView.findViewById(R.id.wg_air);
             wgSun = itemView.findViewById(R.id.wg_sun);
             wgRain = itemView.findViewById(R.id.wg_rain_percent);
+            wgSunMoon = itemView.findViewById(R.id.wg_sun_moon);
             scrollWeather = itemView.findViewById(R.id.scroll_weather);
 
         }
@@ -108,9 +111,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             wgAir.applyData(weatherDb.getAirEntity());
             wgSun.applyData(fcdEntityList.get(0), timeZone);
             wgRain.applyData(fchEntityList);
-//            if (wgSun.isHadRunAnimation()){
-//                wgSun.runProgress(0);
-//            }
+
+            if (wgSunMoon.isHadRunAnimation()){
+                wgSunMoon.runProgress(0);
+            }
+
+            wgSunMoon.applyData(fcdEntityList.get(0),timeZone);
 
             wgWeatherStatus.setOnClickListener(view -> itemClickListener.onClickWeatherStatus(view, position));
             wgNextHour.setOnClickListener(view -> itemClickListener.onClickWeatherHour(view, position));

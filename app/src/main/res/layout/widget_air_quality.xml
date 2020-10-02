@@ -51,7 +51,7 @@
             CircleProgressView:cpv_outerContourSize="0dp"
             CircleProgressView:cpv_rimColor="@android:color/transparent"
             CircleProgressView:cpv_rimWidth="10dp"
-            CircleProgressView:cpv_seekMode="true"
+            CircleProgressView:cpv_seekMode="false"
             CircleProgressView:cpv_startAngle="180"
             CircleProgressView:cpv_text="150"
             CircleProgressView:cpv_textMode="Text"

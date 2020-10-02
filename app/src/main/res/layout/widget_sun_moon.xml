@@ -42,11 +42,14 @@
                 android:layerType="software"
                 android:translationY="50.0dip"
                 android:visibility="visible"
+                app:start_angle="180.0"
                 app:end_angle="360.0"
                 app:finished_color="@android:color/holo_orange_light"
+                app:circle_color="@android:color/holo_orange_light"
+                app:circle_progress_color="@android:color/holo_orange_light"
                 app:pointer_icon="@drawable/ic_sun"
                 app:progress="100"
-                app:start_angle="180.0" />
+                />
         </FrameLayout>
 
         <LinearLayout

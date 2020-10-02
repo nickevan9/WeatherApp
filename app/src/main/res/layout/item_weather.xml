@@ -10,6 +10,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.example.weatherapp.widget.customwidget.WidgetSunMoon
+            android:id="@+id/wg_sun_moon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <com.example.weatherapp.widget.customwidget.WidgetToolbar
             android:id="@+id/wg_toolbar"
             android:layout_width="match_parent"
@@ -53,10 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"/>
-<!--        <com.example.weatherapp.widget.customwidget.WidgetSunMoon-->
-<!--            android:id="@+id/wg_sun"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"/>-->
+
         <com.example.weatherapp.widget.customwidget.WidgetSunView
             android:id="@+id/wg_sun"
             android:layout_width="match_parent"
