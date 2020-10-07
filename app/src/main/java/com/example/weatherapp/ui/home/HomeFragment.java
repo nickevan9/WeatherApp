@@ -3,12 +3,10 @@ package com.example.weatherapp.ui.home;
 
 import android.view.View;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.WeatherDb;
-import com.example.weatherapp.factory.ViewModelFactory;
 import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.ui.adapter.HomeAdapter;
 import com.example.weatherapp.ui.base.BaseFragment;
@@ -20,9 +18,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 
-public class HomeFragment extends BaseFragment implements ItemClickListener {
+public class HomeFragment extends BaseFragment implements ItemClickListener,HomeContract.View {
 
-    private HomeViewModel mViewModel;
 
     private ViewPager2 vpHome;
 
@@ -32,8 +29,9 @@ public class HomeFragment extends BaseFragment implements ItemClickListener {
 
     private List<WeatherDb> weatherDbs;
 
+
     @Inject
-    ViewModelFactory viewModelFactory;
+    public HomeContract.Controller homeController;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -46,14 +44,11 @@ public class HomeFragment extends BaseFragment implements ItemClickListener {
 
     @Override
     protected void dataCreate() {
+
+        homeController.attachView(this);
+
         weatherDbList = new ArrayList<>();
 
-        mViewModel = new ViewModelProvider(this, viewModelFactory).get(HomeViewModel.class);
-
-        mViewModel.getListWeather().observe(getViewLifecycleOwner(), weatherDbList -> {
-            weatherDbs = weatherDbList;
-            homeAdapter.applyData(weatherDbList);
-        });
     }
 
     @Override
@@ -84,5 +79,33 @@ public class HomeFragment extends BaseFragment implements ItemClickListener {
     @Override
     public void onClickWeatherDay(View view, int position) {
 
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void loadDataSuccess(List<WeatherDb> weatherDbList) {
+        weatherDbs = weatherDbList;
+        homeAdapter.applyData(weatherDbList);
+    }
+
+    @Override
+    public void loadDataFailed(String message) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        homeController.detachView(this);
+        homeController.destroy();
     }
 }

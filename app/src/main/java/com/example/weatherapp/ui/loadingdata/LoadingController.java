@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoadingController implements LoadingContract.Controller {
     private final WeatherRepository repoRepository;
-    private CompositeDisposable disposable;
+    private CompositeDisposable disposable = new CompositeDisposable();
     private LoadingContract.View mView;
 
 
@@ -62,7 +62,7 @@ public class LoadingController implements LoadingContract.Controller {
             @Override
             public void onSuccess(WeatherAir weatherAir) {
                 WeatherDb weatherDb = createWeather(weatherAir);
-                insertToDb(weatherDb,true);
+                insertToDb(weatherDb, true);
             }
 
             @Override
@@ -92,9 +92,9 @@ public class LoadingController implements LoadingContract.Controller {
                 public void onSuccess(WeatherAir weatherAir) {
                     WeatherDb weatherDb = createWeather(weatherAir);
                     if (weatherDbList.indexOf(weatherDb) == (weatherDbList.size() - 1)) {
-                        insertToDb(weatherDb,true);
-                    }else {
-                        insertToDb(weatherDb,false);
+                        insertToDb(weatherDb, true);
+                    } else {
+                        insertToDb(weatherDb, false);
                     }
                 }
 
@@ -119,7 +119,7 @@ public class LoadingController implements LoadingContract.Controller {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public void insertToDb(WeatherDb weatherDb,Boolean lastPosition) {
+    public void insertToDb(WeatherDb weatherDb, Boolean lastPosition) {
 
         disposable.add(repoRepository.addWeather(weatherDb)
                 .subscribeOn(Schedulers.io())
@@ -128,7 +128,7 @@ public class LoadingController implements LoadingContract.Controller {
 
                     @Override
                     public void onSuccess(Long aLong) {
-                        if (lastPosition){
+                        if (lastPosition) {
                             mView.hideLoading();
                         }
                     }
@@ -155,16 +155,16 @@ public class LoadingController implements LoadingContract.Controller {
 
     @Override
     public void attachView(LoadingContract.View view) {
-
+        this.mView = view;
     }
 
     @Override
     public void detachView(LoadingContract.View view) {
-
+        this.mView = view;
     }
 
     @Override
     public void destroy() {
-
+        disposable.clear();
     }
 }

@@ -16,7 +16,6 @@ import com.example.weatherapp.R;
 
 public class HourDetailFragment extends Fragment {
 
-    private HourDetailViewModel mViewModel;
 
     public static HourDetailFragment newInstance() {
         return new HourDetailFragment();
@@ -31,8 +30,7 @@ public class HourDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HourDetailViewModel.class);
-        // TODO: Use the ViewModel
+
     }
 
 }

@@ -16,7 +16,6 @@ import com.example.weatherapp.R;
 
 public class LocationFragment extends Fragment {
 
-    private LocationViewModel mViewModel;
 
     public static LocationFragment newInstance() {
         return new LocationFragment();
@@ -31,7 +30,6 @@ public class LocationFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(LocationViewModel.class);
         // TODO: Use the ViewModel
     }
 

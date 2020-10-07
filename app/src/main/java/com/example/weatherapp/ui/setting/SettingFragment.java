@@ -16,7 +16,6 @@ import com.example.weatherapp.R;
 
 public class SettingFragment extends Fragment {
 
-    private SettingViewModel mViewModel;
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
@@ -31,8 +30,7 @@ public class SettingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SettingViewModel.class);
-        // TODO: Use the ViewModel
+
     }
 
 }
