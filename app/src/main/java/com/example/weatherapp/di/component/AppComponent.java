@@ -4,11 +4,11 @@ import android.app.Application;
 
 import com.example.weatherapp.WeatherApplication;
 import com.example.weatherapp.di.modules.ActivityModule;
+import com.example.weatherapp.di.modules.PresenterModule;
 import com.example.weatherapp.di.modules.WeatherAppModule;
 import com.example.weatherapp.di.modules.ContextModule;
 import com.example.weatherapp.di.modules.DbModule;
 import com.example.weatherapp.di.modules.FragmentModule;
-import com.example.weatherapp.di.modules.ViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -26,7 +26,8 @@ import dagger.android.DaggerApplication;
         ActivityModule.class,
         DbModule.class,
         FragmentModule.class,
-        ViewModelModule.class})
+        PresenterModule.class
+})
 public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
     void inject(WeatherApplication application);

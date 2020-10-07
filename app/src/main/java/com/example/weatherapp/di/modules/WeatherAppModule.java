@@ -2,8 +2,12 @@ package com.example.weatherapp.di.modules;
 
 import com.example.weatherapp.data.response.AirService;
 import com.example.weatherapp.data.response.WeatherService;
+import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
 import javax.inject.Qualifier;
@@ -12,6 +16,11 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+import kotlin.jvm.internal.Intrinsics;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 //@Singleton
-@Module(includes = ViewModelModule.class)
+@Module()
 public class WeatherAppModule {
 
     private static final String BASE_URL_WEATHER = "http://www.hmhweather.xyz/api/";
@@ -47,24 +56,42 @@ public class WeatherAppModule {
                 .build();
     }
 
+    @Provides
+    @Singleton
+    public final OkHttpClient providesOkHttpClient() {
+        okhttp3.OkHttpClient.Builder client = (new okhttp3.OkHttpClient.Builder()).connectTimeout(60L, TimeUnit.SECONDS).writeTimeout(60L, TimeUnit.SECONDS).readTimeout(60L, TimeUnit.SECONDS);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        client.addNetworkInterceptor((Interceptor)interceptor);
+        OkHttpClient httpClient = client.build();
+        return httpClient;
+    }
 
-//
-//    @Singleton
-//    @Provides
-//    OkHttpClient getOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
-//        return new OkHttpClient.Builder()
-//                .addInterceptor(httpLoggingInterceptor)
-//                .build();
-//    }
-//
-//
-//    @Singleton
-//    @Provides
-//    HttpLoggingInterceptor getHttpLoggingInterceptor() {
-//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-//        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        return httpLoggingInterceptor;
-//    }
+    @Provides
+    @Singleton
+    @NotNull
+    public final Gson providesGson() {
+        return new Gson();
+    }
+
+    @Provides
+    @Singleton
+    @NotNull
+    public final GsonConverterFactory providesGsonConverterFactory() {
+        GsonConverterFactory var10000 = GsonConverterFactory.create();
+        
+        return var10000;
+    }
+
+    @Provides
+    @Singleton
+    @NotNull
+    public final RxJava2CallAdapterFactory providesRxJavaCallAdapterFactory() {
+        RxJava2CallAdapterFactory var10000 = RxJava2CallAdapterFactory.create();
+        return var10000;
+    }
+
+
 
     @Singleton
     @Provides
