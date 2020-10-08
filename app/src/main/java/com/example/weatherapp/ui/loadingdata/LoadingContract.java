@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface LoadingContract {
     public interface View extends IBaseView{
-        void showLoading();
-        void hideLoading();
         void loadDataSuccess(List<WeatherDb> weatherDbList);
         void loadDataFailed(String message);
     }

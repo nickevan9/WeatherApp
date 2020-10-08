@@ -4,11 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
@@ -20,12 +18,10 @@ import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
 import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
-import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWeatherStatus;
 import com.example.weatherapp.widget.customwidget.WidgetWind;
-
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
@@ -78,7 +74,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         WidgetAirQuality wgAir;
         WidgetRainPercent wgRain;
         NestedScrollView scrollWeather;
-
 
         ViewHolder(View itemView){
             super(itemView);

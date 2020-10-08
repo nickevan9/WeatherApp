@@ -25,11 +25,14 @@ public class RxBus {
     private static Map<Object, CompositeDisposable> sSubscriptionsMap = new HashMap<>();
     public static final int TAG_FRAGMENT_CLICK = 1;
 
+    public static final int TAG_ADD_LOCATION_CLICK = 1111;
+
 
 
     @Retention(SOURCE)
     @IntDef(value = {
             TAG_FRAGMENT_CLICK,
+            TAG_ADD_LOCATION_CLICK
 
     })
     @interface Subject {

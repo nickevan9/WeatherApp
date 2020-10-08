@@ -14,6 +14,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
 import com.example.weatherapp.app.DataProccessor;
+import com.example.weatherapp.app.RxBus;
 
 import dagger.android.support.DaggerFragment;
 
@@ -62,5 +63,11 @@ public abstract class BaseFragment extends DaggerFragment
                 fragmentBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RxBus.unregister(this);
     }
 }

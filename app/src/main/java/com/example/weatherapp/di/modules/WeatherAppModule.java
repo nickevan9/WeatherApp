@@ -1,5 +1,6 @@
 package com.example.weatherapp.di.modules;
 
+import com.example.weatherapp.BuildConfig;
 import com.example.weatherapp.data.response.AirService;
 import com.example.weatherapp.data.response.WeatherService;
 import com.google.gson.Gson;
@@ -38,7 +39,7 @@ public class WeatherAppModule {
     @Provides
     @Named("weather")
     static Retrofit provideWeatherRetrofit() {
-        return new Retrofit.Builder().baseUrl(BASE_URL_WEATHER)
+        return new Retrofit.Builder().baseUrl(BuildConfig.BASE_URL_WEATHER)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
 //                .client(okHttpClient)
@@ -49,7 +50,7 @@ public class WeatherAppModule {
     @Provides
     @Named("air")
     static Retrofit provideAirRetrofit() {
-        return new Retrofit.Builder().baseUrl(BASE_URL_AIR)
+        return new Retrofit.Builder().baseUrl(BuildConfig.BASE_URL_AIR)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
 //                .client(okHttpClient)

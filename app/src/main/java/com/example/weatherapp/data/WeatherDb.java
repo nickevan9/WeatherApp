@@ -1,5 +1,6 @@
 package com.example.weatherapp.data;
 
+import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -12,7 +13,8 @@ import com.example.weatherapp.data.model.weather.WeatherEntity;
 )
 public class WeatherDb {
     @PrimaryKey
-    private long locationId;
+    @NonNull
+    private String locationName;
 
     private String cityName ;
 
@@ -26,8 +28,8 @@ public class WeatherDb {
     @Embedded
     private  AirEntity airEntity;
 
-    public WeatherDb(long locationId, String cityName, Double latLocation, Double lonLocation, WeatherEntity weatherEntity,AirEntity airEntity) {
-        this.locationId = locationId;
+    public WeatherDb(String locationName, String cityName, Double latLocation, Double lonLocation, WeatherEntity weatherEntity,AirEntity airEntity) {
+        this.locationName = locationName;
         this.cityName = cityName;
         this.latLocation = latLocation;
         this.lonLocation = lonLocation;
@@ -39,12 +41,12 @@ public class WeatherDb {
 
     }
 
-    public long getLocationId() {
-        return locationId;
+    public String getLocationName() {
+        return locationName;
     }
 
-    public void setLocationId(long locationId) {
-        this.locationId = locationId;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 
     public String getCityName() {

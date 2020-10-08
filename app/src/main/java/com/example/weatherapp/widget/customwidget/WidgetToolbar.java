@@ -1,6 +1,8 @@
 package com.example.weatherapp.widget.customwidget;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.ui.location.LocationFragment;
 
 public class WidgetToolbar extends LinearLayout {
     private ImageView imgDropDown;
@@ -35,13 +38,23 @@ public class WidgetToolbar extends LinearLayout {
     private void initView(){
         inflate(getContext(), R.layout.widget_toolbar,this);
         imgDropDown = findViewById(R.id.img_drop_down);
-        imgAddLocation = findViewById(R.id.img_location);
+        imgAddLocation = findViewById(R.id.img_add_location);
         imgSetting = findViewById(R.id.img_setting);
         imgShare = findViewById(R.id.img_share);
         tvLocation = findViewById(R.id.tv_name_city);
+
+        imgAddLocation.setOnClickListener(view -> {
+            RxBus.publish(RxBus.TAG_ADD_LOCATION_CLICK,"");
+        });
     }
 
     public void applyData(String name){
         tvLocation.setText(name);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
     }
 }

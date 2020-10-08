@@ -5,6 +5,8 @@ import com.example.weatherapp.ui.home.HomeContract;
 import com.example.weatherapp.ui.home.HomeController;
 import com.example.weatherapp.ui.loadingdata.LoadingContract;
 import com.example.weatherapp.ui.loadingdata.LoadingController;
+import com.example.weatherapp.ui.location.LocationContract;
+import com.example.weatherapp.ui.location.LocationController;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,5 +22,10 @@ public class PresenterModule {
     @Provides
     public HomeContract.Controller providesHomePresenter(WeatherRepository weatherRepository) {
         return (HomeContract.Controller) (new HomeController(weatherRepository));
+    }
+
+    @Provides
+    public LocationContract.Controller providesLocationPresenter(WeatherRepository weatherRepository) {
+        return (LocationContract.Controller) (new LocationController(weatherRepository));
     }
 }

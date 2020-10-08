@@ -38,12 +38,12 @@
             android:layout_gravity="center_vertical"
             >
 
-            <com.airbnb.lottie.LottieAnimationView
+            <ImageView
+                android:id="@+id/img_wind"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
-                app:lottie_autoPlay="true"
-                app:lottie_fileName="wind.json"
-                app:lottie_loop="true" />
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_wind" />
 
             <com.example.weatherapp.widget.CustomTextviewMedium
                 android:id="@+id/tv_wind_speed"
@@ -66,7 +66,8 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_4sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_wind_chill"
+                android:src="@drawable/ic_wind_chill_svg"
+                app:layout_constraintBottom_toBottomOf="@+id/customTextviewMedium4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_wind_chill" />
 
@@ -100,7 +101,8 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_4sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_wind_direction"
+                android:src="@drawable/ic_direction"
+                app:layout_constraintBottom_toBottomOf="@+id/customTextviewMedium5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_wind_direction" />
 
@@ -111,7 +113,8 @@
                 android:text="W"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12ssp"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+
                 app:layout_constraintBottom_toTopOf="@+id/customTextviewMedium5"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/guideline7" />
