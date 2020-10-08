@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.listener.ItemClickListener;

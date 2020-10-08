@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.app.FragmentUtils;
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.ui.base.BaseFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.karumi.dexter.Dexter;

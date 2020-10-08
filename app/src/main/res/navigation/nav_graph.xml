@@ -79,6 +79,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_placeAutocompleteFragment"
+            app:destination="@id/placeAutocompleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
@@ -115,4 +118,8 @@
 
             />
     </fragment>
+    <fragment
+        android:id="@+id/placeAutocompleteFragment"
+        android:name="com.weather.placeautocomplete.autocomplete.ui.PlaceAutocompleteFragment"
+        android:label="PlaceAutocompleteFragment" />
 </navigation>

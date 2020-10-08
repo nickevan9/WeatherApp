@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.home;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,22 +14,18 @@ import com.example.weatherapp.BuildConfig;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.FragmentUtils;
 import com.example.weatherapp.app.RxBus;
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.ui.adapter.HomeAdapter;
 import com.example.weatherapp.ui.base.BaseFragment;
 import com.example.weatherapp.ui.dialog.WeatherDialog;
-import com.mapbox.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.ui.PlaceAutocompleteFragment;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.ui.PlaceSelectionListener;
+import com.weather.placeautocomplete.autocomplete.ui.PlaceAutocompleteActivity;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.functions.Consumer;
 
 
 public class HomeFragment extends BaseFragment implements ItemClickListener,HomeContract.View {
@@ -42,7 +39,6 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
 
     private List<WeatherDb> weatherDbs;
 
-    private PlaceAutocompleteFragment autocompleteFragment;
 
 
     @Inject
@@ -61,38 +57,11 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null) {
-            PlaceOptions placeOptions = PlaceOptions.builder().backgroundColor(Color.WHITE).toolbarColor(Color.WHITE).statusbarColor(Color.WHITE).hint("Begin searching").build();
 
-            autocompleteFragment = PlaceAutocompleteFragment.newInstance(BuildConfig.KEY_MAP_BOX, placeOptions);
-
-
-        } else {
-            autocompleteFragment = (PlaceAutocompleteFragment) getChildFragmentManager().findFragmentByTag(PlaceAutocompleteFragment.TAG);
-        }
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(CarmenFeature carmenFeature) {
-                Double lat = carmenFeature.center().latitude();
-                Double lon = carmenFeature.center().longitude();
-                homeController.getSingleWeather(lat, lon);
-
-            }
-
-            @Override
-            public void onCancel() {
-//                FragmentUtils.findNavController(autocompleteFragment).popBackStack();
-            }
-        });
     }
 
     private void transitionAddLocation(){
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left);
-        transaction.add(R.id.fragment_container, autocompleteFragment, PlaceAutocompleteFragment.TAG);
 
-        transaction.commitNow();
     }
 
     @Override
@@ -118,7 +87,9 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
         super.onResume();
 
         RxBus.subscribe(RxBus.TAG_ADD_LOCATION_CLICK, this, click -> {
-            transitionAddLocation();
+//            transitionAddLocation();
+//            startActivity(new Intent(requireActivity(), PlaceAutocompleteActivity.class));
+            FragmentUtils.findNavController(this).navigate(R.id.action_homeFragment_to_placeAutocompleteFragment);
         });
                 
     }
@@ -161,7 +132,7 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
 
     @Override
     public void hideLoadingAPI() {
-        FragmentUtils.findNavController(autocompleteFragment).popBackStack();
+
     }
 
     @Override

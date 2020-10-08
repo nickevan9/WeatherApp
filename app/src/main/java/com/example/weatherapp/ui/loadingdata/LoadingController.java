@@ -1,7 +1,7 @@
 package com.example.weatherapp.ui.loadingdata;
 
-import com.example.weatherapp.data.WeatherAir;
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherAir;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;

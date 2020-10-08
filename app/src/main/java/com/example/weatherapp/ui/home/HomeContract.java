@@ -1,6 +1,6 @@
 package com.example.weatherapp.ui.home;
 
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.ui.base.IBaseController;
 import com.example.weatherapp.ui.base.IBaseView;
 

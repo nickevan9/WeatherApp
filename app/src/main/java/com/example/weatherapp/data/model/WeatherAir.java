@@ -1,4 +1,4 @@
-package com.example.weatherapp.data;
+package com.example.weatherapp.data.model;
 
 import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;

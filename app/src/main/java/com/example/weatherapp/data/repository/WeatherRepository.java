@@ -1,6 +1,6 @@
 package com.example.weatherapp.data.repository;
 
-import com.example.weatherapp.data.WeatherDb;
+import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.response.AirService;
@@ -15,14 +15,12 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import io.reactivex.functions.Action;
 
 @Singleton
 public class WeatherRepository {
     private final WeatherService weatherService;
     private final WeatherDao weatherDao;
     private final AirService airService;
-
     @Inject
     public WeatherRepository(WeatherService weatherService, WeatherDao weatherDao,AirService airService) {
         this.weatherService = weatherService;
@@ -43,10 +41,12 @@ public class WeatherRepository {
     }
 
     public Single<List<WeatherDb>> getAllWeatherFromDb(){
-        return Single.fromCallable((Callable) () -> weatherDao.getAllWeather());
+        return Single.fromCallable((Callable) weatherDao::getAllWeather);
     }
 
     public Completable removeWeather(WeatherDb weatherDb){
-        return Completable.fromAction((Action) () -> weatherDao.deleteWeather(weatherDb));
+        return Completable.fromAction(() -> weatherDao.deleteWeather(weatherDb));
     }
+
+
 }

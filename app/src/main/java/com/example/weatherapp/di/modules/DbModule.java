@@ -31,4 +31,5 @@ public class DbModule {
     public final WeatherDao provideWeatherDao(WeatherDatabase weatherDatabase){
         return weatherDatabase.weatherDao();
     }
+
 }

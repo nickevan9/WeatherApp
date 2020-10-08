@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.weather.placeautocomplete">
+
+
+    <application>
+        <activity android:name=".autocomplete.ui.PlaceAutocompleteActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@style/mapbox_plugins_translucent"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            />
+    </application>
+</manifest>

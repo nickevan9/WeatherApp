@@ -1,4 +1,4 @@
-package com.example.weatherapp.data;
+package com.example.weatherapp.data.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Embedded;
