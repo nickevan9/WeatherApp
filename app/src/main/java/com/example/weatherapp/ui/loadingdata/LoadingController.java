@@ -76,12 +76,13 @@ public class LoadingController implements LoadingContract.Controller {
 
     public void fetchAllWeather(List<WeatherDb> weatherDbList) {
 
-        for (WeatherDb weatherDb : weatherDbList) {
-            Double lat = weatherDb.getLatLocation();
-            Double lon = weatherDb.getLonLocation();
+        for (int index = 0 ; index < weatherDbList.size(); index++) {
+            Double lat = weatherDbList.get(index).getLatLocation();
+            Double lon = weatherDbList.get(index).getLonLocation();
 
             Single<WeatherAir> combined = Single.zip(getWeatherEntity(lat, lon), getAirEntity(lat, lon), WeatherAir::new);
 
+            int finalIndex = index;
             combined.subscribe(new SingleObserver<WeatherAir>() {
                 @Override
                 public void onSubscribe(Disposable d) {
@@ -91,7 +92,7 @@ public class LoadingController implements LoadingContract.Controller {
                 @Override
                 public void onSuccess(WeatherAir weatherAir) {
                     WeatherDb weatherDb = createWeather(weatherAir);
-                    if (weatherDbList.indexOf(weatherDb) == (weatherDbList.size() - 1)) {
+                    if (finalIndex == (weatherDbList.size() - 1)) {
                         insertToDb(weatherDb, true);
                     } else {
                         insertToDb(weatherDb, false);

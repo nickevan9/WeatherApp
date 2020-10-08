@@ -69,26 +69,21 @@ public class WeatherAppModule {
 
     @Provides
     @Singleton
-    @NotNull
     public final Gson providesGson() {
         return new Gson();
     }
 
     @Provides
     @Singleton
-    @NotNull
     public final GsonConverterFactory providesGsonConverterFactory() {
-        GsonConverterFactory var10000 = GsonConverterFactory.create();
-        
-        return var10000;
+
+        return GsonConverterFactory.create();
     }
 
     @Provides
     @Singleton
-    @NotNull
     public final RxJava2CallAdapterFactory providesRxJavaCallAdapterFactory() {
-        RxJava2CallAdapterFactory var10000 = RxJava2CallAdapterFactory.create();
-        return var10000;
+        return RxJava2CallAdapterFactory.create();
     }
 
 
