@@ -162,7 +162,7 @@ public class LoadingController implements LoadingContract.Controller {
 
     @Override
     public void detachView(LoadingContract.View view) {
-        this.mView = view;
+        this.mView = null;
     }
 
     @Override

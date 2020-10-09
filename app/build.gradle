@@ -122,7 +122,6 @@ dependencies {
     annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
     provided 'com.jakewharton.auto.value:auto-value-annotations:1.4'
 
-    implementation project(':placeautocomplete')
 
 }
 

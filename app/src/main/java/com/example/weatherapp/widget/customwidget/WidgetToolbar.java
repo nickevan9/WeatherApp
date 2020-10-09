@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.RxBus;
-import com.example.weatherapp.ui.location.LocationFragment;
 
 public class WidgetToolbar extends LinearLayout {
     private ImageView imgDropDown;

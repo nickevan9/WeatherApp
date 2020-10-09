@@ -1,12 +1,10 @@
-package com.example.weatherapp.ui.home;
+package com.example.weatherapp.ui.place;
 
 import com.example.weatherapp.data.model.WeatherAir;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
-
-import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -16,31 +14,13 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeController implements HomeContract.Controller {
+public class PlaceController implements PlaceContract.Controller {
     private final WeatherRepository repoRepository;
     private CompositeDisposable disposable = new CompositeDisposable();
-    private HomeContract.View mView;
+    private PlaceContract.View mView;
 
-    public HomeController(WeatherRepository repoRepository) {
+    public PlaceController(WeatherRepository repoRepository) {
         this.repoRepository = repoRepository;
-    }
-
-    @Override
-    public void getAllWeather() {
-        mView.showLoadingDB();
-        disposable.add(repoRepository.getAllWeatherFromDb().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
-
-            @Override
-            public void onSuccess(List<WeatherDb> weatherDbs) {
-                mView.loadDataSuccess(weatherDbs);
-                mView.hideLoadingDB();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                mView.loadDataFailed(e.getMessage());
-            }
-        }));
     }
 
     @Override
@@ -110,14 +90,15 @@ public class HomeController implements HomeContract.Controller {
         return weatherDb;
 
     }
+
     @Override
-    public void attachView(HomeContract.View view) {
+    public void attachView(PlaceContract.View view) {
         this.mView = view;
-        getAllWeather();
+
     }
 
     @Override
-    public void detachView(HomeContract.View view) {
+    public void detachView(PlaceContract.View view) {
         this.mView = null;
     }
 

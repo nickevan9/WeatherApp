@@ -8,7 +8,6 @@ import com.example.weatherapp.di.modules.PresenterModule;
 import com.example.weatherapp.di.modules.WeatherAppModule;
 import com.example.weatherapp.di.modules.ContextModule;
 import com.example.weatherapp.di.modules.DbModule;
-import com.example.weatherapp.di.modules.FragmentModule;
 
 import javax.inject.Singleton;
 
@@ -25,7 +24,6 @@ import dagger.android.DaggerApplication;
         AndroidSupportInjectionModule.class,
         ActivityModule.class,
         DbModule.class,
-        FragmentModule.class,
         PresenterModule.class
 })
 public interface AppComponent extends AndroidInjector<DaggerApplication> {

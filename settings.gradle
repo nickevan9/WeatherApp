@@ -1,3 +1,2 @@
-include ':placeautocomplete'
 include ':app'
 rootProject.name = "WeatherApp"
