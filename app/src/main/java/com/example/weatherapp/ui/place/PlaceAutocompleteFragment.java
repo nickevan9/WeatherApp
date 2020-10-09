@@ -1,4 +1,4 @@
-package com.weather.placeautocomplete.autocomplete.ui;
+package com.example.weatherapp.ui.place;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -13,18 +13,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
 import com.weather.placeautocomplete.BuildConfig;
 import com.weather.placeautocomplete.R;
+
 import com.weather.placeautocomplete.autocomplete.DataRepository;
 import com.weather.placeautocomplete.autocomplete.data.entity.SearchHistoryEntity;
 import com.weather.placeautocomplete.autocomplete.model.PlaceOptions;
+import com.weather.placeautocomplete.autocomplete.ui.PlaceSelectionListener;
+import com.weather.placeautocomplete.autocomplete.ui.ResultClickCallback;
+import com.weather.placeautocomplete.autocomplete.ui.ResultView;
+import com.weather.placeautocomplete.autocomplete.ui.SearchView;
 import com.weather.placeautocomplete.autocomplete.viewmodel.PlaceAutocompleteViewModel;
 import com.weather.placeautocomplete.common.PlaceConstants;
 import com.weather.placeautocomplete.common.utils.KeyboardUtils;
@@ -35,7 +40,7 @@ import java.util.List;
 import timber.log.Timber;
 
 public class PlaceAutocompleteFragment extends Fragment implements ResultClickCallback,
-  SearchView.QueryListener, SearchView.BackButtonListener,
+        SearchView.QueryListener,
   ViewTreeObserver.OnScrollChangedListener {
 
   public static final String TAG = "PlaceAutocompleteFragment";
@@ -77,7 +82,6 @@ public class PlaceAutocompleteFragment extends Fragment implements ResultClickCa
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                            @Nullable Bundle savedInstanceState) {
-    Bundle bundle = getArguments();
     accessToken = BuildConfig.KEY_MAP_BOX;
     placeOptions = PlaceOptions.builder()
             .toolbarColor(Color.YELLOW)
@@ -188,12 +192,6 @@ public class PlaceAutocompleteFragment extends Fragment implements ResultClickCa
     super.onDestroyView();
   }
 
-  @Override
-  public void onBackButtonPress() {
-    if (placeSelectionListener != null) {
-      placeSelectionListener.onCancel();
-    }
-  }
 
   public void setOnPlaceSelectedListener(PlaceSelectionListener listener) {
     placeSelectionListener = listener;
@@ -203,7 +201,6 @@ public class PlaceAutocompleteFragment extends Fragment implements ResultClickCa
     searchHistoryView.setOnItemClickListener(this);
     searchResultView.setOnItemClickListener(this);
     starredView.setOnItemClickListener(this);
-    searchView.setBackButtonListener(this);
     searchView.setQueryListener(this);
   }
 

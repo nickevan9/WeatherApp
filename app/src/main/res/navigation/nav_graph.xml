@@ -81,7 +81,12 @@
             />
         <action
             android:id="@+id/action_homeFragment_to_placeAutocompleteFragment"
-            app:destination="@id/placeAutocompleteFragment" />
+            app:destination="@id/placeAutocompleteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
@@ -120,6 +125,7 @@
     </fragment>
     <fragment
         android:id="@+id/placeAutocompleteFragment"
-        android:name="com.weather.placeautocomplete.autocomplete.ui.PlaceAutocompleteFragment"
+        android:name="com.example.weatherapp.ui.place.PlaceAutocompleteFragment"
         android:label="PlaceAutocompleteFragment" />
+
 </navigation>

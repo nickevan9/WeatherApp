@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.weather.placeautocomplete.autocomplete.data.SearchHistoryDatabase;
 import com.weather.placeautocomplete.autocomplete.model.PlaceOptions;
-import com.weather.placeautocomplete.autocomplete.ui.PlaceAutocompleteActivity;
 import com.weather.placeautocomplete.common.PlaceConstants;
 
 import java.util.ArrayList;
@@ -30,13 +29,6 @@ public final class PlaceAutocomplete {
     // No instances
   }
 
-  /**
-   * Returns the {@link CarmenFeature} selected by the user.
-   *
-   * @param data the result Intent that was provided in
-   *             {@link Activity#onActivityResult(int, int, Intent)}
-   * @return the users selected {@link CarmenFeature}
-   */
   public static CarmenFeature getPlace(Intent data) {
     String json = data.getStringExtra(PlaceConstants.RETURNING_CARMEN_FEATURE);
     return CarmenFeature.fromJson(json);
@@ -55,15 +47,7 @@ public final class PlaceAutocomplete {
     SearchHistoryDatabase.deleteAllData(database);
   }
 
-  /**
-   * Builder for the Place Autocomplete launch intent.
-   * <p>
-   * After setting the required and optional parameters, call {@link IntentBuilder#build(Activity)}
-   * and pass the intent to {@link Activity#startActivityForResult(Intent, int)}.
-   * </p>
-   *
-   * @since 0.1.0
-   */
+
   public static class IntentBuilder {
 
     private final ArrayList<String> countries;
@@ -105,10 +89,10 @@ public final class PlaceAutocomplete {
      * @return the current Intent configured by this builder
      * @since 0.1.0
      */
-    public Intent build(Activity activity) {
-      intent.putStringArrayListExtra(PlaceConstants.COUNTRIES, countries);
-      intent.setClass(activity, PlaceAutocompleteActivity.class);
-      return intent;
-    }
+//    public Intent build(Activity activity) {
+//      intent.putStringArrayListExtra(PlaceConstants.COUNTRIES, countries);
+//      intent.setClass(activity, PlaceAutocompleteActivity.class);
+//      return intent;
+//    }
   }
 }

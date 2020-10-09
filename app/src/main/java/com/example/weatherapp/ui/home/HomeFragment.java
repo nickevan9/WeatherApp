@@ -1,16 +1,12 @@
 package com.example.weatherapp.ui.home;
 
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.weatherapp.BuildConfig;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.FragmentUtils;
 import com.example.weatherapp.app.RxBus;
@@ -19,7 +15,6 @@ import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.ui.adapter.HomeAdapter;
 import com.example.weatherapp.ui.base.BaseFragment;
 import com.example.weatherapp.ui.dialog.WeatherDialog;
-import com.weather.placeautocomplete.autocomplete.ui.PlaceAutocompleteActivity;
 
 
 import java.util.ArrayList;
@@ -35,11 +30,7 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
 
     private HomeAdapter homeAdapter;
 
-    private List<WeatherDb> weatherDbList;
-
     private List<WeatherDb> weatherDbs;
-
-
 
     @Inject
     public HomeContract.Controller homeController;
@@ -69,14 +60,13 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
 
         homeController.attachView(this);
 
-        weatherDbList = new ArrayList<>();
+        weatherDbs = new ArrayList<>();
 
     }
 
     @Override
     protected void initView() {
-        weatherDbList = new ArrayList<>();
-        homeAdapter = new HomeAdapter(getContext(), weatherDbList, this);
+        homeAdapter = new HomeAdapter(getContext(), weatherDbs, this);
         vpHome = requireView().findViewById(R.id.vPHome);
         vpHome.setAdapter(homeAdapter);
 
@@ -87,8 +77,6 @@ public class HomeFragment extends BaseFragment implements ItemClickListener,Home
         super.onResume();
 
         RxBus.subscribe(RxBus.TAG_ADD_LOCATION_CLICK, this, click -> {
-//            transitionAddLocation();
-//            startActivity(new Intent(requireActivity(), PlaceAutocompleteActivity.class));
             FragmentUtils.findNavController(this).navigate(R.id.action_homeFragment_to_placeAutocompleteFragment);
         });
                 

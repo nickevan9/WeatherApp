@@ -59,6 +59,7 @@ public class WidgetNextDay extends RelativeLayout {
         rvNextDay.setLayoutManager(layoutPagerManager);
         rvNextDay.setHasFixedSize(true);
         rvNextDay.setAdapter(nextDayAdapter);
+        rvNextDay.setNestedScrollingEnabled(true);
 
     }
 

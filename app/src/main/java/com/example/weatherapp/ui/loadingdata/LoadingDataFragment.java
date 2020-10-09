@@ -109,7 +109,7 @@ public class LoadingDataFragment extends BaseFragment implements LoadingContract
 
     @Override
     public void hideLoadingDB() {
-        FragmentUtils.findNavController(requireParentFragment()).navigate(R.id.action_loadingDataFragment_to_homeFragment);
+        FragmentUtils.findNavController(this).navigate(R.id.action_loadingDataFragment_to_homeFragment);
         DataProccessor.setFirstTimeLaunch(false);
     }
 

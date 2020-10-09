@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.data.model.weather.FchEntity;
-import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
 import com.example.weatherapp.widget.customwidget.adapter.NextHourAdapter;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class WidgetNextHour extends RelativeLayout {
 
     private RelativeLayout rlNextHour;
     private TextView tvNextHour;
-    private RecyclerView rlHour;
+    private RecyclerView rvHour;
     private NextHourAdapter nextHourAdapter;
 
     private List<FchEntity> fchEntityList;
@@ -52,17 +51,18 @@ public class WidgetNextHour extends RelativeLayout {
 
         rlNextHour = findViewById(R.id.rl_next_hour);
         tvNextHour = findViewById(R.id.tv_next_hour);
-        rlHour = findViewById(R.id.rv_hour);
+        rvHour = findViewById(R.id.rv_hour);
 
         LinearLayoutManager layoutPagerManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rlHour.setLayoutManager(layoutPagerManager);
-        rlHour.setHasFixedSize(true);
-        rlHour.setAdapter(nextHourAdapter);
+        rvHour.setLayoutManager(layoutPagerManager);
+        rvHour.setHasFixedSize(true);
+        rvHour.setAdapter(nextHourAdapter);
+        rvHour.setNestedScrollingEnabled(true);
     }
 
     public void applyData(List<FchEntity> fchEntityList,String timeZone){
         nextHourAdapter.applyData(fchEntityList,timeZone);
-        rlHour.setOnClickListener(view -> {
+        rvHour.setOnClickListener(view -> {
 
         });
     }

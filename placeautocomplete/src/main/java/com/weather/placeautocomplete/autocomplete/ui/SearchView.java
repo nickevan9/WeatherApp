@@ -24,8 +24,6 @@ public class SearchView extends LinearLayout implements ImageButton.OnClickListe
         LifecycleObserver {
 
   @Nullable
-  private BackButtonListener backButtonListener;
-  @Nullable
   private QueryListener queryListener;
 
   private final ImageView backButton;
@@ -59,9 +57,7 @@ public class SearchView extends LinearLayout implements ImageButton.OnClickListe
   @Override
   public void onClick(View view) {
     if (view.getId() == R.id.button_search_back) {
-      if (backButtonListener != null) {
-        backButtonListener.onBackButtonPress();
-      }
+
     } else {
       searchEditText.getText().clear();
     }
@@ -69,7 +65,6 @@ public class SearchView extends LinearLayout implements ImageButton.OnClickListe
 
   @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
   public void onDestroy() {
-    backButtonListener = null;
     queryListener = null;
   }
 
@@ -92,22 +87,14 @@ public class SearchView extends LinearLayout implements ImageButton.OnClickListe
 
   @Override
   public void afterTextChanged(Editable editable) {
-    // Not used
-  }
-
-  public void setBackButtonListener(@Nullable BackButtonListener backButtonListener) {
-    this.backButtonListener = backButtonListener;
   }
 
   public void setQueryListener(@Nullable QueryListener queryListener) {
     this.queryListener = queryListener;
   }
 
-  interface QueryListener {
+  public interface QueryListener {
     void onQueryChange(CharSequence charSequence);
   }
 
-  interface BackButtonListener {
-    void onBackButtonPress();
-  }
 }
