@@ -130,7 +130,7 @@ public class LoadingController implements LoadingContract.Controller {
                     @Override
                     public void onSuccess(Long aLong) {
                         if (lastPosition) {
-                            mView.hideLoadingDB();
+                            mView.hideLoading();
                         }
                     }
 

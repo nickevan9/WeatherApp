@@ -15,13 +15,20 @@ public class LoadingDialog {
     private AlertDialog mDialog;
     private TextView tvStatusDialog;
 
+    public AlertDialog getmDialog() {
+        return mDialog;
+    }
+
+    public void setmDialog(AlertDialog mDialog) {
+        this.mDialog = mDialog;
+    }
+
     public LoadingDialog(Activity activity ) {
         this.activity = activity;
     }
 
     public void startLoading(int statusLoading){
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_loading, null);
-
 
         tvStatusDialog = view.findViewById(R.id.tv_progress);
 
@@ -31,12 +38,11 @@ public class LoadingDialog {
             tvStatusDialog.setText(activity.getString(R.string.syncing_database));
         }
 
-
         mDialog = new AlertDialog.Builder(activity).create();
         mDialog.setView(view);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mDialog.setCanceledOnTouchOutside(true);
+        mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
     }
 

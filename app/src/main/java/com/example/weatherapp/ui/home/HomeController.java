@@ -33,7 +33,7 @@ public class HomeController implements HomeContract.Controller {
             @Override
             public void onSuccess(List<WeatherDb> weatherDbs) {
                 mView.loadDataSuccess(weatherDbs);
-                mView.hideLoadingDB();
+                mView.hideLoading();
             }
 
             @Override
@@ -89,7 +89,8 @@ public class HomeController implements HomeContract.Controller {
 
                     @Override
                     public void onSuccess(Long aLong) {
-                        mView.hideLoadingAPI();
+//                        mView.hideLoadingAPI();
+                        getAllWeather();
                     }
 
                     @Override

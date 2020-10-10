@@ -5,20 +5,22 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.widget.Toast;
+
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.ui.base.BaseActivity;
 import com.example.weatherapp.ui.dialog.LoadingDialog;
 import com.example.weatherapp.ui.home.HomeActivity;
-import com.example.weatherapp.ui.walkthrough.WalkThroughActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
 import java.util.List;
+
 import javax.inject.Inject;
 
 
@@ -109,11 +111,14 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void showLoadingDB() {
+
         loadingDialog.startLoading(0);
+
     }
 
     @Override
-    public void hideLoadingDB() {
+    public void hideLoading() {
+        loadingDialog.dismissDialog();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -127,10 +132,6 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
         loadingDialog.startLoading(1);
     }
 
-    @Override
-    public void hideLoadingAPI() {
-        loadingDialog.dismissDialog();
-    }
 
     @Override
     public void loadDataSuccess(List<WeatherDb> weatherDbList) {

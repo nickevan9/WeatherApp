@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.ActivityUtils;
 import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.listener.ItemClickListener;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import static com.example.weatherapp.app.ActivityUtils.hideKeyboard;
 
 
 public class HomeActivity extends BaseActivity implements ItemClickListener, HomeContract.View {
@@ -101,6 +104,8 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
 
+        ActivityUtils.hideKeyboard(this);
+
     }
 
     @Override
@@ -139,8 +144,11 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     }
 
     @Override
-    public void hideLoadingDB() {
-        loadingDialog.dismissDialog();
+    public void hideLoading() {
+        if (loadingDialog.getmDialog().isShowing()){
+            loadingDialog.dismissDialog();
+        }
+
     }
 
     @Override
@@ -148,10 +156,6 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
         loadingDialog.startLoading(0);
     }
 
-    @Override
-    public void hideLoadingAPI() {
-        loadingDialog.dismissDialog();
-    }
 
     @Override
     public void loadDataSuccess(List<WeatherDb> weatherDbList) {

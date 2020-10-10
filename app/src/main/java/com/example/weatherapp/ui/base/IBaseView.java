@@ -2,7 +2,6 @@ package com.example.weatherapp.ui.base;
 
 public interface IBaseView {
     void showLoadingDB();
-    void hideLoadingDB();
+    void hideLoading();
     void showLoadingAPI();
-    void hideLoadingAPI();
 }
