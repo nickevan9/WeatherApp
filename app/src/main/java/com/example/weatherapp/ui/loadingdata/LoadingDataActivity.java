@@ -9,6 +9,7 @@ import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.ui.base.BaseActivity;
+import com.example.weatherapp.ui.dialog.LoadingDialog;
 import com.example.weatherapp.ui.home.HomeActivity;
 import com.example.weatherapp.ui.walkthrough.WalkThroughActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -28,6 +29,8 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
     private Double latLocation;
     private Double lonLocation;
 
+    private LoadingDialog loadingDialog;
+
     @Inject
     public LoadingContract.Controller loadingController;
 
@@ -46,6 +49,8 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
     @Override
     protected void dataCreate() {
 
+        loadingDialog = new LoadingDialog(this);
+
         mFusedLocationClient = new FusedLocationProviderClient(this);
 
         loadingController.attachView(this);
@@ -55,6 +60,8 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
         } else {
             loadingController.getAllWeather(latLocation, lonLocation);
         }
+
+
     }
 
     @Override
@@ -102,7 +109,7 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void showLoadingDB() {
-
+        loadingDialog.startLoading(0);
     }
 
     @Override
@@ -117,12 +124,12 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void showLoadingAPI() {
-
+        loadingDialog.startLoading(1);
     }
 
     @Override
     public void hideLoadingAPI() {
-
+        loadingDialog.dismissDialog();
     }
 
     @Override

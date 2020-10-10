@@ -20,12 +20,9 @@ import com.mapbox.mapboxsdk.plugins.places.autocomplete.ui.PlaceSelectionListene
 
 import javax.inject.Inject;
 
-public class PlaceActivity extends AppCompatActivity implements PlaceContract.View {
+public class PlaceActivity extends AppCompatActivity {
 
     private PlaceAutocompleteFragment autocompleteFragment;
-
-    @Inject
-    public PlaceContract.Controller placeController;
 
 
     @Override
@@ -57,13 +54,11 @@ public class PlaceActivity extends AppCompatActivity implements PlaceContract.Vi
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(CarmenFeature carmenFeature) {
-//                Intent intent = new Intent();
-//                intent.putExtra("dataPlace", carmenFeature.center());
-//                setResult(Activity.RESULT_OK, intent);
-//                finish();
-                Double lat = carmenFeature.center().latitude();
-                Double lon = carmenFeature.center().longitude();
-                placeController.getSingleWeather(lat, lon);
+                Intent intent = new Intent();
+                intent.putExtra("dataPlace", carmenFeature.center());
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+
             }
 
 
@@ -73,7 +68,7 @@ public class PlaceActivity extends AppCompatActivity implements PlaceContract.Vi
             }
         });
 
-        placeController.attachView(this);
+
 
     }
 
@@ -81,35 +76,5 @@ public class PlaceActivity extends AppCompatActivity implements PlaceContract.Vi
     protected void onDestroy() {
         super.onDestroy();
         autocompleteFragment = null;
-    }
-
-    @Override
-    public void loadDataSuccess(String message) {
-
-    }
-
-    @Override
-    public void loadDataFailed(String message) {
-
-    }
-
-    @Override
-    public void showLoadingDB() {
-
-    }
-
-    @Override
-    public void hideLoadingDB() {
-
-    }
-
-    @Override
-    public void showLoadingAPI() {
-
-    }
-
-    @Override
-    public void hideLoadingAPI() {
-        finish();
     }
 }

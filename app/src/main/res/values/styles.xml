@@ -13,9 +13,14 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
     <style name="TextMiniStatus" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 
 </resources>

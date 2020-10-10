@@ -1,6 +1,10 @@
 package com.example.weatherapp.ui.splash;
 
 import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.DataProccessor;
@@ -8,21 +12,17 @@ import com.example.weatherapp.ui.base.BaseActivity;
 import com.example.weatherapp.ui.loadingdata.LoadingDataActivity;
 import com.example.weatherapp.ui.walkthrough.WalkThroughActivity;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
 
+    private DataProccessor dataProccessor;
 
-    public static SplashActivity newInstance() {
-        return new SplashActivity();
-    }
 
     @Override
-    protected int layoutRes() {
-        return R.layout.fragment_splash;
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @Override
-    protected void dataCreate() {
-        if (DataProccessor.getFirstTimeLaunch()){
+        dataProccessor = new DataProccessor(this);
+        if (dataProccessor.getFirstTimeLaunch()){
             Intent intent = new Intent(this, WalkThroughActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -36,9 +36,8 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void initView() {
-
+    public static SplashActivity newInstance() {
+        return new SplashActivity();
     }
 
     @Override
