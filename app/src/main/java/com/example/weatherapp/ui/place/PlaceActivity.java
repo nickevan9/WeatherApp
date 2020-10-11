@@ -73,8 +73,14 @@ public class PlaceActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         autocompleteFragment = null;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
     }
 }

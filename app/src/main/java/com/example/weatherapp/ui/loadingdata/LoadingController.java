@@ -7,6 +7,7 @@ import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -27,30 +28,34 @@ public class LoadingController implements LoadingContract.Controller {
     }
 
     @Override
-    public void getAllWeather(Double lat, Double lon) {
+    public void getAllWeather() {
         mView.showLoadingDB();
 
-        disposable.add(repoRepository.getAllWeatherFromDb().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
+        disposable.add(repoRepository.getAllWeatherFromDb().delay(1000, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
 
-            @Override
-            public void onSuccess(List<WeatherDb> weatherDbs) {
-                if (weatherDbs.isEmpty()) {
-                    fetchSingleWeather(lat, lon);
-                } else {
-                    fetchAllWeather(weatherDbs);
-                }
-            }
+                    @Override
+                    public void onSuccess(List<WeatherDb> weatherDbs) {
+                        if (weatherDbs.isEmpty()) {
+                            mView.loadDataEmpty();
+//                            mView.hideLoading();
+                        } else {
+                            fetchAllWeather(weatherDbs);
+//                            mView.hideLoading();
+                        }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                mView.loadDataFailed(e.getMessage());
-            }
-        }));
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.loadDataFailed(e.getMessage());
+                    }
+                }));
     }
 
-
-    public void fetchSingleWeather(double lat, double lon) {
-
+    @Override
+    public void getSingleWeather(Double lat, Double lon) {
+        mView.showLoadingAPI();
         Single<WeatherAir> combined = Single.zip(getWeatherEntity(lat, lon), getAirEntity(lat, lon), WeatherAir::new);
 
         combined.subscribe(new SingleObserver<WeatherAir>() {
@@ -70,13 +75,12 @@ public class LoadingController implements LoadingContract.Controller {
                 mView.loadDataFailed(e.getMessage());
             }
         });
-
-
     }
 
-    public void fetchAllWeather(List<WeatherDb> weatherDbList) {
 
-        for (int index = 0 ; index < weatherDbList.size(); index++) {
+    public void fetchAllWeather(List<WeatherDb> weatherDbList) {
+        mView.showLoadingAPI();
+        for (int index = 0; index < weatherDbList.size(); index++) {
             Double lat = weatherDbList.get(index).getLatLocation();
             Double lon = weatherDbList.get(index).getLonLocation();
 
@@ -169,4 +173,5 @@ public class LoadingController implements LoadingContract.Controller {
     public void destroy() {
         disposable.clear();
     }
+
 }

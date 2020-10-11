@@ -28,8 +28,8 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     private FusedLocationProviderClient mFusedLocationClient;
 
-    private Double latLocation;
-    private Double lonLocation;
+    private Double latLocation = 0.0;
+    private Double lonLocation = 0.0;
 
     private LoadingDialog loadingDialog;
 
@@ -60,7 +60,7 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
         if (DataProccessor.getFirstTimeLaunch()) {
             requestPermission();
         } else {
-            loadingController.getAllWeather(latLocation, lonLocation);
+            loadingController.getAllWeather();
         }
 
 
@@ -82,9 +82,12 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
             public void onPermissionsChecked(MultiplePermissionsReport report) {
                 showLocation();
 
-                new Handler().postDelayed(() -> {
-                    loadingController.getAllWeather(latLocation, lonLocation);
-                }, 1000);
+//                new Handler().postDelayed(() -> {
+//                    if (latLocation != 0.0 && lonLocation != 0.0){
+//                        loadingController.getAllWeather(latLocation, lonLocation);
+//                    }
+//
+//                }, 1000);
 
 
             }
@@ -94,7 +97,7 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
                 token.continuePermissionRequest();
             }
         }).withErrorListener(error -> {
-            Toast.makeText(this     , "Error occurred! $error",
+            Toast.makeText(this, "Error occurred! $error",
                     Toast.LENGTH_SHORT);
 
         }).onSameThread().check();
@@ -103,8 +106,19 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
     @SuppressLint("MissingPermission")
     private void showLocation() {
         mFusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-            this.latLocation = location.getLatitude();
-            this.lonLocation = location.getLongitude();
+            try {
+                this.latLocation = location.getLatitude();
+                this.lonLocation = location.getLongitude();
+
+                loadingController.getSingleWeather(latLocation,lonLocation);
+            } catch (Exception e) {
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                DataProccessor.setFirstTimeLaunch(false);
+                finish();
+            }
+
         });
     }
 
@@ -112,7 +126,12 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
     @Override
     public void showLoadingDB() {
 
-        loadingDialog.startLoading(0);
+        if (loadingDialog.getmDialog().isShowing()){
+            loadingDialog.dismissDialog();
+            loadingDialog.startLoading(0);
+        }else {
+            loadingDialog.startLoading(0);
+        }
 
     }
 
@@ -129,7 +148,13 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void showLoadingAPI() {
-        loadingDialog.startLoading(1);
+        if (loadingDialog.getmDialog().isShowing()){
+            loadingDialog.dismissDialog();
+            loadingDialog.startLoading(1);
+        }else {
+            loadingDialog.startLoading(1);
+        }
+
     }
 
 
@@ -140,6 +165,14 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void loadDataFailed(String message) {
+
+    }
+
+    @Override
+    public void loadDataEmpty() {
+        if (latLocation != 0.0 && lonLocation != 0.0){
+            loadingController.getSingleWeather(latLocation,lonLocation);
+        }
 
     }
 

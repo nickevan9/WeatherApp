@@ -26,14 +26,13 @@ public class HomeController implements HomeContract.Controller {
     }
 
     @Override
-    public void getAllWeather() {
+    public void getAllWeather(Boolean addWeather) {
         mView.showLoadingDB();
         disposable.add(repoRepository.getAllWeatherFromDb().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
 
             @Override
             public void onSuccess(List<WeatherDb> weatherDbs) {
-                mView.loadDataSuccess(weatherDbs);
-                mView.hideLoading();
+                mView.loadDataSuccess(weatherDbs,addWeather);
             }
 
             @Override
@@ -90,7 +89,7 @@ public class HomeController implements HomeContract.Controller {
                     @Override
                     public void onSuccess(Long aLong) {
 //                        mView.hideLoadingAPI();
-                        getAllWeather();
+                        getAllWeather(true);
                     }
 
                     @Override
@@ -114,7 +113,7 @@ public class HomeController implements HomeContract.Controller {
     @Override
     public void attachView(HomeContract.View view) {
         this.mView = view;
-        getAllWeather();
+        getAllWeather(false);
     }
 
     @Override

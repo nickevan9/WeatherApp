@@ -10,9 +10,12 @@ public interface LoadingContract {
     public interface View extends IBaseView{
         void loadDataSuccess(List<WeatherDb> weatherDbList);
         void loadDataFailed(String message);
+        void loadDataEmpty();
     }
 
     public interface Controller extends IBaseController<View>{
-        void getAllWeather(Double lat,Double lon);
+        void getAllWeather();
+
+        void getSingleWeather(Double lat,Double lon);
     }
 }

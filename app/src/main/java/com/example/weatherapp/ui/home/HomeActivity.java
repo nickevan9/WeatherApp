@@ -30,8 +30,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.example.weatherapp.app.ActivityUtils.hideKeyboard;
-
 
 public class HomeActivity extends BaseActivity implements ItemClickListener, HomeContract.View {
 
@@ -140,27 +138,40 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
     @Override
     public void showLoadingDB() {
-        loadingDialog.startLoading(1);
+        if (loadingDialog.getmDialog().isShowing()){
+            loadingDialog.dismissDialog();
+            loadingDialog.startLoading(1);
+        }else {
+            loadingDialog.startLoading(1);
+        }
     }
 
     @Override
     public void hideLoading() {
-        if (loadingDialog.getmDialog().isShowing()){
-            loadingDialog.dismissDialog();
-        }
+        loadingDialog.dismissDialog();
 
     }
 
     @Override
     public void showLoadingAPI() {
-        loadingDialog.startLoading(0);
+        if (loadingDialog.getmDialog().isShowing()){
+            loadingDialog.dismissDialog();
+            loadingDialog.startLoading(0);
+        }else {
+            loadingDialog.startLoading(0);
+        }
     }
 
 
     @Override
-    public void loadDataSuccess(List<WeatherDb> weatherDbList) {
+    public void loadDataSuccess(List<WeatherDb> weatherDbList, Boolean addWeather) {
         weatherDbs = weatherDbList;
         homeAdapter.applyData(weatherDbList);
+        loadingDialog.dismissDialog();
+        if (addWeather) {
+            vpHome.setCurrentItem(weatherDbs.size(), false);
+        }
+
     }
 
     @Override
