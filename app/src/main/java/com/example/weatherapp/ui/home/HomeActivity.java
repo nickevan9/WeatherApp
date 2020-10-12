@@ -136,7 +136,7 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
     @Override
     public void onClickWeatherStatus(View view, int position) {
-        new WeatherDialog(this, weatherDbs.get(position).getWeatherEntity().getFch().get(0));
+        new WeatherDialog(this, weatherDbs.get(position).getWeatherEntity().getFch().get(0),weatherDbs.get(position).getWeatherEntity().getLoc().getTzname());
     }
 
     @Override

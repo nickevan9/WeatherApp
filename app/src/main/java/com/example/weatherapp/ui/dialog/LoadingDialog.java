@@ -19,7 +19,7 @@ public class LoadingDialog {
     public AlertDialog getmDialog() {
         return mDialog;
     }
-    
+
 
     public LoadingDialog(Activity activity) {
         this.activity = activity;

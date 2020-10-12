@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
@@ -31,9 +32,10 @@ public class WeatherDialog {
     private DetailAdapter detailAdapter;
     private List<WeatherDetailEntity> detailEntityList;
     private AlertDialog mDialog;
+    private String timeZone;
 
 
-    public WeatherDialog(Activity activity,FchEntity fchEntity){
+    public WeatherDialog(Activity activity,FchEntity fchEntity,String timeZone){
         this.activity = activity;
         this.fchEntity = fchEntity;
 
@@ -52,6 +54,9 @@ public class WeatherDialog {
         rvDetail.setLayoutManager(gridLayoutManager);
         rvDetail.setHasFixedSize(true);
         rvDetail.setAdapter(detailAdapter);
+
+        tvTime.setText(TimeUtilsExt.convertTimeStampToLocalTime2(fchEntity.getDt(), timeZone));
+        tvTemp.setText(activity.getString(R.string.set_temp, fchEntity.getTf().toString()));
 
 
         imgClose.setOnClickListener(view1 -> mDialog.dismiss());

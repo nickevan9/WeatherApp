@@ -23,6 +23,16 @@ public class TimeUtilsExt {
         String timeAfter = fmt.print(dateTime);
         return timeAfter;
     }
+    public static String convertTimeStampToLocalTime2(String timeStamp, String timeZone) {
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
+        DateTime dateTime = new DateTime(dateFormat.parseDateTime(timeStamp));
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("hh:mm aa");
+        String timeAfter = fmt.print(dateTime);
+        return timeAfter;
+    }
+
 
     public static String convertTimeStampToTimeAdapter(String timeStamp, String timeZone) {
         DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
