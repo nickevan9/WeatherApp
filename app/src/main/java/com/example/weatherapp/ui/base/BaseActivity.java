@@ -42,4 +42,10 @@ public abstract class BaseActivity  extends DaggerAppCompatActivity {
         super.onDestroy();
         RxBus.unregister(this);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        RxBus.unregister(this);
+    }
 }

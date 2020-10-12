@@ -165,7 +165,13 @@ public class LoadingDataActivity extends BaseActivity implements LoadingContract
 
     @Override
     public void loadDataFailed(String message) {
-
+        loadingDialog.dismissDialog();
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        DataProccessor.setFirstTimeLaunch(false);
+        finish();
     }
 
     @Override

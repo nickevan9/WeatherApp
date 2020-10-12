@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey;
 import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 
+import java.util.Date;
+
 @Entity(
         tableName = "weather"
 )
@@ -22,23 +24,34 @@ public class WeatherDb {
 
     private Double lonLocation;
 
+    private Date dateAdded;
+
     @Embedded
     private WeatherEntity weatherEntity;
 
     @Embedded
     private  AirEntity airEntity;
 
-    public WeatherDb(String locationName, String cityName, Double latLocation, Double lonLocation, WeatherEntity weatherEntity,AirEntity airEntity) {
+    public WeatherDb(String locationName, String cityName, Double latLocation, Double lonLocation,Date dateAdded, WeatherEntity weatherEntity,AirEntity airEntity) {
         this.locationName = locationName;
         this.cityName = cityName;
         this.latLocation = latLocation;
         this.lonLocation = lonLocation;
+        this.dateAdded = dateAdded;
         this.weatherEntity = weatherEntity;
         this.airEntity = airEntity;
     }
 
     public WeatherDb() {
 
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public String getLocationName() {

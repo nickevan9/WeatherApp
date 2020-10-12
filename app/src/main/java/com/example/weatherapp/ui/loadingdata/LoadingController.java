@@ -6,6 +6,7 @@ import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -66,8 +67,12 @@ public class LoadingController implements LoadingContract.Controller {
 
             @Override
             public void onSuccess(WeatherAir weatherAir) {
-                WeatherDb weatherDb = createWeather(weatherAir);
-                insertToDb(weatherDb, true);
+                if (weatherAir.airEntity.getDataEntity() != null && weatherAir.weatherEntity != null){
+                    WeatherDb weatherDb = createWeather(weatherAir);
+                    insertToDb(weatherDb,true);
+                }else {
+                    mView.loadDataFailed("can't fetch data");
+                }
             }
 
             @Override
@@ -154,6 +159,7 @@ public class LoadingController implements LoadingContract.Controller {
         weatherDb.setLonLocation(weatherAir.weatherEntity.getLoc().getLon());
         weatherDb.setWeatherEntity(weatherAir.weatherEntity);
         weatherDb.setAirEntity(weatherAir.airEntity);
+        weatherDb.setDateAdded(new Date());
         return weatherDb;
 
     }

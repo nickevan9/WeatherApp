@@ -1,9 +1,11 @@
 package com.example.weatherapp.ui.home;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -27,8 +29,14 @@ import com.mapbox.geojson.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 
 public class HomeActivity extends BaseActivity implements ItemClickListener, HomeContract.View {
@@ -95,11 +103,16 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
         super.onResume();
 
         RxBus.subscribe(RxBus.TAG_ADD_LOCATION_CLICK, this, click -> {
-            Intent intent = new Intent(this, PlaceActivity.class);
+
+            Boolean state = (Boolean) click;
+            if (state){
+                Intent intent = new Intent(this, PlaceActivity.class);
 //            registerForActivityResult(intent,REQUEST_CODE_AUTOCOMPLETE);
 
-            mStartForResult.launch(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                mStartForResult.launch(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+
         });
 
         ActivityUtils.hideKeyboard(this);
@@ -149,7 +162,6 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     @Override
     public void hideLoading() {
         loadingDialog.dismissDialog();
-
     }
 
     @Override
@@ -163,21 +175,31 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     }
 
 
+    @SuppressLint("CheckResult")
     @Override
     public void loadDataSuccess(List<WeatherDb> weatherDbList, Boolean addWeather) {
         weatherDbs = weatherDbList;
         homeAdapter.applyData(weatherDbList);
-        loadingDialog.dismissDialog();
+
         if (addWeather) {
             vpHome.setCurrentItem(weatherDbs.size(), false);
         }
+        Observable
+                .timer(1000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> loadingDialog.dismissDialog());
 
     }
+
+
 
     @Override
     public void loadDataFailed(String message) {
-
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        loadingDialog.dismissDialog();
     }
+
+
 
     @Override
     public void onDestroy() {

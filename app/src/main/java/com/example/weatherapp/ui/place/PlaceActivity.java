@@ -61,7 +61,6 @@ public class PlaceActivity extends AppCompatActivity {
 
             }
 
-
             @Override
             public void onCancel() {
                 finish();
@@ -75,12 +74,11 @@ public class PlaceActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        autocompleteFragment = null;
     }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+//        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
     }
 }

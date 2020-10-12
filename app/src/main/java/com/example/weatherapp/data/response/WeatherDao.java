@@ -17,7 +17,7 @@ public interface WeatherDao {
     Long insertWeather(WeatherDb weatherDb);
 
     @Transaction
-    @Query("SELECT * FROM weather")
+    @Query("SELECT * FROM weather ORDER BY dateAdded ASC")
     List<WeatherDb> getAllWeather();
 
     @Delete

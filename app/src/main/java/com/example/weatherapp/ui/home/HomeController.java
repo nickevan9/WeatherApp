@@ -6,7 +6,9 @@ import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.data.repository.WeatherRepository;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -28,7 +30,9 @@ public class HomeController implements HomeContract.Controller {
     @Override
     public void getAllWeather(Boolean addWeather) {
         mView.showLoadingDB();
-        disposable.add(repoRepository.getAllWeatherFromDb().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
+        disposable.add(repoRepository.getAllWeatherFromDb().delay(1000, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<List<WeatherDb>>() {
 
             @Override
             public void onSuccess(List<WeatherDb> weatherDbs) {
@@ -56,8 +60,13 @@ public class HomeController implements HomeContract.Controller {
 
             @Override
             public void onSuccess(WeatherAir weatherAir) {
-                WeatherDb weatherDb = createWeather(weatherAir);
-                insertToDb(weatherDb);
+                if (weatherAir.airEntity.getDataEntity() != null && weatherAir.weatherEntity != null){
+                    WeatherDb weatherDb = createWeather(weatherAir);
+                    insertToDb(weatherDb);
+                }else {
+                    mView.loadDataFailed("can't fetch data");
+                }
+
             }
 
             @Override
@@ -107,6 +116,7 @@ public class HomeController implements HomeContract.Controller {
         weatherDb.setLonLocation(weatherAir.weatherEntity.getLoc().getLon());
         weatherDb.setWeatherEntity(weatherAir.weatherEntity);
         weatherDb.setAirEntity(weatherAir.airEntity);
+        weatherDb.setDateAdded(new Date());
         return weatherDb;
 
     }

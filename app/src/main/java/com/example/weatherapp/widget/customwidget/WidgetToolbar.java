@@ -43,7 +43,7 @@ public class WidgetToolbar extends LinearLayout {
         tvLocation = findViewById(R.id.tv_name_city);
 
         imgAddLocation.setOnClickListener(view -> {
-            RxBus.publish(RxBus.TAG_ADD_LOCATION_CLICK,"");
+            RxBus.publish(RxBus.TAG_ADD_LOCATION_CLICK,true);
         });
     }
 
