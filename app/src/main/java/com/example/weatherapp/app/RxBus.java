@@ -25,14 +25,32 @@ public class RxBus {
     private static Map<Object, CompositeDisposable> sSubscriptionsMap = new HashMap<>();
     public static final int TAG_FRAGMENT_CLICK = 1;
 
+    public static final int TAG_TIME_ZONE = 1000;
+
     public static final int TAG_ADD_LOCATION_CLICK = 1111;
+    public static final int TAG_AIR_WEATHER = 2222;
+    public static final int TAG_LIST_DAY_ITEM = 3333;
+    public static final int TAG_LIST_HOUR_ITEM = 4444;
+    public static final int TAG_WEATHER_STATUS = 5555;
+    public static final int TAG_HOUR_ITEM = 6666;
+    public static final int TAG_NAME_LOCATION = 7777;
+    public static final int TAG_DAY_ITEM= 8888;
+
 
 
 
     @Retention(SOURCE)
     @IntDef(value = {
             TAG_FRAGMENT_CLICK,
-            TAG_ADD_LOCATION_CLICK
+            TAG_TIME_ZONE,
+            TAG_ADD_LOCATION_CLICK,
+            TAG_AIR_WEATHER,
+            TAG_LIST_DAY_ITEM,
+            TAG_LIST_HOUR_ITEM,
+            TAG_WEATHER_STATUS,
+            TAG_HOUR_ITEM,
+            TAG_NAME_LOCATION,
+            TAG_DAY_ITEM
 
     })
     @interface Subject {

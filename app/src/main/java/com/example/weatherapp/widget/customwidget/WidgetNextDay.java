@@ -2,12 +2,15 @@ package com.example.weatherapp.widget.customwidget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.data.model.air.AirEntity;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
 import com.example.weatherapp.widget.customwidget.adapter.NextDayAdapter;
@@ -65,5 +68,27 @@ public class WidgetNextDay extends RelativeLayout {
 
     public void applyData(List<FcdEntity> fcdEntityList,String timeZone){
         nextDayAdapter.applyData(fcdEntityList,timeZone);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        RxBus.subscribe(RxBus.TAG_TIME_ZONE,this,timeZoneObject ->{
+            this.timeZone = (String)timeZoneObject;
+        });
+
+        RxBus.subscribe(RxBus.TAG_LIST_DAY_ITEM,this, listFcdObject ->{
+            List<FcdEntity> fcdEntityList = (List<FcdEntity>) listFcdObject;
+            if (!timeZone.equals("")){
+                applyData(fcdEntityList,timeZone);
+            }
+
+        });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
     }
 }

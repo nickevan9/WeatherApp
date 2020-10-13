@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.data.model.weather.FchEntity;
 
 public class WidgetWind extends RelativeLayout {
@@ -63,12 +64,28 @@ public class WidgetWind extends RelativeLayout {
         double d2 = windSpeed;
         Double.isNaN(d1);
         long duration = (long) (d1 / d2);
-        RotateAnimation rotateAnimation = new RotateAnimation(    0, 360,
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(duration);
         rotateAnimation.setRepeatCount(Animation.INFINITE);
         rotateAnimation.setInterpolator((Interpolator) new LinearInterpolator());
         imgWind.startAnimation((Animation) rotateAnimation);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        RxBus.subscribe(RxBus.TAG_HOUR_ITEM, this, fchObject -> {
+            FchEntity fchEntity = (FchEntity) fchObject;
+            applyData(fchEntity);
+
+        });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
     }
 }

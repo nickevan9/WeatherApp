@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_tranfer_item"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/widget"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,6 @@
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@android:color/holo_orange_light"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/tv_widget"
             app:layout_constraintStart_toStartOf="@+id/tv_widget"
             app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
@@ -88,6 +87,36 @@
             app:layout_constraintStart_toStartOf="@+id/tv_icon_set"
             app:layout_constraintTop_toBottomOf="@+id/tv_widget" />
 
+        <Button
+            android:id="@+id/btn_widget"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_widget"
+            app:layout_constraintStart_toStartOf="@+id/tv_widget"
+            app:layout_constraintTop_toTopOf="@+id/tv_widget" />
+
+        <Button
+            android:id="@+id/btn_notification"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_notification"
+            app:layout_constraintStart_toStartOf="@+id/tv_notification"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_icon_set"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_icon_set"
+            app:layout_constraintStart_toStartOf="@+id/tv_icon_set"
+            app:layout_constraintTop_toTopOf="@+id/tv_icon_set" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +125,29 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
         android:layout_below="@id/constrain_setting"
-        android:layout_marginTop="@dimen/_8sdp" />
+        android:layout_marginTop="@dimen/_8sdp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_widget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_icon_set"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.data.model.air.AirEntity;
 
 import at.grabner.circleprogress.CircleProgressView;
@@ -14,6 +15,7 @@ public class WidgetAirQuality extends RelativeLayout {
     private CircleProgressView circleAir;
     private TextView tvAirStatus;
     private TextView tvAirDetail;
+
 
     public WidgetAirQuality(Context context) {
         super(context);
@@ -62,5 +64,20 @@ public class WidgetAirQuality extends RelativeLayout {
             tvAirStatus.setText(getContext().getString(R.string.excellent_title));
             tvAirDetail.setText(getContext().getString(R.string.excellent_description));
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        RxBus.subscribe(RxBus.TAG_AIR_WEATHER,this, airEntityObject ->{
+            AirEntity airEntity = (AirEntity) airEntityObject;
+            applyData(airEntity);
+        });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
     }
 }

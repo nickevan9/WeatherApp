@@ -1,8 +1,6 @@
 package com.example.weatherapp.widget.customwidget;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,12 +41,21 @@ public class WidgetToolbar extends LinearLayout {
         tvLocation = findViewById(R.id.tv_name_city);
 
         imgAddLocation.setOnClickListener(view -> {
-            RxBus.publish(RxBus.TAG_ADD_LOCATION_CLICK,true);
+            RxBus.publish(RxBus.TAG_ADD_LOCATION_CLICK, true);
         });
     }
 
-    public void applyData(String name){
+    public void applyData(String name) {
         tvLocation.setText(name);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        RxBus.subscribe(RxBus.TAG_NAME_LOCATION, this, nameLocation -> {
+            String name = (String) nameLocation;
+            applyData(name);
+        });
     }
 
     @Override

@@ -43,8 +43,11 @@ public class NextHourAdapter extends RecyclerView.Adapter<NextHourAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FchEntity fchEntity = fchEntityList.get(position);
-        holder.bindItem(fchEntity);
+        if (!fchEntityList.isEmpty()){
+            FchEntity fchEntity = fchEntityList.get(position);
+            holder.bindItem(fchEntity);
+        }
+
 
     }
 

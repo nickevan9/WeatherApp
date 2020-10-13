@@ -44,8 +44,11 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FcdEntity fcdEntity = fcdEntityList.get(position);
-        holder.bindItem(fcdEntity);
+        if (!fcdEntityList.isEmpty()){
+            FcdEntity fcdEntity = fcdEntityList.get(position);
+            holder.bindItem(fcdEntity);
+        }
+
     }
 
     @Override

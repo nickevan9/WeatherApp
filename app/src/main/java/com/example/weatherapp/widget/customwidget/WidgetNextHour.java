@@ -2,6 +2,7 @@ package com.example.weatherapp.widget.customwidget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.widget.customwidget.adapter.NextHourAdapter;
 
@@ -67,5 +70,25 @@ public class WidgetNextHour extends RelativeLayout {
         });
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
 
+        RxBus.subscribe(RxBus.TAG_TIME_ZONE,this,timeZoneObject ->{
+            this.timeZone = (String)timeZoneObject;
+        });
+
+        RxBus.subscribe(RxBus.TAG_LIST_HOUR_ITEM,this, listHourEntity ->{
+            List<FchEntity> fchEntityList = (List<FchEntity>) listHourEntity;
+            if (!timeZone.equals("")){
+                applyData(fchEntityList,timeZone);
+            }
+        });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
+    }
 }

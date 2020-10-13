@@ -12,31 +12,43 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.ActivityUtils;
+import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.WeatherDb;
+import com.example.weatherapp.data.model.weather.FcdEntity;
+import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.listener.ItemClickListener;
-import com.example.weatherapp.ui.adapter.HomeAdapter;
+import com.example.weatherapp.ui.adapter.HomePagerAdapter;
 import com.example.weatherapp.ui.base.BaseActivity;
 import com.example.weatherapp.ui.dialog.LoadingDialog;
 import com.example.weatherapp.ui.dialog.WeatherDialog;
 import com.example.weatherapp.ui.place.PlaceActivity;
+import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
+import com.example.weatherapp.widget.customwidget.WidgetNextDay;
+import com.example.weatherapp.widget.customwidget.WidgetNextHour;
+import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
+import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
+import com.example.weatherapp.widget.customwidget.WidgetSunView;
+import com.example.weatherapp.widget.customwidget.WidgetToolbar;
+import com.example.weatherapp.widget.customwidget.WidgetWind;
 import com.mapbox.geojson.Point;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 
 public class HomeActivity extends BaseActivity implements ItemClickListener, HomeContract.View {
@@ -45,11 +57,25 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
     private ViewPager2 vpHome;
 
-    private HomeAdapter homeAdapter;
+//    private HomeAdapter homeAdapter;
 
     private List<WeatherDb> weatherDbs;
 
     private LoadingDialog loadingDialog;
+
+    private HomePagerAdapter homePagerAdapter;
+
+    WidgetToolbar wgToolbar;
+
+    private WidgetNextHour wgNextHour;
+    private WidgetNextDay wgNextDay;
+    private WidgetWind wgWind;
+    private WidgetSunView wgSun;
+    private WidgetSunMoon wgSunMoon;
+    private WidgetAirQuality wgAir;
+    private WidgetRainPercent wgRain;
+    private NestedScrollView scrollWeather;
+    private CoordinatorLayout homeView;
 
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -92,10 +118,51 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     @Override
     protected void initView() {
 
-        homeAdapter = new HomeAdapter(this, weatherDbs, this);
-        vpHome = findViewById(R.id.vPHome);
-        vpHome.setAdapter(homeAdapter);
+        homeView = findViewById(R.id.view_home);
+        wgToolbar = findViewById(R.id.wg_toolbar);
+        wgNextHour = findViewById(R.id.wg_next_hour);
+        wgNextDay = findViewById(R.id.wg_next_day);
+        wgWind = findViewById(R.id.wg_wind);
+        wgAir = findViewById(R.id.wg_air);
+        wgSun = findViewById(R.id.wg_sun);
+        wgRain = findViewById(R.id.wg_rain_percent);
 
+        homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(),getLifecycle(),weatherDbs);
+        vpHome = findViewById(R.id.vPHome);
+        vpHome.setAdapter(homePagerAdapter);
+
+        vpHome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                WeatherDb weatherDb = weatherDbs.get(position);
+
+                String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
+
+                List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(),timeZone);
+                List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(),timeZone);
+
+                homeView.setBackgroundResource(IconWeatherHelper.getBackgroundWeather(fchEntityList.get(0).getS()));
+
+                RxBus.publish(RxBus.TAG_TIME_ZONE,timeZone);
+                RxBus.publish(RxBus.TAG_AIR_WEATHER, weatherDb.getAirEntity());
+                RxBus.publish(RxBus.TAG_DAY_ITEM,fcdEntityList.get(0));
+                RxBus.publish(RxBus.TAG_LIST_DAY_ITEM,fcdEntityList);
+                RxBus.publish(RxBus.TAG_LIST_HOUR_ITEM,fchEntityList);
+                RxBus.publish(RxBus.TAG_HOUR_ITEM,fchEntityList.get(0));
+                RxBus.publish(RxBus.TAG_NAME_LOCATION,weatherDb.getCityName());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
     }
 
     @Override
@@ -179,7 +246,8 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     @Override
     public void loadDataSuccess(List<WeatherDb> weatherDbList, Boolean addWeather) {
         weatherDbs = weatherDbList;
-        homeAdapter.applyData(weatherDbList);
+//        homeAdapter.applyData(weatherDbList);
+        homePagerAdapter.applyData(weatherDbs);
 
         if (addWeather) {
             vpHome.setCurrentItem(weatherDbs.size(), false);

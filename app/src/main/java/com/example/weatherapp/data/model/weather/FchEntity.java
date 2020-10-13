@@ -5,8 +5,10 @@ import androidx.room.Entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 @Entity
-public class FchEntity {
+public class FchEntity implements Serializable {
     @SerializedName("pr")
     @Expose
     private Double pr;

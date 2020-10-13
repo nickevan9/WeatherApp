@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
+import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
@@ -28,6 +30,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     private CustomTextviewLight tvHour;
     private LottieAnimationView lottieWeather;
     private ImageView imgStatusWeather;
+    private String timeZone;
 
     public WidgetWeatherStatus(Context context) {
         super(context, null, android.R.attr.borderlessButtonStyle);
@@ -57,6 +60,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
         tvHour = findViewById(R.id.tv_hour);
         lottieWeather = findViewById(R.id.lottie_status_weather);
         imgStatusWeather = findViewById(R.id.img_status_weather);
+        timeZone = "";
     }
 
     public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
@@ -92,4 +96,24 @@ public class WidgetWeatherStatus extends RelativeLayout {
             tvUVIndex.setText(uvIndex + getContext().getString(R.string.extreme));
         }
     }
+
+//    @Override
+//    protected void onAttachedToWindow() {
+//        super.onAttachedToWindow();
+//        RxBus.subscribe(RxBus.TAG_TIME_ZONE,this,timeZoneObject ->{
+//            this.timeZone = (String)timeZoneObject;
+//        });
+//        RxBus.subscribe(RxBus.TAG_WEATHER_STATUS,this,pairObject -> {
+//            Pair<FchEntity,FcdEntity> pair = (Pair) pairObject;
+//            if (!timeZone.equals("")){
+//                applyData(pair.first,pair.second,timeZone);
+//            }
+//        });
+//    }
+//
+//    @Override
+//    protected void onDetachedFromWindow() {
+//        super.onDetachedFromWindow();
+//        RxBus.unregister(this);
+//    }
 }

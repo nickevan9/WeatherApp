@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -50,10 +51,6 @@ public class WidgetRainPercent extends RelativeLayout {
 
         rainChart.getDescription().setEnabled(false);
 
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-
-        // scaling can now only be done on x- and y-axis separately
         rainChart.setPinchZoom(false);
 
         rainChart.setDrawBarShadow(false);
@@ -67,6 +64,7 @@ public class WidgetRainPercent extends RelativeLayout {
         xAxis.setTextSize(12f);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(6);
+
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -216,9 +214,21 @@ public class WidgetRainPercent extends RelativeLayout {
             rainChart.setData(data);
             rainChart.setFitBars(true);
         }
-
         rainChart.invalidate();
-
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        RxBus.subscribe(RxBus.TAG_LIST_HOUR_ITEM,this, fchObject ->{
+            List<FchEntity> fchEntityList = (List<FchEntity>) fchObject;
+            applyData(fchEntityList);
+        });
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
+    }
 }
