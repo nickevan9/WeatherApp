@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
+import com.example.weatherapp.ui.dialog.WeatherDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,5 +74,9 @@ public class WeatherStatusFragment extends Fragment {
 
 
         widgetWeatherStatus.applyData(mParamFch,mParamFcd,timeZone);
+
+        widgetWeatherStatus.setOnClickListener(view1 -> {
+            new WeatherDialog(requireActivity(),mParamFch,timeZone);
+        });
     }
 }

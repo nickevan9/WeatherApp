@@ -94,7 +94,7 @@ class SunInDayCustom(context: Context, attrs: AttributeSet) : View(context, attr
         super.onDraw(canvas)
 
         mArcPaint.apply {
-            color = Color.DKGRAY
+            color = Color.WHITE
             pathEffect = dashPath
             isAntiAlias = true
             strokeWidth = 5f
@@ -110,7 +110,7 @@ class SunInDayCustom(context: Context, attrs: AttributeSet) : View(context, attr
         }
 
         mLinePaint.apply {
-            color = Color.DKGRAY
+            color = Color.WHITE
         }
 
         mCirclePaint.apply {
@@ -122,7 +122,7 @@ class SunInDayCustom(context: Context, attrs: AttributeSet) : View(context, attr
         }
 
         mTextPaint.apply {
-            textSize = 24F
+            textSize = 36F
             color = Color.GREEN
             textAlign = Paint.Align.CENTER
         }

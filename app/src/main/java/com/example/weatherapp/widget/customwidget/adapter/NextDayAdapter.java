@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
+import com.example.weatherapp.app.ActivityUtils;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.weather.FcdEntity;
@@ -26,6 +27,8 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
     private LayoutInflater mInflater;
     private String timeZone;
     private Context context;
+
+    private double maxHeight;
 
     public NextDayAdapter(Context context, List<FcdEntity> fcdEntityList, String timeZone) {
         this.fcdEntityList = fcdEntityList;
@@ -44,9 +47,18 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        maxHeight = 0;
+
         if (!fcdEntityList.isEmpty()){
+            for (FcdEntity fcdEntity : fcdEntityList){
+                int height = (int) ((fcdEntity.getTx() - fcdEntity.getTn()) * 9);
+                if (height > maxHeight){
+                    maxHeight = height;
+                }
+            }
             FcdEntity fcdEntity = fcdEntityList.get(position);
-            holder.bindItem(fcdEntity);
+            holder.bindItem(fcdEntity,maxHeight);
         }
 
     }
@@ -72,6 +84,7 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
         TextView tvDaily;
         ImageView imgRain;
         TextView tvRainPercent;
+        LinearLayout lnDaily;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -84,17 +97,27 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             tvDaily = itemView.findViewById(R.id.tv_day_daily);
             imgRain = itemView.findViewById(R.id.img_rain);
             tvRainPercent = itemView.findViewById(R.id.tv_rain_percent);
+            lnDaily = itemView.findViewById(R.id.linearDaily);
         }
 
         @SuppressLint("SetTextI18n")
-        public void bindItem(FcdEntity fcdEntity) {
+        public void bindItem(FcdEntity fcdEntity,Double maxHeight) {
             tvTempMax.setText(fcdEntity.getTx().intValue() + "°");
             tvTempMin.setText(fcdEntity.getTn().intValue() + "°");
-
             float factor = itemView.getContext().getResources().getDisplayMetrics().density;
+
+            int marginLinear = ActivityUtils.convertDpToPixel(context,70);
+
+            LinearLayout.LayoutParams paramLinear = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            paramLinear.height = (int)(maxHeight * factor + marginLinear);
+            lnDaily.setLayoutParams(paramLinear);
+
+
             LinearLayout.LayoutParams paramImg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            paramImg.height = (int) ((fcdEntity.getTx() - fcdEntity.getTn()) * 8 * factor);
+            paramImg.height = (int) ((fcdEntity.getTx() - fcdEntity.getTn()) * 9 * factor);
             paramImg.width = (int) (5 * factor);
+            int margin = ActivityUtils.convertDpToPixel(context,14);
+            paramImg.setMargins(0,margin,0,margin);
             imgPbDaily.setLayoutParams(paramImg);
 
 //            laDaily.setAnimation(IconWeatherHelper.getLottieWeather(fcdEntity.getS()));

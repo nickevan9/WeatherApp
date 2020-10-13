@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.app.WindConvert;
 import com.example.weatherapp.data.model.weather.FchEntity;
 
 public class WidgetWind extends RelativeLayout {
@@ -19,6 +20,8 @@ public class WidgetWind extends RelativeLayout {
     private TextView tvWindChill;
     private TextView tvWindDirection;
     private ImageView imgWind;
+    private TextView tvWindDetail;
+    private ImageView imgDirection;
 
 
     private double windSpeed = 1.0D;
@@ -45,6 +48,8 @@ public class WidgetWind extends RelativeLayout {
         tvWindChill = findViewById(R.id.tv_wind_chill);
         tvWindDirection = findViewById(R.id.tv_wind_direction);
         imgWind = findViewById(R.id.img_wind);
+        tvWindDetail = findViewById(R.id.tv_wind_detail);
+        imgDirection = findViewById(R.id.img_direction);
 
     }
 
@@ -53,6 +58,9 @@ public class WidgetWind extends RelativeLayout {
         tvWindChill.setText(getContext().getString(R.string.set_temp, fchEntity.getTf().toString()));
         tvWindDirection.setText(fchEntity.getWn());
         windSpeed = fchEntity.getWs();
+        tvWindDetail.setText(WindConvert.convertWindDirection(fchEntity.getWn()));
+        imgDirection.setRotation(WindConvert.rotateImage(fchEntity.getWn()));
+
         rotateWindSpeed();
     }
 

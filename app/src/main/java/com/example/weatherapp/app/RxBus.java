@@ -26,6 +26,7 @@ public class RxBus {
     public static final int TAG_FRAGMENT_CLICK = 1;
 
     public static final int TAG_TIME_ZONE = 1000;
+    public static final int TAG_CLICK_STATUS= 1001;
 
     public static final int TAG_ADD_LOCATION_CLICK = 1111;
     public static final int TAG_AIR_WEATHER = 2222;
@@ -50,7 +51,8 @@ public class RxBus {
             TAG_WEATHER_STATUS,
             TAG_HOUR_ITEM,
             TAG_NAME_LOCATION,
-            TAG_DAY_ITEM
+            TAG_DAY_ITEM,
+            TAG_CLICK_STATUS
 
     })
     @interface Subject {

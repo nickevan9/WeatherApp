@@ -38,10 +38,10 @@
             android:id="@+id/circle_air"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            CircleProgressView:cpv_barColor="@android:color/holo_red_light"
-            CircleProgressView:cpv_barColor1="@android:color/holo_red_light"
-            CircleProgressView:cpv_barColor2="@android:color/holo_orange_light"
-            CircleProgressView:cpv_barColor3="@android:color/holo_blue_bright"
+            CircleProgressView:cpv_barColor="@android:color/white"
+            CircleProgressView:cpv_barColor1="@android:color/holo_orange_light"
+            CircleProgressView:cpv_barColor2="@android:color/holo_green_light"
+            CircleProgressView:cpv_barColor3="@android:color/holo_red_dark"
             CircleProgressView:cpv_barStrokeCap="Butt"
             CircleProgressView:cpv_barWidth="@dimen/_12sdp"
             CircleProgressView:cpv_blockCount="50"
@@ -59,7 +59,6 @@
             CircleProgressView:cpv_unitColor="@android:color/holo_red_dark"
             CircleProgressView:cpv_value="250"
             CircleProgressView:cpv_textColor="@android:color/holo_red_dark"
-
             />
 
         <LinearLayout
@@ -91,15 +90,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Powered by weather.io"
-        android:textSize="@dimen/_6ssp"
-        android:layout_below="@id/ln_air_quality"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:textColor="@android:color/white"
-        />
 
 </RelativeLayout>

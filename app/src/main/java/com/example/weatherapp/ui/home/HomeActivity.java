@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -51,7 +53,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
-public class HomeActivity extends BaseActivity implements ItemClickListener, HomeContract.View {
+public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     public static final int REQUEST_CODE_AUTOCOMPLETE = 100;
 
@@ -65,8 +67,11 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
     private HomePagerAdapter homePagerAdapter;
 
-    WidgetToolbar wgToolbar;
-
+    private ImageView imgDropDown;
+    private TextView tvLocation;
+    private ImageView imgShare;
+    private ImageView imgSetting;
+    private ImageView imgAddLocation;
     private WidgetNextHour wgNextHour;
     private WidgetNextDay wgNextDay;
     private WidgetWind wgWind;
@@ -119,7 +124,11 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     protected void initView() {
 
         homeView = findViewById(R.id.view_home);
-        wgToolbar = findViewById(R.id.wg_toolbar);
+        imgDropDown = findViewById(R.id.img_drop_down);
+        imgAddLocation = findViewById(R.id.img_add_location);
+        imgSetting = findViewById(R.id.img_setting);
+        imgShare = findViewById(R.id.img_share);
+        tvLocation = findViewById(R.id.tv_name_city);
         wgNextHour = findViewById(R.id.wg_next_hour);
         wgNextDay = findViewById(R.id.wg_next_day);
         wgWind = findViewById(R.id.wg_wind);
@@ -127,7 +136,7 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
         wgSun = findViewById(R.id.wg_sun);
         wgRain = findViewById(R.id.wg_rain_percent);
 
-        homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(),getLifecycle(),weatherDbs);
+        homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(), getLifecycle(), weatherDbs);
         vpHome = findViewById(R.id.vPHome);
         vpHome.setAdapter(homePagerAdapter);
 
@@ -144,18 +153,19 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
                 String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
 
-                List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(),timeZone);
-                List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(),timeZone);
+                List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(), timeZone);
+                List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(), timeZone);
 
                 homeView.setBackgroundResource(IconWeatherHelper.getBackgroundWeather(fchEntityList.get(0).getS()));
+                tvLocation.setText(weatherDb.getCityName());
 
-                RxBus.publish(RxBus.TAG_TIME_ZONE,timeZone);
+                RxBus.publish(RxBus.TAG_TIME_ZONE, timeZone);
                 RxBus.publish(RxBus.TAG_AIR_WEATHER, weatherDb.getAirEntity());
-                RxBus.publish(RxBus.TAG_DAY_ITEM,fcdEntityList.get(0));
-                RxBus.publish(RxBus.TAG_LIST_DAY_ITEM,fcdEntityList);
-                RxBus.publish(RxBus.TAG_LIST_HOUR_ITEM,fchEntityList);
-                RxBus.publish(RxBus.TAG_HOUR_ITEM,fchEntityList.get(0));
-                RxBus.publish(RxBus.TAG_NAME_LOCATION,weatherDb.getCityName());
+                RxBus.publish(RxBus.TAG_DAY_ITEM, fcdEntityList.get(0));
+                RxBus.publish(RxBus.TAG_LIST_DAY_ITEM, fcdEntityList);
+                RxBus.publish(RxBus.TAG_LIST_HOUR_ITEM, fchEntityList);
+                RxBus.publish(RxBus.TAG_HOUR_ITEM, fchEntityList.get(0));
+
             }
 
             @Override
@@ -163,26 +173,27 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
                 super.onPageScrollStateChanged(state);
             }
         });
+
+        imgAddLocation.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, PlaceActivity.class);
+
+            mStartForResult.launch(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        RxBus.subscribe(RxBus.TAG_ADD_LOCATION_CLICK, this, click -> {
-
-            Boolean state = (Boolean) click;
-            if (state){
-                Intent intent = new Intent(this, PlaceActivity.class);
-//            registerForActivityResult(intent,REQUEST_CODE_AUTOCOMPLETE);
-
-                mStartForResult.launch(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-
-        });
-
         ActivityUtils.hideKeyboard(this);
+
+//        RxBus.subscribe(RxBus.TAG_CLICK_STATUS, this, state -> {
+//            Boolean stateClick = (Boolean) state;
+//            if (state){
+//
+//            }
+//        });
 
     }
 
@@ -201,27 +212,13 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
         }
     }
 
-    @Override
-    public void onClickWeatherStatus(View view, int position) {
-        new WeatherDialog(this, weatherDbs.get(position).getWeatherEntity().getFch().get(0),weatherDbs.get(position).getWeatherEntity().getLoc().getTzname());
-    }
-
-    @Override
-    public void onClickWeatherHour(View view, int position) {
-
-    }
-
-    @Override
-    public void onClickWeatherDay(View view, int position) {
-
-    }
 
     @Override
     public void showLoadingDB() {
-        if (loadingDialog.getmDialog().isShowing()){
+        if (loadingDialog.getmDialog().isShowing()) {
             loadingDialog.dismissDialog();
             loadingDialog.startLoading(1);
-        }else {
+        } else {
             loadingDialog.startLoading(1);
         }
     }
@@ -233,10 +230,10 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
 
     @Override
     public void showLoadingAPI() {
-        if (loadingDialog.getmDialog().isShowing()){
+        if (loadingDialog.getmDialog().isShowing()) {
             loadingDialog.dismissDialog();
             loadingDialog.startLoading(0);
-        }else {
+        } else {
             loadingDialog.startLoading(0);
         }
     }
@@ -260,13 +257,11 @@ public class HomeActivity extends BaseActivity implements ItemClickListener, Hom
     }
 
 
-
     @Override
     public void loadDataFailed(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         loadingDialog.dismissDialog();
     }
-
 
 
     @Override

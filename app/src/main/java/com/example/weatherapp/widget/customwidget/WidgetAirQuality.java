@@ -1,9 +1,12 @@
 package com.example.weatherapp.widget.customwidget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.RxBus;
@@ -48,21 +51,27 @@ public class WidgetAirQuality extends RelativeLayout {
         if (airQuality >= 300){
             tvAirStatus.setText(getContext().getString(R.string.heavy_pollution_title));
             tvAirDetail.setText(getContext().getString(R.string.heavy_pollution_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressFirst));
         }else if (airQuality >= 200){
             tvAirStatus.setText(getContext().getString(R.string.heavily_polluted_title));
             tvAirDetail.setText(getContext().getString(R.string.heavily_polluted_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressSecond));
         }else if (airQuality>= 150){
             tvAirStatus.setText(getContext().getString(R.string.moderate_pollution_title));
             tvAirDetail.setText(getContext().getString(R.string.moderate_pollution_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressThird));
         }else if (airQuality >= 100){
             tvAirStatus.setText(getContext().getString(R.string.slight_pollution_title));
             tvAirDetail.setText(getContext().getString(R.string.slight_pollution_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressFourth));
         }else if (airQuality >= 50){
             tvAirStatus.setText(getContext().getString(R.string.good_title));
             tvAirDetail.setText(getContext().getString(R.string.good_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressFifth));
         }else {
             tvAirStatus.setText(getContext().getString(R.string.excellent_title));
             tvAirDetail.setText(getContext().getString(R.string.excellent_description));
+            circleAir.setTextColor(ContextCompat.getColor(getContext(),R.color.colorProgressSix));
         }
     }
 

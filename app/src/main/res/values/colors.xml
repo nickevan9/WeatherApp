@@ -15,5 +15,13 @@
 
     <color name="text_description">#E9E0E0</color>
 
+
+    <color name="colorProgressFirst">#AC0505</color>
+    <color name="colorProgressSecond">#ACA303</color>
+    <color name="colorProgressThird">#9ADA07</color>
+    <color name="colorProgressFourth">#C8F463</color>
+    <color name="colorProgressFifth">#DAF698</color>
+    <color name="colorProgressSix">#EBF4D6</color>
+
 <!--    <color name="text_description">#99000000</color>-->
 </resources>
