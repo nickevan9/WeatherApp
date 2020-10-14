@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
-import android.util.Pair;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -13,9 +12,22 @@ import com.example.weatherapp.R;
 import com.example.weatherapp.app.IconWeatherHelper;
 import com.example.weatherapp.app.RxBus;
 import com.example.weatherapp.app.TimeUtilsExt;
+import com.example.weatherapp.data.model.DayEntity;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.widget.CustomTextviewLight;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class WidgetWeatherStatus extends RelativeLayout {
 
@@ -31,6 +43,8 @@ public class WidgetWeatherStatus extends RelativeLayout {
     private LottieAnimationView lottieWeather;
     private ImageView imgStatusWeather;
     private String timeZone;
+    private CustomTextviewLight tvDay;
+    private CompositeDisposable disposable ;
 
     public WidgetWeatherStatus(Context context) {
         super(context, null, android.R.attr.borderlessButtonStyle);
@@ -48,6 +62,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     }
 
     protected void initView(){
+        disposable = new CompositeDisposable();
         inflate(getContext(), R.layout.widget_weather_status,this);
         tvTemp = findViewById(R.id.tv_temp);
         tvWindChill = findViewById(R.id.tv_wind_chill);
@@ -60,14 +75,15 @@ public class WidgetWeatherStatus extends RelativeLayout {
         tvHour = findViewById(R.id.tv_hour);
         lottieWeather = findViewById(R.id.lottie_status_weather);
         imgStatusWeather = findViewById(R.id.img_status_weather);
+        tvDay = findViewById(R.id.tv_day);
         timeZone = "";
     }
 
     public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
-        tvTemp.setText(fchEntity.getT().toString());
-        tvWindChill.setText(getContext().getString(R.string.windchill, fchEntity.getTf().toString()));
-        tvTempMax.setText(getContext().getString(R.string.set_temp, fcdEntity.getTx().toString()));
-        tvTempMin.setText(getContext().getString(R.string.set_temp, fcdEntity.getTn().toString()));
+        tvTemp.setText(fchEntity.getT().intValue());
+        tvWindChill.setText(getContext().getString(R.string.windchill, String.valueOf(fchEntity.getTf().intValue())));
+        tvTempMax.setText(getContext().getString(R.string.set_temp, String.valueOf(fcdEntity.getTx().intValue())));
+        tvTempMin.setText(getContext().getString(R.string.set_temp, String.valueOf(fcdEntity.getTn().intValue())));
         tvPressure.setText(getContext().getString(R.string.set_pressure, fchEntity.getP().toString()));
         setUVIndex(fchEntity.getUv());
         tvWeatherStatus.setText(fchEntity.getTxt());
@@ -80,6 +96,8 @@ public class WidgetWeatherStatus extends RelativeLayout {
         imgStatusWeather.setBackgroundResource(IconWeatherHelper.getDrawableAnimationLarge(fchEntity.getS()));
         AnimationDrawable anim = (AnimationDrawable) imgStatusWeather.getBackground();
         anim.start();
+
+        getTimeNow(timeZone);
     }
 
     @SuppressLint("SetTextI18n")
@@ -97,23 +115,37 @@ public class WidgetWeatherStatus extends RelativeLayout {
         }
     }
 
-//    @Override
-//    protected void onAttachedToWindow() {
-//        super.onAttachedToWindow();
-//        RxBus.subscribe(RxBus.TAG_TIME_ZONE,this,timeZoneObject ->{
-//            this.timeZone = (String)timeZoneObject;
-//        });
-//        RxBus.subscribe(RxBus.TAG_WEATHER_STATUS,this,pairObject -> {
-//            Pair<FchEntity,FcdEntity> pair = (Pair) pairObject;
-//            if (!timeZone.equals("")){
-//                applyData(pair.first,pair.second,timeZone);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    protected void onDetachedFromWindow() {
-//        super.onDetachedFromWindow();
-//        RxBus.unregister(this);
-//    }
+    public void getTimeNow(String timeZone) {
+        disposable.add(Observable.interval(1, TimeUnit.SECONDS).repeat().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(aLong -> {
+            DayEntity dayEntity = getTime(timeZone);
+            tvHour.setText(dayEntity.getTime());
+            tvDay.setText(dayEntity.getDayOfWeek());
+        }));
+    }
+
+    private DayEntity getTime(String timeZone) {
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormatTime = DateTimeFormat.forPattern("hh:mm aaa");
+        DateTimeFormatter dateFormatDay = DateTimeFormat.forPattern("EEE");
+        DateTime dateTimeNow = DateTime.now();
+        DayEntity dayEntity = new DayEntity();
+
+        dayEntity.setTime(dateFormatTime.print(dateTimeNow));
+        dayEntity.setDayOfWeek(dateFormatDay.print(dateTimeNow));
+        return dayEntity;
+
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        RxBus.unregister(this);
+        disposable.clear();
+    }
 }

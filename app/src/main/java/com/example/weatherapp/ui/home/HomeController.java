@@ -76,6 +76,8 @@ public class HomeController implements HomeContract.Controller {
         });
     }
 
+
+
     private Single<WeatherEntity> getWeatherEntity(Double lat, Double lon) {
         return repoRepository.getWeatherData(lat, lon).
                 subscribeOn(Schedulers.newThread())
@@ -120,11 +122,13 @@ public class HomeController implements HomeContract.Controller {
         return weatherDb;
 
     }
+
     @Override
     public void attachView(HomeContract.View view) {
         this.mView = view;
         getAllWeather(false);
     }
+
 
     @Override
     public void detachView(HomeContract.View view) {

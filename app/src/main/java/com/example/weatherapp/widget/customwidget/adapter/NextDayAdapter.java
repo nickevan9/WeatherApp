@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.ActivityUtils;
 import com.example.weatherapp.app.IconWeatherHelper;
@@ -28,7 +28,9 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
     private String timeZone;
     private Context context;
 
-    private double maxHeight;
+
+    private double min;
+    private double max;
 
     public NextDayAdapter(Context context, List<FcdEntity> fcdEntityList, String timeZone) {
         this.fcdEntityList = fcdEntityList;
@@ -48,17 +50,9 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        maxHeight = 0;
-
         if (!fcdEntityList.isEmpty()){
-            for (FcdEntity fcdEntity : fcdEntityList){
-                int height = (int) ((fcdEntity.getTx() - fcdEntity.getTn()) * 9);
-                if (height > maxHeight){
-                    maxHeight = height;
-                }
-            }
             FcdEntity fcdEntity = fcdEntityList.get(position);
-            holder.bindItem(fcdEntity,maxHeight);
+            holder.bindItem(fcdEntity);
         }
 
     }
@@ -68,8 +62,10 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
         return 7;
     }
 
-    public void applyData(List<FcdEntity> fcdEntityList, String timeZone){
+    public void applyData(List<FcdEntity> fcdEntityList, String timeZone,int max, int min){
         this.fcdEntityList = fcdEntityList;
+        this.max = max;
+        this.min = min;
         this.timeZone = timeZone;
         notifyDataSetChanged();
     }
@@ -85,6 +81,7 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
         ImageView imgRain;
         TextView tvRainPercent;
         LinearLayout lnDaily;
+        RelativeLayout rlDaily;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -98,10 +95,11 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             imgRain = itemView.findViewById(R.id.img_rain);
             tvRainPercent = itemView.findViewById(R.id.tv_rain_percent);
             lnDaily = itemView.findViewById(R.id.linearDaily);
+            rlDaily = itemView.findViewById(R.id.rl_item_daily);
         }
 
         @SuppressLint("SetTextI18n")
-        public void bindItem(FcdEntity fcdEntity,Double maxHeight) {
+        public void bindItem(FcdEntity fcdEntity) {
             tvTempMax.setText(fcdEntity.getTx().intValue() + "°");
             tvTempMin.setText(fcdEntity.getTn().intValue() + "°");
             float factor = itemView.getContext().getResources().getDisplayMetrics().density;
@@ -109,16 +107,16 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             int marginLinear = ActivityUtils.convertDpToPixel(context,70);
 
             LinearLayout.LayoutParams paramLinear = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            paramLinear.height = (int)(maxHeight * factor + marginLinear);
+            paramLinear.height = (int) ((max - min)* 6 * factor + marginLinear);
             lnDaily.setLayoutParams(paramLinear);
 
+            LinearLayout.LayoutParams paramRelative = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            int marginTop = (int)((max - fcdEntity.getTx()) * 6 * factor );
+            int marginBottom = (int)((fcdEntity.getTn() - min) * 6 * factor );
+            paramRelative.setMargins(0, marginTop,0, marginBottom);
+            rlDaily.setLayoutParams(paramRelative);
 
-            LinearLayout.LayoutParams paramImg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            paramImg.height = (int) ((fcdEntity.getTx() - fcdEntity.getTn()) * 9 * factor);
-            paramImg.width = (int) (5 * factor);
-            int margin = ActivityUtils.convertDpToPixel(context,14);
-            paramImg.setMargins(0,margin,0,margin);
-            imgPbDaily.setLayoutParams(paramImg);
+
 
 //            laDaily.setAnimation(IconWeatherHelper.getLottieWeather(fcdEntity.getS()));
             imgDaily.setBackgroundResource(IconWeatherHelper.getDrawableAnimation(fcdEntity.getS()));

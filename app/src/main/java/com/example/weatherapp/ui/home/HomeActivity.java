@@ -4,7 +4,6 @@ package com.example.weatherapp.ui.home;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +25,9 @@ import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
-import com.example.weatherapp.listener.ItemClickListener;
 import com.example.weatherapp.ui.adapter.HomePagerAdapter;
 import com.example.weatherapp.ui.base.BaseActivity;
 import com.example.weatherapp.ui.dialog.LoadingDialog;
-import com.example.weatherapp.ui.dialog.WeatherDialog;
 import com.example.weatherapp.ui.place.PlaceActivity;
 import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
@@ -38,7 +35,6 @@ import com.example.weatherapp.widget.customwidget.WidgetNextHour;
 import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
 import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
-import com.example.weatherapp.widget.customwidget.WidgetToolbar;
 import com.example.weatherapp.widget.customwidget.WidgetWind;
 import com.mapbox.geojson.Point;
 
@@ -239,7 +235,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     }
 
 
-    @SuppressLint("CheckResult")
+
     @Override
     public void loadDataSuccess(List<WeatherDb> weatherDbList, Boolean addWeather) {
         weatherDbs = weatherDbList;
@@ -249,11 +245,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         if (addWeather) {
             vpHome.setCurrentItem(weatherDbs.size(), false);
         }
-        Observable
+        disposable.add(Observable
                 .timer(1000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> loadingDialog.dismissDialog());
-
+                .subscribe(aLong -> loadingDialog.dismissDialog()));
     }
 
 

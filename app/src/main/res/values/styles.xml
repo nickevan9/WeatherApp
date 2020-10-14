@@ -25,6 +25,7 @@
 
     <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBarOverlay">true</item>
+
         <!-- Support library compatibility -->
     </style>
 

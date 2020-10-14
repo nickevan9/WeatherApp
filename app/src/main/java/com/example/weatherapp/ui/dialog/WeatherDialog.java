@@ -19,6 +19,11 @@ import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.data.model.weather.WeatherEntity;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,14 +54,18 @@ public class WeatherDialog {
         tvTemp = view.findViewById(R.id.tv_temp);
         rvDetail = view.findViewById(R.id.rv_detail);
 
+        DateTimeZone.setDefault(DateTimeZone.forID(timeZone));
+        DateTimeFormatter dateFormatTime = DateTimeFormat.forPattern("hh:mm aaa");
+        DateTime dateTimeNow = DateTime.now();
+
         detailAdapter = new DetailAdapter(activity,detailEntityList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(activity,2);
         rvDetail.setLayoutManager(gridLayoutManager);
         rvDetail.setHasFixedSize(true);
         rvDetail.setAdapter(detailAdapter);
 
-        tvTime.setText(TimeUtilsExt.convertTimeStampToLocalTime2(fchEntity.getDt(), timeZone));
-        tvTemp.setText(activity.getString(R.string.set_temp, fchEntity.getTf().toString()));
+        tvTime.setText(dateFormatTime.print(dateTimeNow));
+        tvTemp.setText(activity.getString(R.string.set_temp, String.valueOf(fchEntity.getT().intValue())));
 
 
         imgClose.setOnClickListener(view1 -> mDialog.dismiss());

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_8sdp"
+    android:layout_marginHorizontal="4dp"
     android:orientation="vertical">
 
     <ImageView
@@ -12,12 +12,11 @@
         android:layout_height="@dimen/_300sdp"
         android:src="@drawable/circle_solid"
         android:layout_centerInParent="true"
-
         />
 
     <ImageView
-        android:layout_width="@dimen/_260sdp"
-        android:layout_height="@dimen/_260sdp"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_270sdp"
         android:src="@drawable/circle_stroke"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,21 +55,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_percent="0.77" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.22" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_percent="0.77" />
 
         <View
             android:id="@+id/view"
@@ -129,12 +128,11 @@
             android:id="@+id/lottie_status_weather"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            android:visibility="gone"
-            />
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <ImageView
             android:id="@+id/img_status_weather"
@@ -218,8 +216,8 @@
             style="@style/TextMiniStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rain"
             android:layout_marginBottom="@dimen/_4sdp"
+            android:text="Rain"
             app:layout_constraintBottom_toTopOf="@+id/tv_wind_speed"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -239,12 +237,28 @@
             style="@style/TextMiniStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3 : 41 AM Thu"
+            android:text="__:__ __"
             android:textSize="@dimen/_14ssp"
             android:layout_marginTop="@dimen/_4sdp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_wind_speed"
-            app:layout_constraintStart_toStartOf="@+id/tv_wind_speed"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" />
+            app:layout_constraintEnd_toStartOf="@+id/tv_day"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wind_speed" />
+
+        <com.example.weatherapp.widget.CustomTextviewLight
+            android:id="@+id/tv_day"
+            style="@style/TextMiniStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="___"
+            android:textSize="@dimen/_8ssp"
+            android:layout_marginStart="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hour"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_hour"
+            app:layout_constraintTop_toTopOf="@+id/tv_hour" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

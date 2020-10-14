@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_tranfer_item"
-    android:padding="@dimen/_8sdp">
+    android:padding="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrain_setting"
@@ -123,29 +122,14 @@
     <RelativeLayout
         android:id="@+id/rl_change_setting"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_below="@id/constrain_setting"
         android:layout_marginTop="@dimen/_8sdp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_widget"
+            android:id="@+id/rv_change_setting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_notification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_icon_set"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
             />
     </RelativeLayout>
 

@@ -30,4 +30,9 @@ public class ActivityUtils {
         );
         return (int) px;
     }
+
+
+    public static float convertPixelsToDp(Context paramContext, float paramFloat) {
+        return paramFloat / (paramContext.getResources().getDisplayMetrics()).densityDpi / 160.0F;
+    }
 }

@@ -15,5 +15,6 @@ public interface HomeContract {
     public interface Controller extends IBaseController<HomeContract.View> {
         void getAllWeather(Boolean addWeather);
         void getSingleWeather(Double lat,Double lon);
+
     }
 }

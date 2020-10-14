@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.example.weatherapp.data.model.WeatherDb;
 
@@ -19,6 +20,9 @@ public interface WeatherDao {
     @Transaction
     @Query("SELECT * FROM weather ORDER BY dateAdded ASC")
     List<WeatherDb> getAllWeather();
+
+
+    @Query("UPDATE weather ")
 
     @Delete
     void deleteWeather(WeatherDb weatherDb);

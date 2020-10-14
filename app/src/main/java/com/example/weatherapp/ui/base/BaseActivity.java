@@ -10,6 +10,7 @@ import com.example.weatherapp.app.DataProccessor;
 import com.example.weatherapp.app.RxBus;
 
 import dagger.android.support.DaggerAppCompatActivity;
+import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseActivity  extends DaggerAppCompatActivity {
 
@@ -18,6 +19,7 @@ public abstract class BaseActivity  extends DaggerAppCompatActivity {
     protected abstract void initView();
 
     protected abstract void dataCreate();
+    public CompositeDisposable disposable ;
 
     @LayoutRes
     protected abstract int layoutRes();
@@ -26,6 +28,7 @@ public abstract class BaseActivity  extends DaggerAppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutRes());
+        disposable = new CompositeDisposable();
         dataProccessor = new DataProccessor(this);
         dataCreate();
         initView();
@@ -47,5 +50,6 @@ public abstract class BaseActivity  extends DaggerAppCompatActivity {
     protected void onStop() {
         super.onStop();
         RxBus.unregister(this);
+        disposable.clear();
     }
 }

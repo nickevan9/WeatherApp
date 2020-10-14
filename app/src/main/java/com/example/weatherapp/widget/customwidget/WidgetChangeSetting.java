@@ -25,9 +25,7 @@ public class WidgetChangeSetting extends RelativeLayout {
     private View viewNotification;
     private View viewIconSet;
 
-    private RecyclerView rvWidget;
-    private RecyclerView rvNotification;
-    private RecyclerView rvIconSet;
+    private RecyclerView rvChangeSetting;
 
     public WidgetChangeSetting(Context context) {
         super(context);
@@ -53,7 +51,12 @@ public class WidgetChangeSetting extends RelativeLayout {
 
         tvWidget = findViewById(R.id.tv_widget);
         tvNotification = findViewById(R.id.tv_notification);
+        tvIconSet = findViewById(R.id.tv_icon_set);
 
+        viewWidget = findViewById(R.id.view_widget);
+        viewNotification = findViewById(R.id.view_notification);
+        viewIconSet = findViewById(R.id.view_icon_widget);
 
+        rvChangeSetting = findViewById(R.id.rv_change_setting);
     }
 }
