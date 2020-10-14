@@ -80,7 +80,7 @@ public class WidgetWeatherStatus extends RelativeLayout {
     }
 
     public void applyData(FchEntity fchEntity, FcdEntity fcdEntity, String timeZone) {
-        tvTemp.setText(fchEntity.getT().intValue());
+        tvTemp.setText(String.valueOf(fchEntity.getT().intValue()));
         tvWindChill.setText(getContext().getString(R.string.windchill, String.valueOf(fchEntity.getTf().intValue())));
         tvTempMax.setText(getContext().getString(R.string.set_temp, String.valueOf(fcdEntity.getTx().intValue())));
         tvTempMin.setText(getContext().getString(R.string.set_temp, String.valueOf(fcdEntity.getTn().intValue())));

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_8sdp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        >
+        <com.example.weatherapp.widget.CustomTextviewMedium
+            android:id="@+id/tv_rain_percent"
+            style="@style/TextMiniStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="51%"
+            android:textSize="@dimen/_14ssp"/>
+
+        <ImageView
+            android:id="@+id/img_rain"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/rain_ico_0"
+            android:layout_marginTop="@dimen/_8sdp"
+            />
+            <com.example.weatherapp.widget.CustomTextviewLight
+                android:id="@+id/tv_part"
+                style="@style/TextMiniStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Night"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+
+        />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/line_vertical"/>
+
+
+
+</RelativeLayout>

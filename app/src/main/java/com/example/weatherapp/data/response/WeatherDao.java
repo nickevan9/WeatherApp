@@ -21,9 +21,6 @@ public interface WeatherDao {
     @Query("SELECT * FROM weather ORDER BY dateAdded ASC")
     List<WeatherDb> getAllWeather();
 
-
-    @Query("UPDATE weather ")
-
     @Delete
     void deleteWeather(WeatherDb weatherDb);
 }

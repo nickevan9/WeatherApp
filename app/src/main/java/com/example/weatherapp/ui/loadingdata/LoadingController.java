@@ -68,7 +68,7 @@ public class LoadingController implements LoadingContract.Controller {
             @Override
             public void onSuccess(WeatherAir weatherAir) {
                 if (weatherAir.airEntity.getDataEntity() != null && weatherAir.weatherEntity != null){
-                    WeatherDb weatherDb = createWeather(weatherAir);
+                    WeatherDb weatherDb = createWeather(weatherAir,null);
                     insertToDb(weatherDb,true);
                 }else {
                     mView.loadDataFailed("can't fetch data");
@@ -100,7 +100,7 @@ public class LoadingController implements LoadingContract.Controller {
 
                 @Override
                 public void onSuccess(WeatherAir weatherAir) {
-                    WeatherDb weatherDb = createWeather(weatherAir);
+                    WeatherDb weatherDb = createWeather(weatherAir,weatherDbList.get(finalIndex).getDateAdded());
                     if (finalIndex == (weatherDbList.size() - 1)) {
                         insertToDb(weatherDb, true);
                     } else {
@@ -151,7 +151,7 @@ public class LoadingController implements LoadingContract.Controller {
     }
 
 
-    private WeatherDb createWeather(WeatherAir weatherAir) {
+    private WeatherDb createWeather(WeatherAir weatherAir,Date date) {
         WeatherDb weatherDb = new WeatherDb();
         weatherDb.setLocationName(weatherAir.weatherEntity.getLoc().getName());
         weatherDb.setCityName(weatherAir.weatherEntity.getLoc().getAdm1());
@@ -159,7 +159,12 @@ public class LoadingController implements LoadingContract.Controller {
         weatherDb.setLonLocation(weatherAir.weatherEntity.getLoc().getLon());
         weatherDb.setWeatherEntity(weatherAir.weatherEntity);
         weatherDb.setAirEntity(weatherAir.airEntity);
-        weatherDb.setDateAdded(new Date());
+        if (date != null){
+            weatherDb.setDateAdded(date);
+        }else {
+            weatherDb.setDateAdded(new Date());
+        }
+
         return weatherDb;
 
     }
