@@ -39,7 +39,12 @@ public class PrecipitationAdapter extends RecyclerView.Adapter<PrecipitationAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (!precipitationEntityList.isEmpty()) {
             PrecipitationEntity precipitationEntity = precipitationEntityList.get(position);
-            holder.bindItem(precipitationEntity);
+            if (position == 3){
+                holder.bindItem(precipitationEntity,true);
+            }else {
+                holder.bindItem(precipitationEntity,false);
+            }
+
         }
     }
 
@@ -50,7 +55,7 @@ public class PrecipitationAdapter extends RecyclerView.Adapter<PrecipitationAdap
 
     @Override
     public int getItemCount() {
-        return precipitationEntityList.size();
+        return 4;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,6 +63,7 @@ public class PrecipitationAdapter extends RecyclerView.Adapter<PrecipitationAdap
         public TextView tvRainPercent;
         public ImageView imgRain;
         public TextView tvPart;
+        public View viewLine;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,15 +71,22 @@ public class PrecipitationAdapter extends RecyclerView.Adapter<PrecipitationAdap
             tvRainPercent = itemView.findViewById(R.id.tv_rain_percent);
             imgRain = itemView.findViewById(R.id.img_rain);
             tvPart = itemView.findViewById(R.id.tv_part);
+            viewLine = itemView.findViewById(R.id.view_line);
         }
 
-        public void bindItem(PrecipitationEntity precipitationEntity) {
+        public void bindItem(PrecipitationEntity precipitationEntity,Boolean isLast) {
 
             tvRainPercent.setText(precipitationEntity.getRainPercent() + "%");
             int source = IconWeatherHelper.getIconPrecipitation(precipitationEntity.getRainPercent());
             imgRain.setImageResource(source);
 
             tvPart.setText(precipitationEntity.getName());
+
+            if (isLast){
+                viewLine.setVisibility(View.INVISIBLE);
+            }else {
+                viewLine.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

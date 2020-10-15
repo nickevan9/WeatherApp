@@ -1,5 +1,6 @@
 package com.example.weatherapp.widget.customwidget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
@@ -63,13 +64,14 @@ public class WidgetPrecipitation extends RelativeLayout {
 
         rvRain = findViewById(R.id.rv_precipitation);
 
-        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false, 6);
+        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false, 4);
 
         rvRain.setLayoutManager(layoutPagerManager);
         rvRain.setHasFixedSize(true);
         rvRain.setAdapter(precipitationAdapter);
     }
 
+    @SuppressLint("CheckResult")
     public void applyData(List<FchEntity> fchEntityList) {
         Observable.fromArray(fchEntityList).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(fchEntityList1 -> {
@@ -79,6 +81,14 @@ public class WidgetPrecipitation extends RelativeLayout {
             int countAfterNoon = 0;
             int countEvening = 0;
             int countNight = 0;
+
+            int countPerEarlyMorning = 0;
+            int countPerMorning = 0;
+            int countPerNoon = 0;
+            int countPerAfterNoon = 0;
+            int countPerEvening = 0;
+            int countPerNight = 0;
+
             List<PrecipitationEntity> list = new ArrayList<>();
             for (FchEntity fchEntity : fchEntityList1) {
 
@@ -91,54 +101,130 @@ public class WidgetPrecipitation extends RelativeLayout {
                     case "02:00":
                     case "03:00":
                     case "04:00":
+                        countPerEarlyMorning ++;
                         countEarlyMorning += fchEntity.getRh().intValue();
                         break;
                     case "05:00":
                     case "06:00":
                     case "07:00":
                     case "08:00":
+                        countPerMorning ++;
                         countMorning += fchEntity.getRh().intValue();
                         break;
                     case "09:00":
                     case "10:00":
                     case "11:00":
                     case "12:00":
+                        countPerNoon ++;
                         countNoon += fchEntity.getRh().intValue();
                         break;
                     case "13:00":
                     case "14:00":
                     case "15:00":
                     case "16:00":
+                        countPerAfterNoon ++;
                         countAfterNoon += fchEntity.getRh().intValue();
                         break;
                     case "17:00":
                     case "18:00":
                     case "19:00":
                     case "20:00":
+                        countPerEvening ++;
                         countEvening += fchEntity.getRh().intValue();
                         break;
                     case "21:00":
                     case "22:00":
                     case "23:00":
                     case "00:00":
+                        countPerNight ++;
                         countNight += fchEntity.getRh().intValue();
                         break;
                 }
             }
 
-            countEarlyMorning = countEarlyMorning / 4;
-            countMorning = countMorning / 4;
-            countNoon = countNoon / 4;
-            countAfterNoon = countAfterNoon / 4;
-            countEvening = countEvening / 4;
-            countNight = countNight / 4;
+            countEarlyMorning = countEarlyMorning / countPerEarlyMorning;
+            countMorning = countMorning / countPerMorning;
+            countNoon = countNoon / countPerNoon;
+            countAfterNoon = countAfterNoon / countPerAfterNoon;
+            countEvening = countEvening / countPerEvening;
+            countNight = countNight / countPerNight;
 
-            list.add(new PrecipitationEntity("Early", countEarlyMorning));
-            list.add(new PrecipitationEntity("Morning", countMorning));
-            list.add(new PrecipitationEntity("Noon", countNoon));
-            list.add(new PrecipitationEntity("Afternon", countAfterNoon));
-            list.add(new PrecipitationEntity("Evening", countEvening));
-            list.add(new PrecipitationEntity("Night", countNight));
+            String timeConvert1 = TimeUtilsExt.convertTimeStampToTimeAdapter(fchEntityList1.get(0).getDt(), timeZone);
+
+            switch (timeConvert1) {
+
+                case "01:00":
+                case "02:00":
+                case "03:00":
+                case "04:00":
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    list.add(new PrecipitationEntity("Night", countNight));
+
+                    break;
+                case "05:00":
+                case "06:00":
+                case "07:00":
+                case "08:00":
+
+
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    list.add(new PrecipitationEntity("Night", countNight));
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    break;
+                case "09:00":
+                case "10:00":
+                case "11:00":
+                case "12:00":
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    list.add(new PrecipitationEntity("Night", countNight));
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    break;
+                case "13:00":
+                case "14:00":
+                case "15:00":
+                case "16:00":
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    list.add(new PrecipitationEntity("Night", countNight));
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    break;
+                case "17:00":
+                case "18:00":
+                case "19:00":
+                case "20:00":
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    list.add(new PrecipitationEntity("Night", countNight));
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    break;
+                case "21:00":
+                case "22:00":
+                case "23:00":
+                case "00:00":
+                    list.add(new PrecipitationEntity("Night", countNight));
+                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Morning", countMorning));
+                    list.add(new PrecipitationEntity("Noon", countNoon));
+                    list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
+                    list.add(new PrecipitationEntity("Evening", countEvening));
+                    break;
+
+            }
+
 
             return list;
         }).subscribe(new Observer<List<PrecipitationEntity>>() {

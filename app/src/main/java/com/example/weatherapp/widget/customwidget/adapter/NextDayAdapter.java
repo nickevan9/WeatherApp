@@ -125,7 +125,7 @@ public class NextDayAdapter extends RecyclerView.Adapter<NextDayAdapter.ViewHold
             tvDaily.setText(TimeUtilsExt.convertTimeToDayOfWeek(fcdEntity.getDt(), timeZone));
             int source = IconWeatherHelper.getIconPrecipitation(fcdEntity.getRhAvg());
             imgRain.setImageResource(source);
-            tvRainPercent.setText(fcdEntity.getRhAvg().intValue() + "%");
+            tvRainPercent.setText(fcdEntity.getPp().intValue() + "%");
         }
 
     }

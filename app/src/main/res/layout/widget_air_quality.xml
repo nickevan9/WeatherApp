@@ -39,9 +39,9 @@
             android:id="@+id/circle_air"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            CircleProgressView:cpv_barColor="@android:color/white"
-            CircleProgressView:cpv_barColor1="@android:color/holo_orange_light"
-            CircleProgressView:cpv_barColor2="@android:color/holo_green_light"
+            CircleProgressView:cpv_barColor="#EFD891"
+            CircleProgressView:cpv_barColor1="#E6F418"
+            CircleProgressView:cpv_barColor2="#C84242"
             CircleProgressView:cpv_barColor3="@android:color/holo_red_dark"
             CircleProgressView:cpv_barStrokeCap="Butt"
             CircleProgressView:cpv_barWidth="@dimen/_12sdp"
@@ -58,7 +58,7 @@
             CircleProgressView:cpv_textMode="Text"
             CircleProgressView:cpv_textSize="16dp"
             CircleProgressView:cpv_unitColor="@android:color/holo_red_dark"
-            CircleProgressView:cpv_value="250"
+            CircleProgressView:cpv_value="200"
             CircleProgressView:cpv_textColor="@android:color/holo_red_dark"
             />
 

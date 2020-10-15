@@ -113,7 +113,7 @@ public class HomeController implements HomeContract.Controller {
     private WeatherDb createWeather(WeatherAir weatherAir) {
         WeatherDb weatherDb = new WeatherDb();
         weatherDb.setLocationName(weatherAir.weatherEntity.getLoc().getName());
-        weatherDb.setCityName(weatherAir.weatherEntity.getLoc().getAdm1());
+        weatherDb.setCityName(weatherAir.weatherEntity.getLoc().getName());
         weatherDb.setLatLocation(weatherAir.weatherEntity.getLoc().getLat());
         weatherDb.setLonLocation(weatherAir.weatherEntity.getLoc().getLon());
         weatherDb.setWeatherEntity(weatherAir.weatherEntity);
