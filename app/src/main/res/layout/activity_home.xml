@@ -11,25 +11,17 @@
   >
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
         app:elevation="0dp"
-        android:background="@null">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/bg_tranfer_item"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
+        android:background="@android:color/transparent">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
-                android:theme="@style/CustomActionBar"
                 app:layout_collapseMode="pin"
                 android:contentInsetLeft="0dp"
                 android:contentInsetStart="0dp"
@@ -89,10 +81,11 @@
 
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -133,8 +126,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp" />
 
-            <com.example.weatherapp.widget.customwidget.WidgetRainPercent
-                android:id="@+id/wg_rain_percent"
+<!--            <com.example.weatherapp.widget.customwidget.WidgetRainPercent-->
+<!--                android:id="@+id/wg_rain_percent"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_8sdp" />-->
+
+            <com.example.weatherapp.widget.customwidget.WidgetPrecipitation
+                android:id="@+id/wg_precipitation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp" />

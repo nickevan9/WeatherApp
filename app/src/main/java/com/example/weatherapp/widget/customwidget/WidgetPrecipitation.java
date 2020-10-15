@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.app.RxBus;
+import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.PrecipitationEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
 import com.example.weatherapp.widget.customwidget.adapter.LinearLayoutPagerManager;
@@ -18,12 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
-import io.reactivex.SingleObserver;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Predicate;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class WidgetPrecipitation extends RelativeLayout {
@@ -33,6 +33,8 @@ public class WidgetPrecipitation extends RelativeLayout {
     private String timeZone;
 
     private List<PrecipitationEntity> precipitationEntityList;
+
+    private CompositeDisposable disposable;
 
     public WidgetPrecipitation(Context context) {
         super(context);
@@ -53,22 +55,116 @@ public class WidgetPrecipitation extends RelativeLayout {
         inflate(getContext(), R.layout.widget_precipitation, this);
         timeZone = "";
 
+        disposable = new CompositeDisposable();
+
         precipitationEntityList = new ArrayList<>();
 
         precipitationAdapter = new PrecipitationAdapter(getContext(), precipitationEntityList);
 
         rvRain = findViewById(R.id.rv_precipitation);
 
-        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false, 4);
+        LinearLayoutPagerManager layoutPagerManager = new LinearLayoutPagerManager(getContext(), LinearLayoutManager.HORIZONTAL, false, 6);
 
         rvRain.setLayoutManager(layoutPagerManager);
         rvRain.setHasFixedSize(true);
         rvRain.setAdapter(precipitationAdapter);
-        rvRain.setNestedScrollingEnabled(true);
     }
 
-    public void applyData(List<PrecipitationEntity> precipitationEntityList) {
-        precipitationAdapter.applyData(precipitationEntityList);
+    public void applyData(List<FchEntity> fchEntityList) {
+        Observable.fromArray(fchEntityList).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).map(fchEntityList1 -> {
+            int countEarlyMorning = 0;
+            int countMorning = 0;
+            int countNoon = 0;
+            int countAfterNoon = 0;
+            int countEvening = 0;
+            int countNight = 0;
+            List<PrecipitationEntity> list = new ArrayList<>();
+            for (FchEntity fchEntity : fchEntityList1) {
+
+
+                String timeConvert = TimeUtilsExt.convertTimeStampToTimeAdapter(fchEntity.getDt(), timeZone);
+
+                switch (timeConvert) {
+
+                    case "01:00":
+                    case "02:00":
+                    case "03:00":
+                    case "04:00":
+                        countEarlyMorning += fchEntity.getRh().intValue();
+                        break;
+                    case "05:00":
+                    case "06:00":
+                    case "07:00":
+                    case "08:00":
+                        countMorning += fchEntity.getRh().intValue();
+                        break;
+                    case "09:00":
+                    case "10:00":
+                    case "11:00":
+                    case "12:00":
+                        countNoon += fchEntity.getRh().intValue();
+                        break;
+                    case "13:00":
+                    case "14:00":
+                    case "15:00":
+                    case "16:00":
+                        countAfterNoon += fchEntity.getRh().intValue();
+                        break;
+                    case "17:00":
+                    case "18:00":
+                    case "19:00":
+                    case "20:00":
+                        countEvening += fchEntity.getRh().intValue();
+                        break;
+                    case "21:00":
+                    case "22:00":
+                    case "23:00":
+                    case "00:00":
+                        countNight += fchEntity.getRh().intValue();
+                        break;
+                }
+            }
+
+            countEarlyMorning = countEarlyMorning / 4;
+            countMorning = countMorning / 4;
+            countNoon = countNoon / 4;
+            countAfterNoon = countAfterNoon / 4;
+            countEvening = countEvening / 4;
+            countNight = countNight / 4;
+
+            list.add(new PrecipitationEntity("Early", countEarlyMorning));
+            list.add(new PrecipitationEntity("Morning", countMorning));
+            list.add(new PrecipitationEntity("Noon", countNoon));
+            list.add(new PrecipitationEntity("Afternon", countAfterNoon));
+            list.add(new PrecipitationEntity("Evening", countEvening));
+            list.add(new PrecipitationEntity("Night", countNight));
+
+            return list;
+        }).subscribe(new Observer<List<PrecipitationEntity>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposable.add(d);
+            }
+
+            @Override
+            public void onNext(List<PrecipitationEntity> precipitationEntities) {
+                precipitationAdapter.applyData(precipitationEntities);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
+
+
 
     }
 
@@ -82,25 +178,8 @@ public class WidgetPrecipitation extends RelativeLayout {
 
         RxBus.subscribe(RxBus.TAG_LIST_HOUR_ITEM, this, listHourEntity -> {
             List<FchEntity> fchEntityList = (List<FchEntity>) listHourEntity;
-            Observable.fromArray(fchEntityList).flatMap(Observable::fromIterable).filter(fchEntity -> false)
-                    .toList().subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new SingleObserver<List<FchEntity>>() {
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {
+            applyData(fchEntityList);
 
-                }
-
-                @Override
-                public void onSuccess(@NonNull List<FchEntity> fchEntities) {
-
-                }
-
-                @Override
-                public void onError(@NonNull Throwable e) {
-
-                }
-            });
         });
     }
 
@@ -108,5 +187,6 @@ public class WidgetPrecipitation extends RelativeLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         RxBus.unregister(this);
+        disposable.clear();
     }
 }

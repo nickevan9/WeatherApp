@@ -4,6 +4,7 @@ package com.example.weatherapp.ui.home;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +33,12 @@ import com.example.weatherapp.ui.place.PlaceActivity;
 import com.example.weatherapp.widget.customwidget.WidgetAirQuality;
 import com.example.weatherapp.widget.customwidget.WidgetNextDay;
 import com.example.weatherapp.widget.customwidget.WidgetNextHour;
+import com.example.weatherapp.widget.customwidget.WidgetPrecipitation;
 import com.example.weatherapp.widget.customwidget.WidgetRainPercent;
 import com.example.weatherapp.widget.customwidget.WidgetSunMoon;
 import com.example.weatherapp.widget.customwidget.WidgetSunView;
 import com.example.weatherapp.widget.customwidget.WidgetWind;
+import com.google.android.material.appbar.AppBarLayout;
 import com.mapbox.geojson.Point;
 
 import java.io.Serializable;
@@ -74,9 +77,12 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     private WidgetSunView wgSun;
     private WidgetSunMoon wgSunMoon;
     private WidgetAirQuality wgAir;
-    private WidgetRainPercent wgRain;
+//    private WidgetRainPercent wgRain;
+    private WidgetPrecipitation wgPrecipitation;
     private NestedScrollView scrollWeather;
     private CoordinatorLayout homeView;
+    private AppBarLayout appBarLayout;
+    private NestedScrollView scrollView;
 
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -130,7 +136,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         wgWind = findViewById(R.id.wg_wind);
         wgAir = findViewById(R.id.wg_air);
         wgSun = findViewById(R.id.wg_sun);
-        wgRain = findViewById(R.id.wg_rain_percent);
+        wgPrecipitation = findViewById(R.id.wg_precipitation);
+        appBarLayout = findViewById(R.id.app_bar);
+        scrollView = findViewById(R.id.scrollView);
 
         homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(), getLifecycle(), weatherDbs);
         vpHome = findViewById(R.id.vPHome);
@@ -170,9 +178,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
             }
         });
 
+
+
         imgAddLocation.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, PlaceActivity.class);
-
             mStartForResult.launch(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
