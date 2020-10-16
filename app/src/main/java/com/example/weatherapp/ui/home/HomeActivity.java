@@ -4,6 +4,8 @@ package com.example.weatherapp.ui.home;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +16,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -26,6 +30,7 @@ import com.example.weatherapp.app.TimeUtilsExt;
 import com.example.weatherapp.data.model.WeatherDb;
 import com.example.weatherapp.data.model.weather.FcdEntity;
 import com.example.weatherapp.data.model.weather.FchEntity;
+import com.example.weatherapp.data.model.weather.WeatherEntity;
 import com.example.weatherapp.ui.adapter.HomePagerAdapter;
 import com.example.weatherapp.ui.base.BaseActivity;
 import com.example.weatherapp.ui.dialog.LoadingDialog;
@@ -49,7 +54,11 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class HomeActivity extends BaseActivity implements HomeContract.View {
@@ -117,11 +126,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     protected void dataCreate() {
         loadingDialog = new LoadingDialog(this);
         homeController.attachView(this);
-
         weatherDbs = new ArrayList<>();
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initView() {
 
@@ -153,22 +162,53 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+
                 WeatherDb weatherDb = weatherDbs.get(position);
 
                 String timeZone = weatherDb.getWeatherEntity().getLoc().getTzname();
 
-                List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(), timeZone);
-                List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(), timeZone);
+                Observable.fromArray(weatherDb).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).map(new Function<WeatherDb, WeatherDb>() {
+                    @Override
+                    public WeatherDb apply(WeatherDb weatherDb) throws Exception {
+                        WeatherEntity weatherEntity = weatherDb.getWeatherEntity();
 
-                homeView.setBackgroundResource(IconWeatherHelper.getBackgroundWeather(fchEntityList.get(0).getS()));
-                tvLocation.setText(weatherDb.getCityName());
+                        List<FchEntity> fchEntityList = TimeUtilsExt.mapTimeToNow(weatherDb.getWeatherEntity().getFch(), timeZone);
+                        List<FcdEntity> fcdEntityList = TimeUtilsExt.mapDateToNow(weatherDb.getWeatherEntity().getFcd(), timeZone);
 
-                RxBus.publish(RxBus.TAG_TIME_ZONE, timeZone);
-                RxBus.publish(RxBus.TAG_AIR_WEATHER, weatherDb.getAirEntity());
-                RxBus.publish(RxBus.TAG_DAY_ITEM, fcdEntityList.get(0));
-                RxBus.publish(RxBus.TAG_LIST_DAY_ITEM, fcdEntityList);
-                RxBus.publish(RxBus.TAG_LIST_HOUR_ITEM, fchEntityList);
-                RxBus.publish(RxBus.TAG_HOUR_ITEM, fchEntityList.get(0));
+                        weatherEntity.setFcd(fcdEntityList);
+                        weatherEntity.setFch(fchEntityList);
+
+                        return weatherDb;
+                    }
+                }).subscribe(new Observer<WeatherDb>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(WeatherDb weatherDb) {
+                        homeView.setBackgroundResource(IconWeatherHelper.getBackgroundWeather(weatherDb.getWeatherEntity().getFch().get(0).getS()));
+                        tvLocation.setText(weatherDb.getCityName());
+
+                        RxBus.publish(RxBus.TAG_TIME_ZONE, timeZone);
+                        RxBus.publish(RxBus.TAG_AIR_WEATHER, weatherDb.getAirEntity());
+                        RxBus.publish(RxBus.TAG_DAY_ITEM, weatherDb.getWeatherEntity().getFcd().get(0));
+                        RxBus.publish(RxBus.TAG_LIST_DAY_ITEM, weatherDb.getWeatherEntity().getFcd());
+                        RxBus.publish(RxBus.TAG_LIST_HOUR_ITEM, weatherDb.getWeatherEntity().getFch());
+                        RxBus.publish(RxBus.TAG_HOUR_ITEM, weatherDb.getWeatherEntity().getFch().get(0));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
             }
 
@@ -185,6 +225,21 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
             mStartForResult.launch(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
+
+        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+
+            if (scrollY > oldScrollY) {
+                appBarLayout.setBackgroundColor(ContextCompat.getColor(this,R.color.bg_tranfer_item));
+            }
+            if (scrollY < oldScrollY) {
+                appBarLayout.setBackgroundColor(ContextCompat.getColor(this,R.color.bg_tranfer_item));
+            }
+
+            if (scrollY == 0) {
+                appBarLayout.setBackgroundColor(Color.TRANSPARENT); // required to delete elevation shadow
+            }
+        });
+
 
     }
 

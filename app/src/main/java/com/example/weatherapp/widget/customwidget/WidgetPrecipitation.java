@@ -157,7 +157,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                 case "02:00":
                 case "03:00":
                 case "04:00":
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     list.add(new PrecipitationEntity("Morning", countMorning));
                     list.add(new PrecipitationEntity("Noon", countNoon));
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
@@ -176,7 +176,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
                     list.add(new PrecipitationEntity("Evening", countEvening));
                     list.add(new PrecipitationEntity("Night", countNight));
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     break;
                 case "09:00":
                 case "10:00":
@@ -186,7 +186,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
                     list.add(new PrecipitationEntity("Evening", countEvening));
                     list.add(new PrecipitationEntity("Night", countNight));
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     list.add(new PrecipitationEntity("Morning", countMorning));
                     break;
                 case "13:00":
@@ -196,7 +196,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
                     list.add(new PrecipitationEntity("Evening", countEvening));
                     list.add(new PrecipitationEntity("Night", countNight));
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     list.add(new PrecipitationEntity("Morning", countMorning));
                     list.add(new PrecipitationEntity("Noon", countNoon));
                     break;
@@ -206,7 +206,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                 case "20:00":
                     list.add(new PrecipitationEntity("Evening", countEvening));
                     list.add(new PrecipitationEntity("Night", countNight));
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     list.add(new PrecipitationEntity("Morning", countMorning));
                     list.add(new PrecipitationEntity("Noon", countNoon));
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));
@@ -216,7 +216,7 @@ public class WidgetPrecipitation extends RelativeLayout {
                 case "23:00":
                 case "00:00":
                     list.add(new PrecipitationEntity("Night", countNight));
-                    list.add(new PrecipitationEntity("Early Morning", countEarlyMorning));
+                    list.add(new PrecipitationEntity("Early", countEarlyMorning));
                     list.add(new PrecipitationEntity("Morning", countMorning));
                     list.add(new PrecipitationEntity("Noon", countNoon));
                     list.add(new PrecipitationEntity("Afternoon", countAfterNoon));

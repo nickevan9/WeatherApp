@@ -122,7 +122,7 @@ class SunInDayCustom(context: Context, attrs: AttributeSet) : View(context, attr
         }
 
         mTextPaint.apply {
-            textSize = 36F
+            textSize = 30F
             color = Color.GREEN
             textAlign = Paint.Align.CENTER
         }
